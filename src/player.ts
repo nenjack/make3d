@@ -37,7 +37,6 @@ export class Player extends TexturedBillboard {
     );
 
     renderer.camera.lookAt(position);
-    renderer.camera.up = new Vector3(0, 0, 1);
   }
 
   protected setDirection() {

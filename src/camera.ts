@@ -1,4 +1,4 @@
-import { PerspectiveCamera } from 'three';
+import { PerspectiveCamera, Vector3 } from 'three';
 
 export class Camera extends PerspectiveCamera {
   distance: number;
@@ -14,5 +14,6 @@ export class Camera extends PerspectiveCamera {
     );
 
     this.lookAt(levelSize / 2, levelSize / 2, 0);
+    this.up = new Vector3(0, 0, 1);
   }
 }
