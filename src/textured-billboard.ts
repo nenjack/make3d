@@ -4,27 +4,20 @@ import { Material } from './model';
 import { renderer } from './state';
 import { createMaterial } from './utils';
 
-export type AnimationsDirection = 'down' | 'right' | 'up' | 'left';
+export type Direction = 'down' | 'right' | 'up' | 'left';
 
-export type AnimationsOrder = Partial<
-  Record<AnimationsDirection | 'default', number>
->;
+export type directionsToRows = Partial<Record<Direction | 'default', number>>;
 
 export interface TexturedBillboardProps {
-  materialName: string;
-  animationsOrder?: AnimationsOrder;
+  textureName: string;
   frameDuration?: number;
   totalFrames?: number;
+  directionsToRows?: directionsToRows;
 }
 
 export class TexturedBillboard extends Billboard {
-  static directions: AnimationsDirection[] = ['down', 'right', 'up', 'left'];
-  static reverseDirections: AnimationsDirection[] = [
-    'up',
-    'left',
-    'down',
-    'right'
-  ];
+  static directions: Direction[] = ['down', 'right', 'up', 'left'];
+  static reverseDirections: Direction[] = ['up', 'left', 'down', 'right'];
 
   static findByAngle =
     (angle: number) => (_animation: unknown, index: number) =>
@@ -33,20 +26,20 @@ export class TexturedBillboard extends Billboard {
   readonly isPlayer: boolean = false;
 
   frame = 0;
-  animationsOrder: AnimationsOrder;
   frameDuration: number;
   totalFrames: number;
+  directionsToRows: directionsToRows;
 
   constructor({
-    materialName = '',
+    textureName = '',
     frameDuration = 60,
-    animationsOrder = {},
-    totalFrames = 1
+    totalFrames = 1,
+    directionsToRows = {}
   }: TexturedBillboardProps) {
-    super(createMaterial(materialName));
+    super(createMaterial(textureName));
 
     this.frameDuration = frameDuration;
-    this.animationsOrder = animationsOrder;
+    this.directionsToRows = directionsToRows;
     this.totalFrames = totalFrames;
   }
 
@@ -66,9 +59,9 @@ export class TexturedBillboard extends Billboard {
       : direction;
   }
 
-  protected getRow(direction: AnimationsDirection) {
+  protected getRow(direction: Direction) {
     return (
-      (this.animationsOrder[direction] ?? this.animationsOrder.default) || 0
+      (this.directionsToRows[direction] ?? this.directionsToRows.default) || 0
     );
   }
 

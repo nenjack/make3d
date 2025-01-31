@@ -1,33 +1,31 @@
 import { Billboard } from './billboard';
-export type AnimationsDirection = 'down' | 'right' | 'up' | 'left';
-export type AnimationsOrder = Partial<
-  Record<AnimationsDirection | 'default', number>
->;
+export type Direction = 'down' | 'right' | 'up' | 'left';
+export type directionsToRows = Partial<Record<Direction | 'default', number>>;
 export interface TexturedBillboardProps {
-  materialName: string;
-  animationsOrder?: AnimationsOrder;
+  textureName: string;
   frameDuration?: number;
   totalFrames?: number;
+  directionsToRows?: directionsToRows;
 }
 export declare class TexturedBillboard extends Billboard {
-  static directions: AnimationsDirection[];
-  static reverseDirections: AnimationsDirection[];
+  static directions: Direction[];
+  static reverseDirections: Direction[];
   static findByAngle: (
     angle: number
   ) => (_animation: unknown, index: number) => boolean;
   readonly isPlayer: boolean;
   frame: number;
-  animationsOrder: AnimationsOrder;
   frameDuration: number;
   totalFrames: number;
+  directionsToRows: directionsToRows;
   constructor({
-    materialName,
+    textureName,
     frameDuration,
-    animationsOrder,
-    totalFrames
+    totalFrames,
+    directionsToRows
   }: TexturedBillboardProps);
   protected getDirection(): any;
-  protected getRow(direction: AnimationsDirection): number;
+  protected getRow(direction: Direction): number;
   protected update(ms: number): void;
 }
 //# sourceMappingURL=textured-billboard.d.ts.map

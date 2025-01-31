@@ -6,5 +6,5 @@ export declare const getMatrix: (
   rotation: Euler,
   scale: Vector3
 ) => Matrix4;
-export declare const createMaterial: (texture: string) => Material;
+export declare const createMaterial: (textureName: string) => Material;
 //# sourceMappingURL=utils.d.ts.map

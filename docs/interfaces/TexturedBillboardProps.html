@@ -64,7 +64,7 @@
       <div class="col-content">
         <div class="tsd-page-title">
           <ul class="tsd-breadcrumb">
-            <li><a href="../index.html">@pietal.dev/engine</a></li>
+            <li><a href="../modules.html">@pietal.dev/engine</a></li>
             <li>
               <a href="TexturedBillboardProps.html">TexturedBillboardProps</a>
             </li>
@@ -76,26 +76,23 @@
           <span class="tsd-kind-interface">TexturedBillboardProps</span>
           <span class="tsd-signature-symbol">{</span><br />    <a
             class="tsd-kind-property"
-            href="TexturedBillboardProps.html#animationsorder"
-            >animationsOrder</a
+            href="TexturedBillboardProps.html#directionstorows"
+            >directionsToRows</a
           ><span class="tsd-signature-symbol">?:</span>
           <span class="tsd-signature-type">Partial</span
-          ><span class="tsd-signature-symbol">&lt;</span><br />        <span
-            class="tsd-signature-type"
-            >Record</span
+          ><span class="tsd-signature-symbol">&lt;</span
+          ><span class="tsd-signature-type">Record</span
           ><span class="tsd-signature-symbol">&lt;</span
           ><span class="tsd-signature-type">&quot;default&quot;</span>
           <span class="tsd-signature-symbol">|</span>
           <a
-            href="../types/AnimationsDirection.html"
+            href="../types/Direction.html"
             class="tsd-signature-type tsd-kind-type-alias"
-            >AnimationsDirection</a
+            >Direction</a
           ><span class="tsd-signature-symbol">,</span>
           <span class="tsd-signature-type">number</span
           ><span class="tsd-signature-symbol">&gt;</span
-          ><span class="tsd-signature-symbol">,</span><br />    <span
-            class="tsd-signature-symbol"
-            >&gt;</span
+          ><span class="tsd-signature-symbol">&gt;</span
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
             href="TexturedBillboardProps.html#frameduration"
@@ -104,8 +101,8 @@
           <span class="tsd-signature-type">number</span
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
-            href="TexturedBillboardProps.html#materialname"
-            >materialName</a
+            href="TexturedBillboardProps.html#texturename"
+            >textureName</a
           ><span class="tsd-signature-symbol">:</span>
           <span class="tsd-signature-type">string</span
           ><span class="tsd-signature-symbol">;</span><br />    <a
@@ -124,8 +121,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L13"
-                >src/textured-billboard.ts:13</a
+                href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L11"
+                >src/textured-billboard.ts:11</a
               >
             </li>
           </ul>
@@ -151,11 +148,11 @@
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
                     <a
-                      href="TexturedBillboardProps.html#animationsorder"
+                      href="TexturedBillboardProps.html#directionstorows"
                       class="tsd-index-link"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>animations<wbr />Order?</span></a
+                      ><span>directions<wbr />To<wbr />Rows?</span></a
                     >
                     <a
                       href="TexturedBillboardProps.html#frameduration"
@@ -165,11 +162,11 @@
                       ><span>frame<wbr />Duration?</span></a
                     >
                     <a
-                      href="TexturedBillboardProps.html#materialname"
+                      href="TexturedBillboardProps.html#texturename"
                       class="tsd-index-link"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>material<wbr />Name</span></a
+                      ><span>texture<wbr />Name</span></a
                     >
                     <a
                       href="TexturedBillboardProps.html#totalframes"
@@ -195,12 +192,12 @@
           </summary>
           <section>
             <section class="tsd-panel tsd-member">
-              <a id="animationsorder" class="tsd-anchor"></a>
+              <a id="directionstorows" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
                 <code class="tsd-tag">Optional</code
-                ><span>animations<wbr />Order</span
+                ><span>directions<wbr />To<wbr />Rows</span
                 ><a
-                  href="#animationsorder"
+                  href="#directionstorows"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24">
@@ -208,7 +205,7 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">animationsOrder</span
+                <span class="tsd-kind-property">directionsToRows</span
                 ><span class="tsd-signature-symbol">?:</span>
                 <span class="tsd-signature-type">Partial</span
                 ><span class="tsd-signature-symbol">&lt;</span
@@ -217,9 +214,9 @@
                 ><span class="tsd-signature-type">&quot;default&quot;</span>
                 <span class="tsd-signature-symbol">|</span>
                 <a
-                  href="../types/AnimationsDirection.html"
+                  href="../types/Direction.html"
                   class="tsd-signature-type tsd-kind-type-alias"
-                  >AnimationsDirection</a
+                  >Direction</a
                 ><span class="tsd-signature-symbol">,</span>
                 <span class="tsd-signature-type">number</span
                 ><span class="tsd-signature-symbol">&gt;</span
@@ -260,19 +257,19 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L16"
-                      >src/textured-billboard.ts:16</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L13"
+                      >src/textured-billboard.ts:13</a
                     >
                   </li>
                 </ul>
               </aside>
             </section>
             <section class="tsd-panel tsd-member">
-              <a id="materialname" class="tsd-anchor"></a>
+              <a id="texturename" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <span>material<wbr />Name</span
+                <span>texture<wbr />Name</span
                 ><a
-                  href="#materialname"
+                  href="#texturename"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24">
@@ -280,7 +277,7 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">materialName</span
+                <span class="tsd-kind-property">textureName</span
                 ><span class="tsd-signature-symbol">:</span>
                 <span class="tsd-signature-type">string</span>
               </div>
@@ -289,8 +286,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L14"
-                      >src/textured-billboard.ts:14</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L12"
+                      >src/textured-billboard.ts:12</a
                     >
                   </li>
                 </ul>
@@ -319,8 +316,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L17"
-                      >src/textured-billboard.ts:17</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L14"
+                      >src/textured-billboard.ts:14</a
                     >
                   </li>
                 </ul>
@@ -473,18 +470,18 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#animationsorder" class=""
+                  <a href="#directionstorows" class=""
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>animations<wbr />Order</span></a
+                    ><span>directions<wbr />To<wbr />Rows</span></a
                   ><a href="#frameduration" class=""
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>frame<wbr />Duration</span></a
-                  ><a href="#materialname" class=""
+                  ><a href="#texturename" class=""
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>material<wbr />Name</span></a
+                    ><span>texture<wbr />Name</span></a
                   ><a href="#totalframes" class=""
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
@@ -497,7 +494,7 @@
         </div>
         <div class="site-menu">
           <nav class="tsd-navigation">
-            <a href="../index.html">@pietal.dev/engine</a>
+            <a href="../modules.html">@pietal.dev/engine</a>
             <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
               <li>Loading...</li>
             </ul>

@@ -27,10 +27,10 @@ export const getMatrix = (
   return matrix;
 };
 
-export const createMaterial = (texture: string) => {
+export const createMaterial = (textureName: string) => {
   try {
     const material: Material = new MeshBasicMaterial({
-      map: textures[texture].clone(),
+      map: textures[textureName].clone(),
       transparent: true
     });
 
@@ -38,7 +38,9 @@ export const createMaterial = (texture: string) => {
 
     return material;
   } catch (_missing) {
-    console.warn(`${texture} missing in ${Object.keys(textures).join(', ')}`);
+    console.warn(
+      `${textureName} missing in ${Object.keys(textures).join(', ')}`
+    );
 
     return {} as Material;
   }

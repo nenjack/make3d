@@ -7,16 +7,16 @@ const state_1 = require('./state');
 const utils_1 = require('./utils');
 class TexturedBillboard extends billboard_1.Billboard {
   constructor({
-    materialName = '',
+    textureName = '',
     frameDuration = 60,
-    animationsOrder = {},
-    totalFrames = 1
+    totalFrames = 1,
+    directionsToRows = {}
   }) {
-    super((0, utils_1.createMaterial)(materialName));
+    super((0, utils_1.createMaterial)(textureName));
     this.isPlayer = false;
     this.frame = 0;
     this.frameDuration = frameDuration;
-    this.animationsOrder = animationsOrder;
+    this.directionsToRows = directionsToRows;
     this.totalFrames = totalFrames;
   }
   getDirection() {
@@ -36,9 +36,9 @@ class TexturedBillboard extends billboard_1.Billboard {
   getRow(direction) {
     var _a;
     return (
-      ((_a = this.animationsOrder[direction]) !== null && _a !== void 0
+      ((_a = this.directionsToRows[direction]) !== null && _a !== void 0
         ? _a
-        : this.animationsOrder.default) || 0
+        : this.directionsToRows.default) || 0
     );
   }
   update(ms) {

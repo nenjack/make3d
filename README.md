@@ -10,10 +10,10 @@ import {
 } from 'engine25d';
 
 const props = {
-  materialName: 'elf',
-  totalFrames: 6,
+  textureName: 'elf',
   frameDuration: 120,
-  animationsOrder: {
+  totalFrames: 6,
+  directionsToRows: {
     down: 4,
     up: 2,
     default: 0

@@ -14,17 +14,17 @@ const getMatrix = (position, rotation, scale) => {
   return matrix;
 };
 exports.getMatrix = getMatrix;
-const createMaterial = (texture) => {
+const createMaterial = (textureName) => {
   try {
     const material = new three_1.MeshBasicMaterial({
-      map: state_1.textures[texture].clone(),
+      map: state_1.textures[textureName].clone(),
       transparent: true
     });
     material.size = new three_1.Vector2(90 / 3, 240 / 6);
     return material;
   } catch (_missing) {
     console.warn(
-      `${texture} missing in ${Object.keys(state_1.textures).join(', ')}`
+      `${textureName} missing in ${Object.keys(state_1.textures).join(', ')}`
     );
     return {};
   }
