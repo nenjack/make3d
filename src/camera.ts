@@ -6,15 +6,15 @@ export class Camera extends PerspectiveCamera {
   targetX!: number;
   targetY!: number;
 
-  constructor(levelSize = 32, distance = 3) {
+  constructor(levelSize = 32) {
     super(70, innerWidth / innerHeight, 0.2, levelSize * 1.33);
 
-    this.distance = distance;
     this.levelSize = levelSize;
-    this.setPosition(levelSize / 2, levelSize / 2);
+    this.setDistance();
+    this.setPosition();
   }
 
-  getPosition(targetX?: number, targetY?: number) {
+  getPosition(targetX = this.levelSize / 2, targetY = this.levelSize / 2) {
     if (typeof targetX !== 'undefined' && typeof targetY !== 'undefined') {
       this.targetX = targetX;
       this.targetY = targetY;
@@ -27,7 +27,11 @@ export class Camera extends PerspectiveCamera {
     );
   }
 
-  setPosition(targetX?: number, targetY?: number) {
+  setDistance(distance = innerHeight / 300) {
+    this.distance = distance;
+  }
+
+  setPosition(targetX = this.targetX, targetY = this.targetY) {
     const { x, y, z } = this.getPosition(targetX, targetY);
 
     this.position.set(x, y, z);
