@@ -22,19 +22,28 @@ export class TexturedBillboard extends Billboard {
   frame = 0;
   frameDuration: number;
   totalFrames: number;
+  cols: number;
+  rows: number;
   directionsToRows: DirectionsToRows;
 
   constructor({
     textureName = '',
-    frameDuration = 60,
-    totalFrames = 1,
+    frameDuration = 120,
+    totalFrames = 6,
+    cols = 3,
+    rows = 6,
     directionsToRows = {}
   }: TexturedBillboardProps) {
-    super(createMaterial(textureName));
+    const material = createMaterial(textureName);
+    material.map?.repeat.set(1 / cols, 1 / rows);
+
+    super(material);
 
     this.frameDuration = frameDuration;
-    this.directionsToRows = directionsToRows;
     this.totalFrames = totalFrames;
+    this.cols = cols;
+    this.rows = rows;
+    this.directionsToRows = directionsToRows;
   }
 
   protected getDirection() {
@@ -55,7 +64,9 @@ export class TexturedBillboard extends Billboard {
 
   protected getRow(direction: Direction) {
     return (
-      (this.directionsToRows[direction] ?? this.directionsToRows.default) || 0
+      this.rows -
+      this.totalFrames / this.cols -
+      ((this.directionsToRows[direction] ?? this.directionsToRows.default) || 0)
     );
   }
 
@@ -69,12 +80,13 @@ export class TexturedBillboard extends Billboard {
     const frame = Math.floor(this.frame);
     const direction = this.getDirection();
     const row = this.getRow(direction);
-    const x = (frame % 3) / 3;
-    const y = (Math.floor(frame / 3) + row) / this.totalFrames;
+    const x = frame % this.cols;
+    const y = Math.floor(frame / this.cols) + row;
 
     const material = this.mesh.material as Material;
     if (material instanceof MeshBasicMaterial) {
-      material.map?.offset.set(x, y);
+      material.map?.offset.set(x / this.cols, y / this.rows);
+
       this.scale.x = (direction === 'left' ? -1 : 1) * Math.abs(this.scale.x);
     }
   }

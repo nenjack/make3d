@@ -24,7 +24,9 @@ export type DirectionsToRows = Partial<Record<Direction | 'default', number>>;
 
 export interface TexturedBillboardProps {
   textureName: string;
+  cols: number;
+  rows: number;
+  totalFrames: number;
   frameDuration?: number;
-  totalFrames?: number;
   directionsToRows?: DirectionsToRows;
 }

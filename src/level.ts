@@ -7,7 +7,7 @@ export class Level {
   readonly size: number;
 
   heights: number[][] = [];
-  map: Cellular;
+  map!: Cellular;
 
   constructor(levelSize = 32) {
     this.size = levelSize;
