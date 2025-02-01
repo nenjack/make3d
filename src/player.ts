@@ -1,12 +1,10 @@
-import { Vector3 } from 'three';
 import { Level } from './level';
 import { TexturedBillboardProps } from './model';
 import { renderer, state } from './state';
 import { TexturedBillboard } from './textured-billboard';
-import { Camera } from './camera';
 
 export class Player extends TexturedBillboard {
-  static readonly cameraLerpRatio = 0.01;
+  static readonly cameraLerpRatio = 0.0025;
 
   readonly isPlayer = true;
   readonly state = state;
@@ -26,13 +24,13 @@ export class Player extends TexturedBillboard {
     this.setDirection();
 
     const { camera } = renderer;
-    const scale = Camera.distance / camera.aspect;
-    const targetX = this.body.x - Math.sin(-state.direction) * scale;
-    const targetY = this.body.y - Math.cos(-state.direction) * scale;
-    const target = camera.getPosition(targetX, targetY);
 
-    camera.position.lerp(target, ms * Player.cameraLerpRatio);
-    camera.lookAt(new Vector3(this.body.x, this.body.y, this.z + 1));
+    camera.updatePosition(
+      this.state.direction,
+      this.body.x,
+      this.body.y,
+      ms * Player.cameraLerpRatio
+    );
   }
 
   protected setDirection() {

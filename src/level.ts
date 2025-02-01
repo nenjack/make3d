@@ -32,7 +32,7 @@ export class Level {
   }
 
   getFloor(x: number, y: number) {
-    return this.heights[Math.floor(x)]?.[Math.floor(y)] || 0;
+    return this.heights[Math.floor(x)]?.[Math.floor(y)] || -Infinity;
   }
 
   protected createMap(fill = Level.fill, iterations = Level.mapIterations) {

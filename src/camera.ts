@@ -10,6 +10,7 @@ export class Camera extends PerspectiveCamera {
 
   targetX = 0;
   targetY = 0;
+
   level?: Level;
   player?: Player;
 
@@ -27,32 +28,49 @@ export class Camera extends PerspectiveCamera {
 
   setPlayer(player: Player) {
     this.player = player;
-    this.updatePosition(this.player.body.x, this.player.body.y);
+    this.updatePosition(
+      this.player.state.direction,
+      this.player.body.x,
+      this.player.body.y
+    );
   }
 
-  getPosition(targetX?: number, targetY?: number) {
+  getFloor() {
+    const playerFloor = this.player ? 2 * this.player.mesh.position.z : 0;
+
+    return playerFloor < 0
+      ? playerFloor
+      : Math.max(
+          playerFloor,
+          this.level?.getFloor(this.position.x, this.position.y) || -Infinity
+        );
+  }
+
+  updatePosition(
+    direction: number,
+    targetX?: number,
+    targetY?: number,
+    lerp = 0
+  ) {
     if (typeof targetX !== 'undefined' && typeof targetY !== 'undefined') {
       this.targetX = targetX;
       this.targetY = targetY;
     }
 
-    const playerFloor = this.player ? 2 * this.player.mesh.position.z : 0;
-    const levelFloor = this.level
-      ? this.level.getFloor(this.targetX, this.targetY)
-      : 0;
+    const scale = 1 / this.aspect;
+    const offsetX = Math.sin(-direction) * scale;
+    const offsetY = Math.cos(-direction) * scale;
+    const x = this.targetX - offsetX;
+    const y = this.targetY - offsetY;
+    const z = 1 + this.getFloor() / 2;
 
-    return new Vector3(
-      this.targetX,
-      this.targetY,
-      1 + Math.max(playerFloor, levelFloor) / 2
-    );
-  }
+    if (lerp) {
+      this.position.lerp(new Vector3(x, y, z), lerp);
+    } else {
+      this.position.set(x, y, z);
+    }
 
-  updatePosition(targetX?: number, targetY?: number) {
-    const { x, y, z } = this.getPosition(targetX, targetY);
-
-    this.position.set(x, y, z);
-    this.lookAt(this.targetX, this.targetY, 0);
+    this.lookAt(this.targetX, this.targetY, this.position.z - 0.5);
     this.up = new Vector3(0, 0, 1);
   }
 }
