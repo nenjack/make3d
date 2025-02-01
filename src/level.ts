@@ -1,5 +1,6 @@
 import { Map } from 'rot-js';
 import Cellular from 'rot-js/lib/map/cellular';
+import { renderer } from './state';
 
 export class Level {
   readonly iterations = 4;
@@ -9,12 +10,16 @@ export class Level {
   heights: number[][] = [];
   map!: Cellular;
 
-  constructor(levelSize = 32) {
+  constructor(levelSize = 32, idle = false) {
     this.size = levelSize;
     this.createMap();
+
+    if (!idle) {
+      renderer.camera.setLevel(this);
+    }
   }
 
-  getHeight(x: number, y: number) {
+  getFloor(x: number, y: number) {
     try {
       return this.heights[Math.floor(x)][Math.floor(y)];
     } catch (_oob) {

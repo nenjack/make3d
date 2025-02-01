@@ -13,6 +13,8 @@ export class Player extends TexturedBillboard {
   constructor(level: Level, props: TexturedBillboardProps) {
     super(props);
     this.init(level);
+
+    renderer.camera.setPlayer(this);
   }
 
   protected update(ms: number) {

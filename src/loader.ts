@@ -1,10 +1,9 @@
-import { LoadingManager, Texture, TextureLoader } from 'three';
-import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import { TGALoader } from 'three/examples/jsm/loaders/TGALoader.js';
+import { LoadingManager, Texture, type TextureLoader } from 'three';
 
 export class Loader extends LoadingManager {
   textureLoader: TextureLoader;
   fbxLoader: FBXLoader;
+  tgaLoader: boolean;
 
   constructor(
     onLoad?: () => void,
@@ -12,19 +11,41 @@ export class Loader extends LoadingManager {
     onError?: (url: string) => void
   ) {
     super(onLoad, onProgress, onError);
-
-    this.addHandler(/\.tga$/i, new TGALoader());
-    this.textureLoader = new TextureLoader(this);
-    this.fbxLoader = new FBXLoader(this);
   }
 
   async load(path: string): Promise<Texture | any> {
-    return new Promise((resolve) => {
-      if (path.toLowerCase().endsWith('.fbx')) {
-        return this.fbxLoader.load(path, resolve);
-      }
+    return new Promise(async (resolve) => {
+      const extension = path.toLowerCase().split('.').pop();
 
-      return this.textureLoader.load(path, resolve);
+      switch (extension) {
+        case 'tga':
+          if (!this.tgaLoader) {
+            this.tgaLoader = true;
+            const { TGALoader } = await import(
+              'three/examples/jsm/loaders/TGALoader.js'
+            );
+            this.addHandler(/\.tga$/i, new TGALoader());
+          }
+          break;
+
+        case 'fbx':
+          if (!this.fbxLoader) {
+            const { FBXLoader } = await import(
+              'three/examples/jsm/loaders/FBXLoader.js'
+            );
+            this.fbxLoader = new FBXLoader(this);
+          }
+
+          return this.fbxLoader.load(path, resolve);
+
+        default:
+          if (!this.textureLoader) {
+            const { TextureLoader } = await import('three');
+            this.textureLoader = new TextureLoader(this);
+          }
+
+          return this.textureLoader.load(path, resolve);
+      }
     });
   }
 }

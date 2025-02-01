@@ -48,8 +48,8 @@ export class Renderer extends WebGLRenderer {
     this.setSize(innerWidth, innerHeight);
 
     this.camera.aspect = innerWidth / innerHeight;
-    this.camera.setDistance();
-    this.camera.setPosition();
+    this.camera.updateDistance();
+    this.camera.updatePosition();
     this.camera.updateProjectionMatrix();
   }
 }
