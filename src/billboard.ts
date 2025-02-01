@@ -102,7 +102,7 @@ export class Billboard {
           ? 1
           : this.state.keys.right
             ? -1
-            : Math.max(-1, Math.min(1, -this.state.mouse.x * 2));
+            : -this.state.mouse.x;
 
         this.state.direction +=
           rotateGear * Billboard.rotateSpeed * deltaTime * scale;

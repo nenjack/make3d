@@ -1,4 +1,4 @@
-import { keys, mouse, state } from './state';
+import { doubleClickTime, keys, mouse, state } from './state';
 
 export const onPointerMove = (event: MouseEvent | TouchEvent) => {
   const pointer = event instanceof TouchEvent ? event.touches[0] : event;
@@ -49,7 +49,7 @@ export const preventEvent = (event: PointerEvent | MouseEvent) =>
 
 export const onPointerDown = (event: PointerEvent) => {
   const clickTime = Date.now();
-  if (clickTime - lastClickTime < 200) {
+  if (clickTime - lastClickTime < doubleClickTime) {
     keys.space = true;
     setTimeout(() => {
       keys.space = false;

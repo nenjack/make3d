@@ -6,7 +6,7 @@ import { TexturedBillboard } from './textured-billboard';
 import { Camera } from './camera';
 
 export class Player extends TexturedBillboard {
-  static readonly cameraLerpRatio = 0.003;
+  static readonly cameraLerpRatio = 0.01;
 
   readonly isPlayer = true;
   readonly state = state;
