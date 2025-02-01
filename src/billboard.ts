@@ -67,8 +67,8 @@ export class Billboard {
     let floor: number;
 
     do {
-      x = Math.random() * (level.size - 2) + 1;
-      y = Math.random() * (level.size - 2) + 1;
+      x = Math.random() * (Level.cols - 2) + 1;
+      y = Math.random() * (Level.rows - 2) + 1;
       floor = level.getFloor(x, y);
     } while (!floor);
 

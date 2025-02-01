@@ -4,17 +4,15 @@ import { renderer } from './state';
 
 export class Level {
   static readonly fill = 0.5;
-  static readonly maxHeight = 36;
-  static readonly waterLevel = 18;
-
-  readonly size: number;
+  static readonly maxHeight = 10;
+  static readonly waterLevel = 3;
+  static readonly cols = 32;
+  static readonly rows = 32;
 
   heights: number[][] = [];
   map!: Cellular;
 
-  constructor(levelSize: number, idle = false) {
-    this.size = levelSize;
-
+  constructor(idle = false) {
     this.heights = Array.from({ length: Level.maxHeight }, () =>
       this.createMap()
     )
@@ -40,13 +38,8 @@ export class Level {
     return this.heights[Math.floor(x)]?.[Math.floor(y)] || 0;
   }
 
-  protected createMap(
-    fill = Level.fill,
-    cols = this.size,
-    rows = this.size,
-    iterations = Level.maxHeight
-  ) {
-    const map = new Map.Cellular(cols, rows);
+  protected createMap(fill = Level.fill, iterations = Level.maxHeight) {
+    const map = new Map.Cellular(Level.cols, Level.rows);
 
     map.randomize(fill);
     for (let i = 0; i < iterations; i++) {

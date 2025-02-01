@@ -23,24 +23,11 @@ export class Camera extends PerspectiveCamera {
 
   setLevel(level: Level) {
     this.level = level;
-
-    if (!this.idle) {
-      this.updatePosition(
-        this.player!.mesh.position.x,
-        this.player!.mesh.position.y
-      );
-    }
   }
 
   setPlayer(player: Player) {
     this.player = player;
-
-    if (!this.idle) {
-      this.updatePosition(
-        this.player!.mesh.position.x,
-        this.player!.mesh.position.y
-      );
-    }
+    this.updatePosition(this.player.body.x, this.player.body.y);
   }
 
   getPosition(targetX?: number, targetY?: number) {
@@ -57,7 +44,7 @@ export class Camera extends PerspectiveCamera {
     return new Vector3(
       this.targetX,
       this.targetY,
-      1 + Math.max(playerFloor, levelFloor)
+      1 + Math.max(playerFloor, levelFloor) / 2
     );
   }
 

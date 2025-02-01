@@ -69,7 +69,7 @@
           </ul>
           <h1>Class ViewLevel</h1>
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="1222">
+        <section class="tsd-panel tsd-hierarchy" data-refl="1220">
           <h4>
             Hierarchy (<a href="../hierarchy.html#ViewLevel">View Summary</a>)
           </h4>
@@ -142,11 +142,11 @@
                       ><span>map</span></a
                     >
                     <a
-                      href="ViewLevel.html#size"
+                      href="ViewLevel.html#cols"
                       class="tsd-index-link tsd-is-inherited"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>size</span></a
+                      ><span>cols</span></a
                     >
                     <a
                       href="ViewLevel.html#fill"
@@ -161,6 +161,13 @@
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>max<wbr />Height</span></a
+                    >
+                    <a
+                      href="ViewLevel.html#rows"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>rows</span></a
                     >
                     <a
                       href="ViewLevel.html#waterboxheight"
@@ -248,10 +255,6 @@
                   ><span class="tsd-signature-symbol">:</span>
                   <span class="tsd-signature-type">Texture</span
                   ><span class="tsd-signature-symbol">[]</span
-                  ><span class="tsd-signature-symbol">,</span>
-                  <span class="tsd-kind-parameter">levelSize</span
-                  ><span class="tsd-signature-symbol">?:</span>
-                  <span class="tsd-signature-type">number</span
                   ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">:</span>
                   <a
@@ -275,15 +278,6 @@
                           ><span class="tsd-kind-parameter">textures</span>:
                           <span class="tsd-signature-type">Texture</span
                           ><span class="tsd-signature-symbol">[]</span></span
-                        >
-                      </li>
-                      <li>
-                        <span
-                          ><span class="tsd-kind-parameter">levelSize</span>:
-                          <span class="tsd-signature-type">number</span
-                          ><span class="tsd-signature-symbol">
-                            = 128</span
-                          ></span
                         >
                       </li>
                     </ul>
@@ -399,32 +393,33 @@
               </aside>
             </section>
             <section class="tsd-panel tsd-member tsd-is-inherited">
-              <a id="size" class="tsd-anchor"></a>
+              <a id="cols" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Readonly</code><span>size</span
-                ><a href="#size" aria-label="Permalink" class="tsd-anchor-icon"
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>cols</span
+                ><a href="#cols" aria-label="Permalink" class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24">
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">size</span
+                <span class="tsd-kind-property">cols</span
                 ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span>
+                <span class="tsd-signature-type">32</span>
               </div>
               <aside class="tsd-sources">
                 <p>
                   Inherited from <a href="Level.html">Level</a>.<a
-                    href="Level.html#size"
-                    >size</a
+                    href="Level.html#cols"
+                    >cols</a
                   >
                 </p>
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L10"
-                      >src/level.ts:10</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L9"
+                      >src/level.ts:9</a
                     >
                   </li>
                 </ul>
@@ -480,7 +475,7 @@
               <div class="tsd-signature">
                 <span class="tsd-kind-property">maxHeight</span
                 ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">36</span>
+                <span class="tsd-signature-type">10</span>
               </div>
               <aside class="tsd-sources">
                 <p>
@@ -495,6 +490,39 @@
                     <a
                       href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L7"
                       >src/level.ts:7</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="rows" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>rows</span
+                ><a href="#rows" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">rows</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">32</span>
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Inherited from <a href="Level.html">Level</a>.<a
+                    href="Level.html#rows"
+                    >rows</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L10"
+                      >src/level.ts:10</a
                     >
                   </li>
                 </ul>
@@ -549,7 +577,7 @@
               <div class="tsd-signature">
                 <span class="tsd-kind-property">waterLevel</span
                 ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">18</span>
+                <span class="tsd-signature-type">3</span>
               </div>
               <aside class="tsd-sources">
                 <p>
@@ -680,29 +708,15 @@
                 <li class="tsd-signature tsd-anchor-link">
                   <a id="createmap-1" class="tsd-anchor"></a
                   ><span class="tsd-kind-call-signature">createMap</span
-                  ><span class="tsd-signature-symbol">(</span><br />    <span
-                    class="tsd-kind-parameter"
-                    >fill</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">fill</span
                   ><span class="tsd-signature-symbol">?:</span>
                   <span class="tsd-signature-type">number</span
-                  ><span class="tsd-signature-symbol">,</span><br />    <span
-                    class="tsd-kind-parameter"
-                    >cols</span
+                  ><span class="tsd-signature-symbol">,</span>
+                  <span class="tsd-kind-parameter">iterations</span
                   ><span class="tsd-signature-symbol">?:</span>
                   <span class="tsd-signature-type">number</span
-                  ><span class="tsd-signature-symbol">,</span><br />    <span
-                    class="tsd-kind-parameter"
-                    >rows</span
-                  ><span class="tsd-signature-symbol">?:</span>
-                  <span class="tsd-signature-type">number</span
-                  ><span class="tsd-signature-symbol">,</span><br />    <span
-                    class="tsd-kind-parameter"
-                    >iterations</span
-                  ><span class="tsd-signature-symbol">?:</span>
-                  <span class="tsd-signature-type">number</span
-                  ><span class="tsd-signature-symbol">,</span><br /><span
-                    class="tsd-signature-symbol"
-                    >)</span
+                  ><span class="tsd-signature-symbol">)</span
                   ><span class="tsd-signature-symbol">:</span>
                   <span class="tsd-signature-type">number</span
                   ><span class="tsd-signature-symbol">[]</span
@@ -725,24 +739,6 @@
                           <span class="tsd-signature-type">number</span
                           ><span class="tsd-signature-symbol">
                             = Level.fill</span
-                          ></span
-                        >
-                      </li>
-                      <li>
-                        <span
-                          ><span class="tsd-kind-parameter">cols</span>:
-                          <span class="tsd-signature-type">number</span
-                          ><span class="tsd-signature-symbol">
-                            = ...</span
-                          ></span
-                        >
-                      </li>
-                      <li>
-                        <span
-                          ><span class="tsd-kind-parameter">rows</span>:
-                          <span class="tsd-signature-type">number</span
-                          ><span class="tsd-signature-symbol">
-                            = ...</span
                           ></span
                         >
                       </li>
@@ -773,8 +769,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L43"
-                          >src/level.ts:43</a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L41"
+                          >src/level.ts:41</a
                         >
                       </li>
                     </ul>
@@ -936,8 +932,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L39"
-                          >src/level.ts:39</a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/level.ts#L37"
+                          >src/level.ts:37</a
                         >
                       </li>
                     </ul>
@@ -1117,10 +1113,10 @@
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>map</span></a
-                  ><a href="#size" class="tsd-is-inherited"
+                  ><a href="#cols" class="tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>size</span></a
+                    ><span>cols</span></a
                   ><a href="#fill" class="tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
@@ -1129,6 +1125,10 @@
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>max<wbr />Height</span></a
+                  ><a href="#rows" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>rows</span></a
                   ><a href="#waterboxheight" class=""
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
