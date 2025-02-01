@@ -3,7 +3,7 @@ import { Level } from './level';
 import { Player } from './player';
 
 export class Camera extends PerspectiveCamera {
-  static readonly distance = 3;
+  static readonly distance = 2;
 
   levelSize: number;
   targetX!: number;
@@ -38,8 +38,8 @@ export class Camera extends PerspectiveCamera {
       : 0;
 
     return new Vector3(
-      Math.max(1, Math.min(this.levelSize - 2, this.targetX)),
-      Math.max(1, Math.min(this.levelSize - 2, this.targetY)),
+      this.targetX,
+      this.targetY,
       1 + Math.max(playerFloor, levelFloor) / 2
     );
   }
