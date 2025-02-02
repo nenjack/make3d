@@ -40,10 +40,12 @@ export class ViewLevel extends Level {
           const euler = new Euler();
           euler.setFromQuaternion(quaternion);
 
-          mesh.setMatrixAt(
-            y * Level.cols + x,
-            getMatrix(new Vector3(x, y, z / 2), euler, new Vector3(1, 1, z))
+          const matrix = getMatrix(
+            new Vector3(x, y, (z - 0.5) / 2),
+            euler,
+            new Vector3(1, 1, z)
           );
+          mesh.setMatrixAt(y * Level.cols + x, matrix);
 
           this.createBox(x, y, height);
         }

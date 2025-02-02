@@ -8,6 +8,8 @@ export const minLevelHeight = 2;
 
 export const maxLevelHeight = 10;
 
+export const waterFloor = -0.25;
+
 export const doubleClickTime = 400;
 
 export const keys: Partial<Record<Key, boolean>> = {};
@@ -31,4 +33,9 @@ export const state: State = {
   keys,
   mouse,
   direction: Math.random() * 2 * Math.PI
+};
+
+export const meshProps = {
+  transparent: true,
+  alphaTest: 0.2
 };

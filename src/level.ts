@@ -1,5 +1,5 @@
 import { Map } from 'rot-js';
-import { maxLevelHeight, minLevelHeight, renderer } from './state';
+import { maxLevelHeight, minLevelHeight, renderer, waterFloor } from './state';
 
 export class Level {
   static readonly fill = 0.45;
@@ -32,7 +32,7 @@ export class Level {
   }
 
   getFloor(x: number, y: number) {
-    return this.heights[Math.floor(x)]?.[Math.floor(y)] || -Infinity;
+    return this.heights[Math.floor(x)]?.[Math.floor(y)] || -waterFloor;
   }
 
   protected createMap(fill = Level.fill, iterations = Level.mapIterations) {

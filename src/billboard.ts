@@ -2,7 +2,7 @@ import { Circle } from 'detect-collisions';
 import { Mesh, PlaneGeometry, Vector2, Vector3 } from 'three';
 import { Level } from './level';
 import { Material, State } from './model';
-import { floors, physics, renderer } from './state';
+import { floors, physics, renderer, waterFloor } from './state';
 
 export class Billboard {
   static readonly offsetZ = 0.25;
@@ -25,8 +25,6 @@ export class Billboard {
     direction: Math.random() * 2 * Math.PI
   };
 
-  protected _gear = 0;
-
   constructor(material: Material) {
     this.body = physics.createCircle({}, 0.25, { group: floors[0] });
     this.mesh = new Mesh(new PlaneGeometry(1, 1, 1, 1), material);
@@ -43,11 +41,7 @@ export class Billboard {
     });
   }
 
-  protected getGear() {
-    return this._gear;
-  }
-
-  protected updateGear() {
+  protected get gear() {
     let gear = 0;
 
     if (this.state.keys.up) {
@@ -58,19 +52,17 @@ export class Billboard {
       gear--;
     }
 
-    this._gear = gear;
+    if (this.z === waterFloor) {
+      gear /= 2;
+    }
+
+    return gear;
   }
 
   protected init(level: Level) {
-    let x: number;
-    let y: number;
-    let floor: number;
-
-    do {
-      x = Math.random() * (Level.cols - 2) + 1;
-      y = Math.random() * (Level.rows - 2) + 1;
-      floor = level.getFloor(x, y);
-    } while (floor === -Infinity);
+    const x = Math.random() * (Level.cols - 2) + 1;
+    const y = Math.random() * (Level.rows - 2) + 1;
+    const floor = level.getFloor(x, y);
 
     this.level = level;
     this.body.setPosition(x, y);
@@ -83,30 +75,23 @@ export class Billboard {
   }
 
   protected update(ms: number) {
-    if (this.z > 0) {
-      this.updateGear();
-    }
-
-    const gear = this.getGear();
     const deltaTime = ms / 1000;
-    const rotateGear = gear || 1;
-    const moveSpeed = gear * Billboard.moveSpeed * deltaTime;
+    const rotateGear = this.gear || 1;
+    const moveSpeed = this.gear * Billboard.moveSpeed * deltaTime;
 
-    if (this.z > 0) {
-      if (
-        this.state.keys.left ||
-        this.state.keys.right ||
-        (this.state.mouseDown && this.state.mouse.x)
-      ) {
-        const scale = this.state.keys.left
-          ? 1
-          : this.state.keys.right
-            ? -1
-            : -this.state.mouse.x;
+    if (
+      this.state.keys.left ||
+      this.state.keys.right ||
+      (this.state.mouseDown && this.state.mouse.x)
+    ) {
+      const scale = this.state.keys.left
+        ? 1
+        : this.state.keys.right
+          ? -1
+          : -this.state.mouse.x;
 
-        this.state.direction +=
-          rotateGear * Billboard.rotateSpeed * deltaTime * scale;
-      }
+      this.state.direction +=
+        rotateGear * Billboard.rotateSpeed * deltaTime * scale;
     }
 
     const jump = deltaTime * Billboard.jumpSpeed * this.velocity;
@@ -114,24 +99,16 @@ export class Billboard {
       ? this.level.getFloor(this.body.x, this.body.y) / 2
       : 0;
 
-    if (this.z === levelFloorHeight) {
+    if (this.z === levelFloorHeight || this.z === waterFloor) {
       this.velocity = this.state.keys.space ? Billboard.jumpSpeed : -0.1;
     } else {
       this.velocity -= this.tireRate * ms;
     }
 
-    if (this.z < 0) {
-      if (!this.velocity) {
-        this.velocity = -0.1;
-      } else {
-        this._gear *= (1000 - Math.min(1000, ms)) / 1000;
-      }
-    }
-
     this.z =
-      levelFloorHeight && this.z > 0
+      levelFloorHeight && this.z > -waterFloor
         ? Math.max(levelFloorHeight, this.z + jump)
-        : this.z + jump;
+        : Math.max(waterFloor, this.z + jump);
 
     const playerFloor = Math.floor((this.z + 0.25) * 2);
 

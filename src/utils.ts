@@ -11,7 +11,7 @@ import {
   Vector3
 } from 'three';
 import { Material } from './model';
-import { loader, textures } from './state';
+import { loader, meshProps, textures } from './state';
 
 export const randomOf = (array: any[]) =>
   array[Math.floor(Math.random() * array.length)];
@@ -34,9 +34,8 @@ export const getMatrix = (
 export const createMaterial = (textureName: string) => {
   try {
     const material: Material = new MeshBasicMaterial({
-      map: textures[textureName].clone(),
-      transparent: true,
-      alphaTest: 0.5
+      ...meshProps,
+      map: textures[textureName].clone()
     });
 
     material.size = new Vector2(90 / 3, 240 / 6);

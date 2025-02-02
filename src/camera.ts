@@ -1,7 +1,7 @@
 import { PerspectiveCamera, Vector3 } from 'three';
 import { Level } from './level';
 import { Player } from './player';
-import { maxLevelHeight } from './state';
+import { maxLevelHeight, waterFloor } from './state';
 
 export class Camera extends PerspectiveCamera {
   static readonly distance = 1;
@@ -46,7 +46,7 @@ export class Camera extends PerspectiveCamera {
       ? playerFloor
       : Math.max(
           playerFloor,
-          this.level?.getFloor(this.position.x, this.position.y) || -Infinity
+          this.level?.getFloor(this.position.x, this.position.y) || -waterFloor
         );
   }
 
