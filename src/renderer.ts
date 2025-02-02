@@ -1,13 +1,11 @@
 import {
   AmbientLight,
-  CubeTextureLoader,
   DirectionalLight,
   LinearSRGBColorSpace,
   Scene,
   WebGLRenderer
 } from 'three';
 import { Camera } from './camera';
-import { pixelate } from './utils';
 
 export class Renderer extends WebGLRenderer {
   now = Date.now();
@@ -23,12 +21,6 @@ export class Renderer extends WebGLRenderer {
     this.setAnimationLoop(this.animation.bind(this));
     this.outputColorSpace = LinearSRGBColorSpace;
     this.scene.add(new AmbientLight(0xffeecc, 0.5));
-
-    const loader = new CubeTextureLoader();
-    const skyBox = loader.load(Array.from({ length: 6 }, () => 'skybox.jpg'));
-
-    pixelate(skyBox);
-    this.scene.background = skyBox;
 
     document.body.appendChild(this.domElement);
 
