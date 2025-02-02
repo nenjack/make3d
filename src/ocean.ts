@@ -8,27 +8,68 @@ import {
 import { Level } from './level';
 import { meshProps, renderer } from './state';
 
-export class Ocean extends Mesh {
+export class Ocean {
+  static readonly scale = 4;
+  static readonly waveLength = 0.1;
+  static readonly waveDuration = 1000;
+  static readonly config = [
+    {
+      opacity: 0.7,
+      z: 0
+    },
+    {
+      opacity: 1,
+      z: -0.5
+    }
+  ];
+
+  readonly cols: number;
+  readonly rows: number;
+
   constructor(texture: Texture, repeat = 1) {
-    const cols = Level.cols * repeat;
-    const rows = Level.rows * repeat;
+    this.cols = Level.cols * repeat;
+    this.rows = Level.rows * repeat;
 
     texture.wrapS = RepeatWrapping;
     texture.wrapT = RepeatWrapping;
-    texture.repeat.set(cols / 4, rows / 4);
 
-    const geometry = new PlaneGeometry(cols, rows);
+    renderer.scene.add(
+      ...Array.from({ length: 2 }, (_: unknown, index) =>
+        this.createPlane(texture, index)
+      )
+    );
+  }
+
+  protected createPlane(texture: Texture, index: number) {
+    const geometry = new PlaneGeometry(this.cols, this.rows);
+    const { opacity, z } = Ocean.config[index];
     const material = new MeshBasicMaterial({
       ...meshProps,
-      map: texture,
-      opacity: 0.7
+      map: this.createMap(texture, index),
+      opacity
     });
 
-    super(geometry, material);
+    const mesh = new Mesh(geometry, material);
+    mesh.position.set(Level.cols / 2, Level.rows / 2, z);
+    mesh.renderOrder = 1;
 
-    this.position.set(Level.cols / 2, Level.rows / 2, 0);
-    this.renderOrder = 1;
+    return mesh;
+  }
 
-    renderer.scene.add(this);
+  protected createMap(texture: Texture, index: number) {
+    const map = texture.clone();
+    const i = index + 1;
+    const scale = i / Ocean.scale;
+
+    map.repeat.set(this.cols * scale, this.rows * scale);
+    map.rotation = (Math.PI * index) / 2;
+
+    renderer.animations.push(() => {
+      const n = Date.now() / Ocean.waveDuration;
+
+      map.offset.y = Math.sin(n / i) * (i * (Ocean.waveLength / 2));
+    });
+
+    return map;
   }
 }
