@@ -8,7 +8,7 @@ export const minLevelHeight = 3;
 
 export const maxLevelHeight = 6;
 
-export const waterFloor = -0.25;
+export const waterZ = 0.5;
 
 export const doubleClickTime = 400;
 

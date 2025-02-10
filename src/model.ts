@@ -30,3 +30,11 @@ export interface TexturedBillboardProps {
   frameDuration?: number;
   directionsToRows?: DirectionsToRows;
 }
+
+export type CubeDirections =
+  | 'left'
+  | 'right'
+  | 'up'
+  | 'down'
+  | 'front'
+  | 'back';

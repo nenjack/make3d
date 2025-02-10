@@ -10,7 +10,7 @@ import {
   Vector2,
   Vector3
 } from 'three';
-import { Material } from './model';
+import { CubeDirections, Material } from './model';
 import { loader, meshProps, textures } from './state';
 
 export const randomOf = (array: any[]) =>
@@ -18,12 +18,12 @@ export const randomOf = (array: any[]) =>
 
 export const getMatrix = (
   position: Vector3,
-  rotation: Euler,
-  scale: Vector3
+  scale: Vector3,
+  rotation = new Euler()
 ) => {
   const matrix = new Matrix4();
   const quaternion = new Quaternion();
-  const offset = new Vector3(0.5, 0.5, 0);
+  const offset = new Vector3(0.5, 0.5, 0.5);
 
   quaternion.setFromEuler(rotation);
   matrix.compose(position.add(offset), quaternion, scale);
@@ -82,3 +82,12 @@ export const loadTextures = async (texturePaths: string[]) => {
     textures[textureName] = texture;
   });
 };
+
+export const mapCubeTextures = <T>({
+  left,
+  right,
+  up,
+  down,
+  front,
+  back
+}: Record<CubeDirections, T>): T[] => [left, right, up, down, front, back];

@@ -36,7 +36,7 @@ export const setKey = (value: boolean) => {
         keys.space = value;
         break;
       default:
-        console.log(event.key);
+        // console.log(event.key);
         break;
     }
   };
@@ -52,6 +52,7 @@ export const onPointerDown = (event: PointerEvent) => {
   if (clickTime - lastClickTime < doubleClickTime) {
     keys.space = true;
     setTimeout(() => {
+      // safe
       keys.space = false;
     }, 200);
   }

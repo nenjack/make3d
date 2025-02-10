@@ -3,7 +3,8 @@ import {
   MeshBasicMaterial,
   PlaneGeometry,
   RepeatWrapping,
-  Texture
+  Texture,
+  Vector3
 } from 'three';
 import { Level } from './level';
 import { meshProps, renderer } from './state';
@@ -14,12 +15,14 @@ export class Ocean {
   static readonly waveDuration = 1000;
   static readonly config = [
     {
-      opacity: 0.7,
-      z: 0
+      opacity: 0.5,
+      z: -0.01,
+      renderOrder: 2
     },
     {
       opacity: 1,
-      z: -0.5
+      z: -0.25,
+      renderOrder: 0
     }
   ];
 
@@ -34,7 +37,7 @@ export class Ocean {
     texture.wrapT = RepeatWrapping;
 
     renderer.scene.add(
-      ...Array.from({ length: 2 }, (_: unknown, index) =>
+      ...Array.from({ length: Ocean.config.length }, (_: unknown, index) =>
         this.createPlane(texture, index)
       )
     );
@@ -42,7 +45,7 @@ export class Ocean {
 
   protected createPlane(texture: Texture, index: number) {
     const geometry = new PlaneGeometry(this.cols, this.rows);
-    const { opacity, z } = Ocean.config[index];
+    const { opacity, z, renderOrder } = Ocean.config[index];
     const material = new MeshBasicMaterial({
       ...meshProps,
       map: this.createMap(texture, index),
@@ -50,8 +53,14 @@ export class Ocean {
     });
 
     const mesh = new Mesh(geometry, material);
-    mesh.position.set(Level.cols / 2, Level.rows / 2, z);
-    mesh.renderOrder = 1;
+    mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2);
+    mesh.position.set(
+      this.cols / 2 / Ocean.scale,
+      z,
+      this.rows / 2 / Ocean.scale
+    );
+
+    mesh.renderOrder = renderOrder;
 
     return mesh;
   }

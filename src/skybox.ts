@@ -1,20 +1,22 @@
 import * as THREE from 'three';
-import { renderer } from './state';
+import { loader as loadingManager, renderer } from './state';
+import { mapCubeTextures, pixelate } from './utils';
 
 export class Skybox {
   constructor() {
-    // Ładowanie cubemap z poprawioną orientacją
-    const loader = new THREE.CubeTextureLoader();
-    const texture = loader.load([
-      'skybox/posz.webp', // right 
-      'skybox/negz.webp', // left 
-      'skybox/negx.webp', // back
-      'skybox/negy.webp', // down
-      'skybox/posx.webp', // front
-      'skybox/posy.webp'  // up
-    ]);
+    const loader = new THREE.CubeTextureLoader(loadingManager);
+    const textures = mapCubeTextures({
+      left: 'skybox/left.webp',
+      right: 'skybox/right.webp',
+      up: 'skybox/up.webp',
+      down: 'skybox/down.webp',
+      front: 'skybox/front.webp',
+      back: 'skybox/back.webp'
+    });
 
-    // Ustawienie skyboxa jako tła sceny
-    renderer.scene.background = texture;
+    const skyBox = loader.load(textures, () => {
+      pixelate(skyBox);
+      renderer.scene.background = skyBox;
+    });
   }
 }

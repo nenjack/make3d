@@ -18,16 +18,16 @@ export class Renderer extends WebGLRenderer {
   constructor() {
     super({ antialias: true, powerPreference: 'high-performance' });
 
-    this.setSize(innerWidth, innerHeight);
     this.setAnimationLoop(this.animation.bind(this));
     this.outputColorSpace = LinearSRGBColorSpace;
+
     this.scene.add(new AmbientLight(0xffeecc, 0.5));
     this.scene.background = new Color(0x000000);
 
     document.body.appendChild(this.domElement);
+    window.addEventListener('resize', () => this.onResize());
 
-    this.resize();
-    window.addEventListener('resize', () => this.resize());
+    this.onResize();
   }
 
   animation() {
@@ -39,11 +39,9 @@ export class Renderer extends WebGLRenderer {
     this.render(this.scene, this.camera);
   }
 
-  resize() {
+  onResize() {
     this.setSize(innerWidth, innerHeight);
-
     this.camera.aspect = innerWidth / innerHeight;
-    this.camera.updatePosition(this.camera.rotation.z);
     this.camera.updateProjectionMatrix();
   }
 }

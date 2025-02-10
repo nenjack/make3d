@@ -13,7 +13,7 @@ export class Enemy extends TexturedBillboard {
 
   constructor(level: Level, props: TexturedBillboardProps) {
     super(props);
-    this.init(level);
+    this.spawn(level);
   }
 
   protected update(ms: number) {

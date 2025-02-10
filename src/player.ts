@@ -1,11 +1,11 @@
+import { Camera } from './camera';
 import { Level } from './level';
 import { TexturedBillboardProps } from './model';
 import { renderer, state } from './state';
 import { TexturedBillboard } from './textured-billboard';
+import { ViewLevel } from './view-level';
 
 export class Player extends TexturedBillboard {
-  static readonly cameraLerpRatio = 0.0025;
-
   readonly isPlayer = true;
   readonly state = state;
 
@@ -13,24 +13,29 @@ export class Player extends TexturedBillboard {
 
   constructor(level: Level, props: TexturedBillboardProps) {
     super(props);
-    this.init(level);
 
-    renderer.camera.setPlayer(this);
+    this.spawn(level);
+
+    renderer.camera.setLevel(level);
+    renderer.camera.setRef(this);
+
+    if (level instanceof ViewLevel) {
+      renderer.scene.add(level.mesh);
+
+      setTimeout(() => {
+        // necessary evil
+        renderer.camera.onCameraUpdate();
+        renderer.animations.push((ms: number) => {
+          renderer.camera.onCameraUpdate(ms * Camera.lerpRatio);
+        });
+      }, 100);
+    }
   }
 
   protected update(ms: number) {
     super.update(ms);
 
     this.setDirection();
-
-    const { camera } = renderer;
-
-    camera.updatePosition(
-      this.state.direction,
-      this.body.x,
-      this.body.y,
-      ms * Player.cameraLerpRatio
-    );
   }
 
   protected setDirection() {

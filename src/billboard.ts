@@ -1,22 +1,19 @@
-import { Circle } from 'detect-collisions';
 import { Mesh, PlaneGeometry, Vector2, Vector3 } from 'three';
 import { Level } from './level';
 import { Material, State } from './model';
-import { floors, physics, renderer, waterFloor } from './state';
+import { floors, physics, renderer, waterZ } from './state';
+import { BillboardBody } from './billboard-body';
 
 export class Billboard {
   static readonly moveSpeed = 2.5;
   static readonly rotateSpeed = 3;
-  static readonly jumpSpeed = 2;
+  static readonly gravity = 9.1;
+  static readonly jumpSpeed = 2.1;
 
-  readonly tireRate = 0.008;
   readonly isPlayer: boolean = false;
 
-  z = -Infinity;
-  velocity = 0;
-  level?: Level;
+  body = new BillboardBody();
   mesh: Mesh;
-  body: Circle;
   scale: Vector3;
   state: State = {
     keys: {},
@@ -24,8 +21,11 @@ export class Billboard {
     direction: Math.random() * 2 * Math.PI
   };
 
+  level?: Level;
+  z = 0;
+  velocity = 0;
+
   constructor(material: Material) {
-    this.body = physics.createCircle({}, 0.25, { group: floors[0] });
     this.mesh = new Mesh(new PlaneGeometry(1, 1, 1, 1), material);
     this.scale = material.scale ? material.scale.clone() : new Vector3(1, 1, 1);
 
@@ -51,32 +51,35 @@ export class Billboard {
       gear--;
     }
 
-    if (this.z === waterFloor) {
+    if (this.z < waterZ) {
       gear /= 2;
     }
 
     return gear;
   }
 
-  protected init(level: Level) {
+  protected spawn(level: Level) {
     const x = Math.random() * (Level.cols - 2) + 1;
     const y = Math.random() * (Level.rows - 2) + 1;
-    const floor = level.getFloor(x, y);
 
     this.level = level;
     this.body.setPosition(x, y);
-    this.z = floor / 2;
-    this.mesh.position.set(this.body.x, this.body.y, this.z);
+    this.z = this.getFloorZ();
+    this.mesh.position.set(x, this.z, y);
+
+    physics.insert(this.body);
   }
 
   protected normalize(angle: number) {
     return (2 * Math.PI + angle) % (2 * Math.PI);
   }
 
-  protected update(ms: number) {
-    const deltaTime = ms / 1000;
+  protected getFloorZ({ x, y } = this.body) {
+    return this.level ? this.level.getFloor(x, y) / 2 : 0;
+  }
+
+  protected updateDirection(deltaTime: number) {
     const rotateGear = this.gear || 1;
-    const moveSpeed = this.gear * Billboard.moveSpeed * deltaTime;
 
     if (
       this.state.keys.left ||
@@ -84,39 +87,53 @@ export class Billboard {
       (this.state.mouseDown && this.state.mouse.x)
     ) {
       const scale = this.state.keys.left
-        ? 1
+        ? -1
         : this.state.keys.right
-          ? -1
-          : -this.state.mouse.x;
+          ? 1
+          : this.state.mouse.x;
 
       this.state.direction +=
         rotateGear * Billboard.rotateSpeed * deltaTime * scale;
     }
+  }
 
-    const jump = deltaTime * Billboard.jumpSpeed * this.velocity;
-    const levelFloorHeight = this.level
-      ? this.level.getFloor(this.body.x, this.body.y) / 2
-      : 0;
-
-    if (this.z === levelFloorHeight || this.z === 0) {
-      this.velocity = this.state.keys.space ? Billboard.jumpSpeed : -0.1;
-    } else {
-      this.velocity -= this.tireRate * ms;
+  updateVelocity(floorZ: number, deltaTime = 0) {
+    if (this.z > floorZ) {
+      this.velocity -= Billboard.gravity * deltaTime;
     }
 
-    this.z =
-      levelFloorHeight && this.z > -waterFloor
-        ? Math.max(levelFloorHeight, this.z + jump)
-        : Math.max(0, this.z + jump);
+    if (this.z === floorZ) {
+      this.velocity = this.state.keys.space ? Billboard.jumpSpeed : 0;
+    }
+  }
 
-    const playerFloor = Math.floor((this.z + 0.25) * 2);
+  updateZ(floorZ: number, deltaTime = 0) {
+    const jump = deltaTime * Billboard.jumpSpeed * this.velocity;
 
-    this.body.group = floors[playerFloor];
+    this.z = Math.max(this.z + jump, floorZ, 0);
+  }
+
+  updateGroup() {
+    const floor = Math.floor(this.z * 2 + 0.5);
+
+    this.body.group = floors[floor];
+  }
+
+  protected update(ms: number) {
+    const deltaTime = ms / 1000;
+    const moveSpeed = this.gear * Billboard.moveSpeed * deltaTime;
+    const floorZ = this.getFloorZ();
+
+    this.updateVelocity(floorZ, deltaTime);
+    this.updateZ(floorZ, deltaTime);
+    this.updateGroup();
+    this.updateDirection(deltaTime);
+
     this.body.angle = this.state.direction + Math.PI / 2;
     this.body.move(moveSpeed);
     this.body.system?.separateBody(this.body);
 
-    this.mesh.position.set(this.body.x, this.body.y, this.z);
+    this.mesh.position.set(this.body.x, this.z, this.body.y);
     this.mesh.lookAt(renderer.camera.position);
     this.mesh.up = renderer.camera.up;
     this.mesh.scale.set(this.scale.x, this.scale.y, this.scale.z);

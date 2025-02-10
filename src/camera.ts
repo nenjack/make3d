@@ -1,80 +1,66 @@
-import { PerspectiveCamera, Vector3 } from 'three';
+import { Euler, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { Level } from './level';
 import { Player } from './player';
-import { maxLevelHeight, waterFloor } from './state';
 
 export class Camera extends PerspectiveCamera {
   static readonly distance = 1;
+  static readonly lerpRatio = 0.0025;
+
   static fov = 90;
   static near = 0.1;
   static far = 100;
 
-  targetX = 0;
-  targetY = 0;
-
-  level?: Level;
-  player?: Player;
-
-  get idle() {
-    return !this.level || !this.player;
-  }
+  ref?: Player;
 
   constructor(fov = Camera.fov, near = Camera.near, far = Camera.far) {
     super(fov, innerWidth / innerHeight, near, far);
   }
 
+  getFloor(_x: number, _y: number) {
+    return 0;
+  }
+
   setLevel(level: Level) {
-    this.level = level;
-
-    this.updatePosition(Level.cols / 2, Level.rows / 2, maxLevelHeight);
+    this.getFloor = (x, y) => level.getFloor(x, y);
   }
 
-  setPlayer(player: Player) {
-    this.player = player;
-
-    this.updatePosition(
-      this.player.state.direction,
-      this.player.body.x,
-      this.player.body.y
-    );
+  setRef(ref: Player) {
+    this.ref = ref;
   }
 
-  getFloor() {
-    const playerFloor = this.player ? 2 * this.player.mesh.position.z : 0;
-
-    return playerFloor < 0
-      ? playerFloor
-      : Math.max(
-          playerFloor,
-          this.level?.getFloor(this.position.x, this.position.y) || -waterFloor
-        );
-  }
-
-  updatePosition(
-    direction: number,
-    targetX?: number,
-    targetY?: number,
-    lerp = 0
-  ) {
-    if (typeof targetX !== 'undefined' && typeof targetY !== 'undefined') {
-      this.targetX = targetX;
-      this.targetY = targetY;
+  onCameraUpdate(lerp = 0) {
+    if (!this.ref) {
+      return;
     }
 
     const scale = 1 / this.aspect;
-    const offsetX = Math.sin(-direction) * scale;
-    const offsetY = Math.cos(-direction) * scale;
-    const x = this.targetX - offsetX;
-    const y = this.targetY - offsetY;
-    const z = 1 + this.getFloor() / 2;
+    const angle = -this.ref.body.angle + Math.PI / 2;
+    const offsetX = Math.sin(angle) * scale;
+    const offsetY = Math.cos(angle) * scale;
+    const cameraX = this.ref.body.x - offsetX;
+    const cameraY = this.ref.body.y - offsetY;
+    const cameraHeight = this.getFloor(cameraX, cameraY);
+    const cameraZ = 0.25 + Math.max(cameraHeight, this.ref.z || 0);
+
+    const { position, rotation } = this.ref.mesh;
 
     if (lerp) {
-      this.position.lerp(new Vector3(x, y, z), lerp);
+      this.position.lerp(new Vector3(cameraX, cameraZ, cameraY), lerp);
+
+      const targetRotation = new Quaternion().setFromEuler(this.rotation);
+      const endRotation = new Quaternion().setFromEuler(
+        new Euler(rotation.x, rotation.y, rotation.z)
+      );
+
+      this.rotation.setFromQuaternion(targetRotation.slerp(endRotation, lerp));
     } else {
-      this.position.set(x, y, z);
+      this.position.set(cameraX, cameraZ, cameraY);
+      this.rotation.setFromVector3(
+        new Vector3(rotation.x, rotation.y, rotation.z)
+      );
     }
 
-    this.lookAt(this.targetX, this.targetY, this.position.z - 0.5);
-    this.up = new Vector3(0, 0, 1);
+    this.lookAt(new Vector3(position.x, position.y, position.z));
+    this.up = new Vector3(0, 1, 0);
   }
 }

@@ -69,7 +69,7 @@
           </ul>
           <h1>Class Enemy</h1>
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="631">
+        <section class="tsd-panel tsd-hierarchy" data-refl="642">
           <h4>
             Hierarchy (<a href="../hierarchy.html#Enemy">View Summary</a>)
           </h4>
@@ -215,13 +215,6 @@
                       ><span>state</span></a
                     >
                     <a
-                      href="Enemy.html#tirerate"
-                      class="tsd-index-link tsd-is-inherited"
-                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>tire<wbr />Rate</span></a
-                    >
-                    <a
                       href="Enemy.html#totalframes"
                       class="tsd-index-link tsd-is-inherited"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
@@ -248,6 +241,13 @@
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>directions</span></a
+                    >
+                    <a
+                      href="Enemy.html#gravity"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>gravity</span></a
                     >
                     <a
                       href="Enemy.html#jumpspeed"
@@ -312,18 +312,18 @@
                       ><span>get<wbr />Direction</span></a
                     >
                     <a
+                      href="Enemy.html#getfloorz"
+                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>get<wbr />FloorZ</span></a
+                    >
+                    <a
                       href="Enemy.html#getrow"
                       class="tsd-index-link tsd-is-protected tsd-is-inherited"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>get<wbr />Row</span></a
-                    >
-                    <a
-                      href="Enemy.html#init"
-                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
-                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
-                        <use href="../assets/icons.svg#icon-2048"></use></svg
-                      ><span>init</span></a
                     >
                     <a
                       href="Enemy.html#normalize"
@@ -333,11 +333,53 @@
                       ><span>normalize</span></a
                     >
                     <a
+                      href="Enemy.html#spawn"
+                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>spawn</span></a
+                    >
+                    <a
                       href="Enemy.html#update"
                       class="tsd-index-link tsd-is-protected"
                       ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>update</span></a
+                    >
+                    <a
+                      href="Enemy.html#updatedirection"
+                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Direction</span></a
+                    >
+                    <a
+                      href="Enemy.html#updategroup"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Group</span></a
+                    >
+                    <a
+                      href="Enemy.html#updatevelocity"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Velocity</span></a
+                    >
+                    <a
+                      href="Enemy.html#updatez"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>updateZ</span></a
+                    >
+                    <a
+                      href="Enemy.html#creatematerial"
+                      class="tsd-index-link tsd-is-inherited"
+                      ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>create<wbr />Material</span></a
                     >
                     <a
                       href="Enemy.html#findbyangle"
@@ -485,7 +527,8 @@
               <div class="tsd-signature">
                 <span class="tsd-kind-property">body</span
                 ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">Circle</span>
+                <span class="tsd-signature-type">BillboardBody</span
+                ><span class="tsd-signature-symbol"> = ...</span>
               </div>
               <aside class="tsd-sources">
                 <p>
@@ -499,8 +542,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L19"
-                      >src/billboard.ts:19</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L15"
+                      >src/billboard.ts:15</a
                     >
                   </li>
                 </ul>
@@ -722,8 +765,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L17"
-                      >src/billboard.ts:17</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L24"
+                      >src/billboard.ts:24</a
                     >
                   </li>
                 </ul>
@@ -755,8 +798,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L18"
-                      >src/billboard.ts:18</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L16"
+                      >src/billboard.ts:16</a
                     >
                   </li>
                 </ul>
@@ -851,8 +894,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L20"
-                      >src/billboard.ts:20</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L17"
+                      >src/billboard.ts:17</a
                     >
                   </li>
                 </ul>
@@ -915,44 +958,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L21"
-                      >src/billboard.ts:21</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <a id="tirerate" class="tsd-anchor"></a>
-              <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Readonly</code><span>tire<wbr />Rate</span
-                ><a
-                  href="#tirerate"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">tireRate</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">0.008</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
-                    href="TexturedBillboard.html#tirerate"
-                    >tireRate</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L12"
-                      >src/billboard.ts:12</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L18"
+                      >src/billboard.ts:18</a
                     >
                   </li>
                 </ul>
@@ -1024,8 +1031,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L16"
-                      >src/billboard.ts:16</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L26"
+                      >src/billboard.ts:26</a
                     >
                   </li>
                 </ul>
@@ -1044,7 +1051,7 @@
                 <span class="tsd-kind-property">z</span
                 ><span class="tsd-signature-symbol">:</span>
                 <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol"> = -Infinity</span>
+                ><span class="tsd-signature-symbol"> = 0</span>
               </div>
               <aside class="tsd-sources">
                 <p>
@@ -1058,8 +1065,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L15"
-                      >src/billboard.ts:15</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L25"
+                      >src/billboard.ts:25</a
                     >
                   </li>
                 </ul>
@@ -1107,6 +1114,43 @@
               </aside>
             </section>
             <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="gravity" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>gravity</span
+                ><a
+                  href="#gravity"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">gravity</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">9.1</span>
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                    href="TexturedBillboard.html#gravity"
+                    >gravity</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L10"
+                      >src/billboard.ts:10</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <a id="jumpspeed" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
                 <code class="tsd-tag">Static</code>
@@ -1123,7 +1167,7 @@
               <div class="tsd-signature">
                 <span class="tsd-kind-property">jumpSpeed</span
                 ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">2</span>
+                <span class="tsd-signature-type">2.1</span>
               </div>
               <aside class="tsd-sources">
                 <p>
@@ -1137,8 +1181,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L10"
-                      >src/billboard.ts:10</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L11"
+                      >src/billboard.ts:11</a
                     >
                   </li>
                 </ul>
@@ -1431,8 +1475,83 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L49"
-                          >src/textured-billboard.ts:49</a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L54"
+                          >src/textured-billboard.ts:54</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section
+              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
+            >
+              <a id="getfloorz" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Protected</code
+                ><span>get<wbr />FloorZ</span
+                ><a
+                  href="#getfloorz"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="getfloorz-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">getFloorZ</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">__namedParameters</span
+                  ><span class="tsd-signature-symbol">?:</span>
+                  <span class="tsd-signature-type">BillboardBody</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><a
+                    href="#getfloorz-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter"
+                            >__namedParameters</span
+                          >:
+                          <span class="tsd-signature-type">BillboardBody</span
+                          ><span class="tsd-signature-symbol">
+                            = ...</span
+                          ></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">number</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#getfloorz"
+                        >getFloorZ</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L77"
+                          >src/billboard.ts:77</a
                         >
                       </li>
                     </ul>
@@ -1507,79 +1626,8 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L65"
-                          >src/textured-billboard.ts:65</a
-                        >
-                      </li>
-                    </ul>
-                  </aside>
-                </li>
-              </ul>
-            </section>
-            <section
-              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
-            >
-              <a id="init" class="tsd-anchor"></a>
-              <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Protected</code><span>init</span
-                ><a href="#init" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
-                <li class="tsd-signature tsd-anchor-link">
-                  <a id="init-1" class="tsd-anchor"></a
-                  ><span class="tsd-kind-call-signature">init</span
-                  ><span class="tsd-signature-symbol">(</span
-                  ><span class="tsd-kind-parameter">level</span
-                  ><span class="tsd-signature-symbol">:</span>
-                  <a href="Level.html" class="tsd-signature-type tsd-kind-class"
-                    >Level</a
-                  ><span class="tsd-signature-symbol">)</span
-                  ><span class="tsd-signature-symbol">:</span>
-                  <span class="tsd-signature-type">void</span
-                  ><a
-                    href="#init-1"
-                    aria-label="Permalink"
-                    class="tsd-anchor-icon"
-                    ><svg viewBox="0 0 24 24">
-                      <use href="../assets/icons.svg#icon-anchor"></use></svg
-                  ></a>
-                </li>
-                <li class="tsd-description">
-                  <div class="tsd-parameters">
-                    <h4 class="tsd-parameters-title">Parameters</h4>
-                    <ul class="tsd-parameter-list">
-                      <li>
-                        <span
-                          ><span class="tsd-kind-parameter">level</span>:
-                          <a
-                            href="Level.html"
-                            class="tsd-signature-type tsd-kind-class"
-                            >Level</a
-                          ></span
-                        >
-                      </li>
-                    </ul>
-                  </div>
-                  <h4 class="tsd-returns-title">
-                    Returns <span class="tsd-signature-type">void</span>
-                  </h4>
-                  <aside class="tsd-sources">
-                    <p>
-                      Inherited from
-                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
-                        href="TexturedBillboard.html#init"
-                        >init</a
-                      >
-                    </p>
-                    <ul>
-                      <li>
-                        Defined in
-                        <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L61"
-                          >src/billboard.ts:61</a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L66"
+                          >src/textured-billboard.ts:66</a
                         >
                       </li>
                     </ul>
@@ -1647,8 +1695,79 @@
                       <li>
                         Defined in
                         <a
-                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L72"
-                          >src/billboard.ts:72</a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L73"
+                          >src/billboard.ts:73</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section
+              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
+            >
+              <a id="spawn" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Protected</code><span>spawn</span
+                ><a href="#spawn" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="spawn-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">spawn</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">level</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <a href="Level.html" class="tsd-signature-type tsd-kind-class"
+                    >Level</a
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">void</span
+                  ><a
+                    href="#spawn-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">level</span>:
+                          <a
+                            href="Level.html"
+                            class="tsd-signature-type tsd-kind-class"
+                            >Level</a
+                          ></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">void</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#spawn"
+                        >spawn</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L61"
+                          >src/billboard.ts:61</a
                         >
                       </li>
                     </ul>
@@ -1716,6 +1835,380 @@
                         <a
                           href="https://github.com/Prozi/engine25d/blob/main/src/enemy.ts#L19"
                           >src/enemy.ts:19</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section
+              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
+            >
+              <a id="updatedirection" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Protected</code
+                ><span>update<wbr />Direction</span
+                ><a
+                  href="#updatedirection"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="updatedirection-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">updateDirection</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">deltaTime</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">void</span
+                  ><a
+                    href="#updatedirection-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">deltaTime</span>:
+                          <span class="tsd-signature-type">number</span></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">void</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#updatedirection"
+                        >updateDirection</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L81"
+                          >src/billboard.ts:81</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="updategroup" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span>update<wbr />Group</span
+                ><a
+                  href="#updategroup"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="updategroup-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">updateGroup</span
+                  ><span class="tsd-signature-symbol">()</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">void</span
+                  ><a
+                    href="#updategroup-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">void</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#updategroup"
+                        >updateGroup</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L116"
+                          >src/billboard.ts:116</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="updatevelocity" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span>update<wbr />Velocity</span
+                ><a
+                  href="#updatevelocity"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="updatevelocity-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">updateVelocity</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">floorZ</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">,</span>
+                  <span class="tsd-kind-parameter">deltaTime</span
+                  ><span class="tsd-signature-symbol">?:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">void</span
+                  ><a
+                    href="#updatevelocity-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">floorZ</span>:
+                          <span class="tsd-signature-type">number</span></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">deltaTime</span>:
+                          <span class="tsd-signature-type">number</span
+                          ><span class="tsd-signature-symbol"> = 0</span></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">void</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#updatevelocity"
+                        >updateVelocity</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L100"
+                          >src/billboard.ts:100</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="updatez" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span>updateZ</span
+                ><a
+                  href="#updatez"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="updatez-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">updateZ</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">floorZ</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">,</span>
+                  <span class="tsd-kind-parameter">deltaTime</span
+                  ><span class="tsd-signature-symbol">?:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">void</span
+                  ><a
+                    href="#updatez-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">floorZ</span>:
+                          <span class="tsd-signature-type">number</span></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">deltaTime</span>:
+                          <span class="tsd-signature-type">number</span
+                          ><span class="tsd-signature-symbol"> = 0</span></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns <span class="tsd-signature-type">void</span>
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#updatez"
+                        >updateZ</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/billboard.ts#L110"
+                          >src/billboard.ts:110</a
+                        >
+                      </li>
+                    </ul>
+                  </aside>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <a id="creatematerial" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code
+                ><span>create<wbr />Material</span
+                ><a
+                  href="#creatematerial"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-inherited">
+                <li class="tsd-signature tsd-anchor-link">
+                  <a id="creatematerial-1" class="tsd-anchor"></a
+                  ><span class="tsd-kind-call-signature">createMaterial</span
+                  ><span class="tsd-signature-symbol">(</span
+                  ><span class="tsd-kind-parameter">textureName</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">string</span
+                  ><span class="tsd-signature-symbol">,</span>
+                  <span class="tsd-kind-parameter">cols</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">,</span>
+                  <span class="tsd-kind-parameter">rows</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <span class="tsd-signature-type">number</span
+                  ><span class="tsd-signature-symbol">)</span
+                  ><span class="tsd-signature-symbol">:</span>
+                  <a
+                    href="../types/Material.html"
+                    class="tsd-signature-type tsd-kind-type-alias"
+                    >Material</a
+                  ><a
+                    href="#creatematerial-1"
+                    aria-label="Permalink"
+                    class="tsd-anchor-icon"
+                    ><svg viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-anchor"></use></svg
+                  ></a>
+                </li>
+                <li class="tsd-description">
+                  <div class="tsd-parameters">
+                    <h4 class="tsd-parameters-title">Parameters</h4>
+                    <ul class="tsd-parameter-list">
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">textureName</span>:
+                          <span class="tsd-signature-type">string</span></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">cols</span>:
+                          <span class="tsd-signature-type">number</span></span
+                        >
+                      </li>
+                      <li>
+                        <span
+                          ><span class="tsd-kind-parameter">rows</span>:
+                          <span class="tsd-signature-type">number</span></span
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                  <h4 class="tsd-returns-title">
+                    Returns
+                    <a
+                      href="../types/Material.html"
+                      class="tsd-signature-type tsd-kind-type-alias"
+                      >Material</a
+                    >
+                  </h4>
+                  <aside class="tsd-sources">
+                    <p>
+                      Inherited from
+                      <a href="TexturedBillboard.html">TexturedBillboard</a>.<a
+                        href="TexturedBillboard.html#creatematerial"
+                        >createMaterial</a
+                      >
+                    </p>
+                    <ul>
+                      <li>
+                        Defined in
+                        <a
+                          href="https://github.com/Prozi/engine25d/blob/main/src/textured-billboard.ts#L29"
+                          >src/textured-billboard.ts:29</a
                         >
                       </li>
                     </ul>
@@ -2027,10 +2520,6 @@
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>state</span></a
-                  ><a href="#tirerate" class="tsd-is-inherited"
-                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>tire<wbr />Rate</span></a
                   ><a href="#totalframes" class="tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
@@ -2047,6 +2536,10 @@
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>directions</span></a
+                  ><a href="#gravity" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>gravity</span></a
                   ><a href="#jumpspeed" class="tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-1024"></use></svg
@@ -2107,24 +2600,52 @@
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>get<wbr />Direction</span></a
+                  ><a
+                    href="#getfloorz"
+                    class="tsd-is-protected tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>get<wbr />FloorZ</span></a
                   ><a href="#getrow" class="tsd-is-protected tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>get<wbr />Row</span></a
-                  ><a href="#init" class="tsd-is-protected tsd-is-inherited"
-                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
-                      <use href="../assets/icons.svg#icon-2048"></use></svg
-                    ><span>init</span></a
                   ><a
                     href="#normalize"
                     class="tsd-is-protected tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>normalize</span></a
+                  ><a href="#spawn" class="tsd-is-protected tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>spawn</span></a
                   ><a href="#update" class="tsd-is-protected"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>update</span></a
+                  ><a
+                    href="#updatedirection"
+                    class="tsd-is-protected tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Direction</span></a
+                  ><a href="#updategroup" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Group</span></a
+                  ><a href="#updatevelocity" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Velocity</span></a
+                  ><a href="#updatez" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>updateZ</span></a
+                  ><a href="#creatematerial" class="tsd-is-inherited"
+                    ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>create<wbr />Material</span></a
                   ><a href="#findbyangle" class="tsd-is-inherited"
                     ><svg class="tsd-kind-icon" viewBox="0 0 24 24">
                       <use href="../assets/icons.svg#icon-2048"></use></svg

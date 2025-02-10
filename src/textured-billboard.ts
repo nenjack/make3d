@@ -6,7 +6,7 @@ import {
   Material,
   TexturedBillboardProps
 } from './model';
-import { renderer } from './state';
+import { state } from './state';
 import { createMaterial } from './utils';
 
 export class TexturedBillboard extends Billboard {
@@ -26,6 +26,14 @@ export class TexturedBillboard extends Billboard {
   rows: number;
   directionsToRows: DirectionsToRows;
 
+  static createMaterial(textureName: string, cols: number, rows: number) {
+    const material = createMaterial(textureName);
+
+    material.map?.repeat.set(1 / cols, 1 / rows);
+
+    return material;
+  }
+
   constructor({
     textureName = '',
     frameDuration = 120,
@@ -34,10 +42,7 @@ export class TexturedBillboard extends Billboard {
     rows = 6,
     directionsToRows = {}
   }: TexturedBillboardProps) {
-    const material = createMaterial(textureName);
-    material.map?.repeat.set(1 / cols, 1 / rows);
-
-    super(material);
+    super(TexturedBillboard.createMaterial(textureName, cols, rows));
 
     this.frameDuration = frameDuration;
     this.totalFrames = totalFrames;
@@ -47,11 +52,7 @@ export class TexturedBillboard extends Billboard {
   }
 
   protected getDirection() {
-    const characterAngle = this.normalize(this.body.angle);
-    const cameraAngle = this.normalize(
-      renderer.camera.rotation.z - Math.PI / 2
-    );
-    const angle = this.normalize(characterAngle - cameraAngle + Math.PI / 4);
+    const angle = this.normalize(this.body.angle - state.player.angle);
     const findByAngle = TexturedBillboard.findByAngle(angle);
     const direction =
       TexturedBillboard.directions.find(findByAngle) ||
