@@ -26,10 +26,11 @@ export class Enemy extends TexturedBillboard {
     if (this.rotation < 0) {
       this.rotation = Enemy.maxRotation;
 
-      ['left', 'right'].forEach((key) => {
-        this.state.keys[key] = false;
-      });
+      // Reset kierunków bocznych (bez tworzenia tablicy)
+      this.state.keys.left = false;
+      this.state.keys.right = false;
 
+      // Losowa zmiana kierunku
       if (Math.random() < ms / 100) {
         this.state.keys[Math.random() < 0.5 ? 'left' : 'right'] = true;
       }
@@ -38,13 +39,17 @@ export class Enemy extends TexturedBillboard {
     if (this.speed < 0) {
       this.speed = Enemy.maxSpeed;
 
-      ['up', 'down'].forEach((key) => {
-        this.state.keys[key] = false;
-      });
+      // Reset kierunków przód/tył (bez tworzenia tablicy)
+      this.state.keys.up = false;
+      this.state.keys.down = false;
 
-      this.state.keys[Math.random() < 0.9 ? 'up' : 'down'] = true;
+      // 90% szansy na ruch w górę, 10% na ruch w dół
+      this.state.keys.up = Math.random() < 0.9;
+      this.state.keys.down = !this.state.keys.up;
     }
 
-    this.state.keys.space = Math.random() < ms * Enemy.jumpChance;
+    // Skok (uniknięcie podwójnego `Math.random`)
+    const jumpChance = ms * Enemy.jumpChance;
+    this.state.keys.space = Math.random() < jumpChance;
   }
 }

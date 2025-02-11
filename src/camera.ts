@@ -1,4 +1,4 @@
-import { PerspectiveCamera, Quaternion, Vector3 } from 'three';
+import { Euler, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { Level } from './level';
 import { Player } from './player';
 import { renderer } from './state';
@@ -8,6 +8,11 @@ export class Camera extends PerspectiveCamera {
   static readonly distance = 1.4;
   static readonly height = 0.8;
   static readonly lerpRatio = 0.003;
+
+  protected static targetVector = new Vector3();
+  protected static lookAtVector = new Vector3();
+  protected static tempQuaternion = new Quaternion();
+  protected static tempEuler = new Euler();
 
   static fov = 90;
   static near = 0.01;
@@ -24,9 +29,10 @@ export class Camera extends PerspectiveCamera {
   ready({ level, ref }: { level: ViewLevel; ref: Player }) {
     this.setLevel(level);
     this.setRef(ref);
-    this.onCameraUpdate();
+    this.update();
+
     renderer.animations.push((ms: number) => {
-      renderer.camera.onCameraUpdate(ms * Camera.lerpRatio);
+      this.update(ms * Camera.lerpRatio);
     });
   }
 
@@ -42,33 +48,40 @@ export class Camera extends PerspectiveCamera {
     this.ref = ref;
   }
 
-  onCameraUpdate(lerp = 0) {
+  update(ms = 0) {
     if (!this.ref) return;
 
+    const { body, z, mesh } = this.ref;
+
+    // Przechowujemy wartości, żeby nie obliczać ich co klatkę
     const scale = Camera.distance / this.aspect;
-    const angle = -this.ref.body.angle + Math.PI / 2;
+    const angle = -body.angle + Math.PI / 2;
     const offsetX = Math.sin(angle) * scale;
     const offsetY = Math.cos(angle) * scale;
-    const cameraX = this.ref.body.x - offsetX;
-    const cameraY = this.ref.body.y - offsetY;
+    const cameraX = body.x - offsetX;
+    const cameraY = body.y - offsetY;
     const cameraHeight = this.getFloor(cameraX, cameraY);
-    const cameraZ = Camera.height + Math.max(cameraHeight / 2, this.ref.z);
+    const cameraZ = Camera.height + Math.max(cameraHeight / 2, z);
 
-    const { position: lookAt, quaternion: targetQuaterion } = this.ref.mesh;
-    const targetPosition = new Vector3(cameraX, cameraZ, cameraY);
+    const targetPosition = Camera.targetVector.set(cameraX, cameraZ, cameraY);
+    const lookAtPosition = Camera.lookAtVector
+      .set(0, 0.25, 0)
+      .add(mesh.position);
 
-    if (lerp) {
-      this.position.lerp(targetPosition, lerp);
-      this.rotation.setFromQuaternion(
-        new Quaternion()
-          .setFromEuler(this.rotation)
-          .slerp(targetQuaterion, lerp)
-      );
+    Camera.tempEuler.copy(this.rotation);
+
+    if (ms) {
+      this.position.lerp(targetPosition, ms);
+
+      Camera.tempQuaternion.setFromEuler(Camera.tempEuler);
+      Camera.tempQuaternion.slerp(mesh.quaternion, ms);
+
+      this.rotation.setFromQuaternion(Camera.tempQuaternion);
     } else {
       this.position.copy(targetPosition);
-      this.rotation.setFromQuaternion(targetQuaterion);
+      this.rotation.copy(Camera.tempEuler);
     }
 
-    this.lookAt(new Vector3(0, 0.25, 0).add(lookAt));
+    this.lookAt(lookAtPosition);
   }
 }

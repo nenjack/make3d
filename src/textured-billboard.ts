@@ -46,21 +46,29 @@ export class TexturedBillboard extends Billboard {
   protected update(ms: number) {
     super.update(ms);
 
-    if (Object.values(this.state.keys).some(Boolean)) {
-      this.frame = (this.frame + ms / this.frameDuration) % this.totalFrames;
+    // Sprawdzamy, czy jakikolwiek klawisz jest aktywny (wydajniejsza metoda)
+    for (const key in this.state.keys) {
+      if (this.state.keys[key]) {
+        this.frame = (this.frame + ms / this.frameDuration) % this.totalFrames;
+        break; // Nie musimy dalej sprawdzać
+      }
     }
 
-    const frame = Math.floor(this.frame);
+    const frameIndex = Math.floor(this.frame);
     const row = this.getRow(this.direction);
-    const x = frame % this.cols;
-    const y = Math.floor(frame / this.cols) + row;
+    const x = frameIndex % this.cols;
+    const y = Math.floor(frameIndex / this.cols) + row;
 
     const material = this.mesh.material as Material;
-    if (material instanceof MeshBasicMaterial) {
-      material.map?.offset.set(x / this.cols, y / this.rows);
+    if (!(material instanceof MeshBasicMaterial)) return;
 
-      this.scale.x =
-        (this.direction === 'left' ? -1 : 1) * Math.abs(this.scale.x);
+    material.map?.offset.set(x / this.cols, y / this.rows);
+
+    // Optymalizacja operacji na skali (tylko jeśli wartość się zmienia)
+    const newScaleX =
+      (this.direction === 'left' ? -1 : 1) * Math.abs(this.scale.x);
+    if (this.scale.x !== newScaleX) {
+      this.scale.x = newScaleX;
     }
   }
 }
