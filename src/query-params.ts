@@ -15,5 +15,3 @@ export const getQueryParams = (): Record<string, string> => {
 };
 
 export const queryParams = getQueryParams();
-
-export const useFast = 'fast' in queryParams;

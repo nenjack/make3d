@@ -9,8 +9,8 @@ export class Camera extends PerspectiveCamera {
   static readonly lerpRatio = 0.003;
 
   static fov = 95;
-  static near = 0.01;
-  static far = 64;
+  static near = 0.05;
+  static far = 16;
 
   ref?: Player;
 

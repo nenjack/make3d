@@ -11,7 +11,6 @@ import {
   Vector3
 } from 'three';
 import { CubeDirections, Material } from './model';
-import { useFast } from './query-params';
 import { loader, meshProps, textures } from './state';
 
 export const randomOf = (array: any[]) =>
@@ -66,10 +65,8 @@ export const getTextureNameFromPath = (path: string) => {
     .join('');
 };
 
-const minFilter = useFast ? LinearFilter : NearestMipMapLinearFilter;
-
 export const pixelate = (texture: Texture) => {
-  texture.minFilter = minFilter;
+  texture.minFilter = NearestMipMapLinearFilter;
   texture.magFilter = NearestFilter;
   texture.colorSpace = LinearSRGBColorSpace;
 };
