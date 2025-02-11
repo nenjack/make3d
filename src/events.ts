@@ -54,7 +54,7 @@ export const onPointerDown = (event: PointerEvent) => {
     setTimeout(() => {
       // safe
       keys.space = false;
-    }, 200);
+    }, 100);
   }
 
   lastClickTime = clickTime;

@@ -14,6 +14,8 @@ export class Camera extends PerspectiveCamera {
 
   constructor(fov = Camera.fov, near = Camera.near, far = Camera.far) {
     super(fov, innerWidth / innerHeight, near, far);
+
+    this.up = new Vector3(0, 1, 0);
   }
 
   getFloor(_x: number, _y: number) {
@@ -40,7 +42,7 @@ export class Camera extends PerspectiveCamera {
     const cameraX = this.ref.body.x - offsetX;
     const cameraY = this.ref.body.y - offsetY;
     const cameraHeight = this.getFloor(cameraX, cameraY);
-    const cameraZ = 0.25 + Math.max(cameraHeight, this.ref.z || 0);
+    const cameraZ = 0.25 + Math.max(cameraHeight / 2, this.ref.z);
 
     const { position, rotation } = this.ref.mesh;
 
@@ -61,6 +63,5 @@ export class Camera extends PerspectiveCamera {
     }
 
     this.lookAt(new Vector3(position.x, position.y, position.z));
-    this.up = new Vector3(0, 1, 0);
   }
 }

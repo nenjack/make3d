@@ -2,11 +2,19 @@ import { Mesh, PlaneGeometry, Vector2, Vector3 } from 'three';
 import { BillboardBody } from './billboard-body';
 import { Level } from './level';
 import { Direction, Material, State } from './model';
-import { directions, floors, physics, renderer, waterZ } from './state';
+import {
+  directions,
+  floors,
+  physics,
+  renderer,
+  reverseDirections,
+  state,
+  waterZ
+} from './state';
 
 export class Billboard {
-  static readonly moveSpeed = 2.5;
-  static readonly rotateSpeed = 3;
+  static readonly moveSpeed = 3;
+  static readonly rotateSpeed = 4;
   static readonly gravity = 9.1;
   static readonly jumpSpeed = 2.1;
 
@@ -18,8 +26,7 @@ export class Billboard {
   direction: Direction = 'up';
   state: State = {
     keys: {},
-    mouse: new Vector2(),
-    direction: Math.random() * 2 * Math.PI
+    mouse: new Vector2()
   };
 
   mesh: Mesh;
@@ -79,7 +86,24 @@ export class Billboard {
     return this.level ? this.level.getFloor(x, y) / 2 : 0;
   }
 
+  protected getDirection(): Direction {
+    const gear = this.gear;
+    if (!gear) {
+      return this.direction;
+    }
+
+    const angle = this.body.angle - state.player.body.angle;
+    const radians = this.normalize(gear * angle);
+    const directionIndex = Math.floor(radians / (Math.PI / 2));
+
+    return gear > 0
+      ? directions[directionIndex]
+      : reverseDirections[directionIndex];
+  }
+
   protected updateDirectionFromKeys() {
+    this.direction = this.getDirection();
+
     directions.forEach((direction) => {
       if (this.state.keys[direction]) {
         this.direction = direction;
@@ -145,7 +169,7 @@ export class Billboard {
 
     this.mesh.position.set(this.body.x, this.z, this.body.y);
     this.mesh.lookAt(renderer.camera.position);
-    this.mesh.up = renderer.camera.up;
+    this.mesh.up = new Vector3(0, 1, 0);
     this.mesh.scale.set(this.scale.x, this.scale.y, this.scale.z);
   }
 }

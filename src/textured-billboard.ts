@@ -6,18 +6,9 @@ import {
   Material,
   TexturedBillboardProps
 } from './model';
-import { directions, state } from './state';
 import { createMaterial } from './utils';
 
 export class TexturedBillboard extends Billboard {
-  static anglesMap = Array.from(
-    { length: 4 },
-    (_: unknown, index: number) => (index * Math.PI) / 2
-  ).reduce(
-    (total, value, i) => ({ ...total, [directions[i]]: value }),
-    {} as Record<Direction, number>
-  );
-
   readonly isPlayer: boolean = false;
 
   frame = 0;
@@ -25,7 +16,6 @@ export class TexturedBillboard extends Billboard {
   totalFrames: number;
   cols: number;
   rows: number;
-  direction: Direction = 'up';
   directionsToRows: DirectionsToRows;
 
   static createMaterial(textureName: string, cols: number, rows: number) {
@@ -51,18 +41,6 @@ export class TexturedBillboard extends Billboard {
     this.cols = cols;
     this.rows = rows;
     this.directionsToRows = directionsToRows;
-  }
-
-  protected getDirection() {
-    const angle = this.normalize(this.body.angle - state.player.body.angle);
-    const direction =
-      TexturedBillboard.anglesMap[Math.floor((4 * angle) / (2 * Math.PI))];
-
-    if (!direction && this.isPlayer) {
-      console.log(angle);
-    }
-
-    return direction;
   }
 
   protected getRow(direction: Direction) {
