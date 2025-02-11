@@ -1,5 +1,4 @@
 import { PerspectiveCamera, Quaternion, Vector3 } from 'three';
-import { cos, sin } from './fast-math';
 import { Level } from './level';
 import { Player } from './player';
 import { renderer } from './state';
@@ -49,8 +48,8 @@ export class Camera extends PerspectiveCamera {
     const gear = this.ref.gear || 1;
     const scale = (Camera.distance * gear) / this.aspect;
     const angle = -this.ref.body.angle + Math.PI / 2;
-    const offsetX = sin(angle) * scale;
-    const offsetY = cos(angle) * scale;
+    const offsetX = Math.sin(angle) * scale;
+    const offsetY = Math.cos(angle) * scale;
     const cameraX = this.ref.body.x - offsetX;
     const cameraY = this.ref.body.y - offsetY;
     const cameraHeight = this.getFloor(cameraX, cameraY);
