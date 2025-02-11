@@ -1,4 +1,4 @@
-const defaultPrecision = Math.PI / 18;
+const defaultPrecision = Math.PI / 45;
 const tableSize = Math.floor((2 * Math.PI) / defaultPrecision);
 const sinTable = new Float32Array(tableSize);
 const cosTable = new Float32Array(tableSize);

@@ -7,6 +7,7 @@ import {
   WebGLRenderer
 } from 'three';
 import { Camera } from './camera';
+import { Stats } from 'pixi-stats/src';
 
 export class Renderer extends WebGLRenderer {
   now = Date.now();
@@ -27,6 +28,8 @@ export class Renderer extends WebGLRenderer {
     this.onResize();
     window.addEventListener('resize', () => this.onResize());
     document.body.appendChild(this.domElement);
+
+    new Stats(this);
   }
 
   animation() {
