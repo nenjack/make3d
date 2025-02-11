@@ -4,7 +4,6 @@ export * from './box';
 export * from './camera';
 export * from './enemy';
 export * from './events';
-export * from './fast-math';
 export * from './level';
 export * from './loader';
 export * from './model';
