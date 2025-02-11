@@ -13,5 +13,7 @@ export class Box extends InstancedMesh {
     );
 
     super(geometry, materials, cols * rows);
+
+    this.renderOrder = 0;
   }
 }

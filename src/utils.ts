@@ -1,5 +1,4 @@
 import {
-  LinearFilter,
   LinearSRGBColorSpace,
   Matrix4,
   MeshBasicMaterial,

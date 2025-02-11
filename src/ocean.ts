@@ -1,6 +1,6 @@
 import {
+  CircleGeometry,
   Mesh,
-  PlaneGeometry,
   RepeatWrapping,
   ShaderMaterial,
   Texture,
@@ -12,7 +12,7 @@ import { renderer } from './state';
 export class Ocean {
   static readonly scale = 4;
   static readonly waveSpeed = 1;
-  static readonly waveHeight = 0.07;
+  static readonly waveHeight = 0.05;
   static readonly waveDetail = 16;
   static readonly textureRepeat = 8; // Powtarzanie tekstury
   static readonly config = [
@@ -20,21 +20,24 @@ export class Ocean {
       opacity: 0.5,
       z: 0,
       renderOrder: 2,
-      scale: 0.9
+      scale: 2
     },
     {
       opacity: 1,
-      z: -0.5,
+      z: -0.1,
       renderOrder: 1,
-      scale: 0.5
+      scale: 1.5
     }
   ];
 
+  readonly repeat: number;
   readonly cols: number;
   readonly rows: number;
+
   protected startTime = Date.now();
 
-  constructor(texture: Texture, repeat = 1) {
+  constructor(texture: Texture, repeat = 1.1) {
+    this.repeat = repeat;
     this.cols = Level.cols * repeat;
     this.rows = Level.rows * repeat;
 
@@ -49,41 +52,39 @@ export class Ocean {
   }
 
   protected createPlane(texture: Texture, index: number) {
-    const geometry = new PlaneGeometry(
-      this.cols,
-      this.rows,
-      Ocean.waveDetail,
-      Ocean.waveDetail
-    ); // więcej podziałów dla lepszego falowania
-    const { opacity, z, renderOrder, scale } = Ocean.config[index];
+    const { opacity, scale, z, renderOrder } = Ocean.config[index];
+    const radius = Math.hypot(this.cols, this.rows) / 2;
+    const geometry = new CircleGeometry(radius);
+
     const material = new ShaderMaterial({
       uniforms: {
-        direction: { value: index ? -1 : 1 },
-        z: { value: z },
         time: { value: (index * Math.PI) / 2 },
+        waveSpeed: { value: Ocean.waveSpeed },
+        waveHeight: { value: Ocean.waveHeight },
+        textureRepeat: { value: Ocean.textureRepeat / scale },
+        oceanZ: { value: z },
+        cameraX: { value: 0 },
+        cameraY: { value: 0 },
         map: { value: texture },
-        opacity: { value: opacity },
-        waveSpeed: { value: Ocean.waveSpeed * scale },
-        waveHeight: { value: Ocean.waveHeight * scale },
-        textureRepeat: { value: Ocean.textureRepeat * scale }
+        opacity: { value: opacity }
       },
       vertexShader: `
         uniform float time;
         uniform float waveSpeed;
         uniform float waveHeight;
         uniform float textureRepeat;
-        uniform float direction;
-        uniform float z;
+        uniform float oceanZ;
+        uniform float cameraX;
+        uniform float cameraY;
 
         varying vec2 vUv;
 
         void main() {
-          vUv = uv * textureRepeat; // Powtarzanie tekstury
-          vec3 pos = position;
-          float wave = sin(pos.x + pos.z + time * waveSpeed * 2.0);
+          vUv = uv * textureRepeat + vec2(cameraX, cameraY); // Powtarzanie tekstury
+          float wave = sin(position.x + position.z + time * waveSpeed * 2.0);
 
-          pos.y += time * waveSpeed * direction * 0.05;
-          pos.z = z + wave * waveHeight;
+          vec3 pos = position;
+          pos.z = oceanZ + wave * waveHeight;
 
           gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
         }
@@ -107,17 +108,22 @@ export class Ocean {
     });
 
     const mesh = new Mesh(geometry, material);
-    const x = this.cols / 2 / Ocean.scale;
-    const y = this.rows / 2 / Ocean.scale;
 
     mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2);
-    mesh.position.set(x, z, y);
-    mesh.rotateZ(Math.PI / 4 + index * Math.PI);
+    mesh.position.set(0, z, 0);
     mesh.renderOrder = renderOrder;
 
     // Animacja shadera
     renderer.animations.push((ms: number) => {
+      if (!renderer.camera.ref) return;
+
+      const { x, y } = renderer.camera.ref.body;
+      mesh.position.set(x, z, y);
+
+      const size = 1 / ((scale * Ocean.textureRepeat) / 2);
       material.uniforms.time.value += ms / 1000;
+      material.uniforms.cameraX.value = x * size;
+      material.uniforms.cameraY.value = -y * size;
     });
 
     return mesh;

@@ -2,6 +2,8 @@ import { PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { cos, sin } from './fast-math';
 import { Level } from './level';
 import { Player } from './player';
+import { renderer } from './state';
+import { ViewLevel } from './view-level';
 
 export class Camera extends PerspectiveCamera {
   static readonly distance = 1.3;
@@ -18,6 +20,15 @@ export class Camera extends PerspectiveCamera {
     super(fov, innerWidth / innerHeight, near, far);
 
     this.up = new Vector3(0, 1, 0);
+  }
+
+  ready({ level, ref }: { level: ViewLevel; ref: Player }) {
+    this.setLevel(level);
+    this.setRef(ref);
+    this.onCameraUpdate();
+    renderer.animations.push((ms: number) => {
+      renderer.camera.onCameraUpdate(ms * Camera.lerpRatio);
+    });
   }
 
   getFloor(_x: number, _y: number) {

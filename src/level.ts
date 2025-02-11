@@ -2,7 +2,7 @@ import { Map } from 'rot-js';
 import { maxLevelHeight, minLevelHeight } from './state';
 
 export class Level {
-  static readonly fill = 0.49;
+  static readonly fill = 0.5;
   static readonly mapIterations = 4;
   static readonly cols = 24;
   static readonly rows = 24;
@@ -28,7 +28,11 @@ export class Level {
   }
 
   getFloor(x: number, y: number) {
-    return this.heights[Math.floor(x)]?.[Math.floor(y)] || 0;
+    return (
+      this.heights[Math.floor(x + Level.cols / 2)]?.[
+        Math.floor(y + Level.rows / 2)
+      ] || 0
+    );
   }
 
   protected createMap(fill = Level.fill, iterations = Level.mapIterations) {

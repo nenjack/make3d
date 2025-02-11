@@ -36,10 +36,12 @@ export class ViewLevel extends Level {
             )
           );
 
-          this.createBox(x, y, height);
+          this.createBox(x - Level.cols / 2, y - Level.rows / 2, height);
         }
       });
     });
+
+    mesh.position.set(-Level.cols / 2, 0, -Level.rows / 2);
 
     return mesh;
   }
