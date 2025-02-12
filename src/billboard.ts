@@ -88,7 +88,7 @@ export class Billboard {
 
     const angle = this.body.angle - state.player.body.angle;
     const radians = normalizeAngle(gear * angle);
-    const directionIndex = Math.floor((2 * radians) / Math.PI);
+    const directionIndex = Math.round((2 * radians) / Math.PI); // Poprawione zaokrąglanie
 
     return gear > 0
       ? directions[directionIndex]
