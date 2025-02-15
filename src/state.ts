@@ -40,3 +40,5 @@ export const meshProps = {
 };
 
 export const directions: Direction[] = ['up', 'right', 'down', 'left'];
+
+export const Math_Half_PI = Math.PI * 0.5;

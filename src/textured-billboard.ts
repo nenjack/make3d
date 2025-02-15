@@ -7,11 +7,14 @@ export class TexturedBillboard extends Billboard {
   readonly isPlayer: boolean = false;
 
   frame = 0;
-  frameDuration: number;
+  invFrameDuration: number;
   totalFrames: number;
   cols: number;
   rows: number;
   directionsToRows: DirectionsToRows;
+
+  protected invCols: number;
+  protected invRows: number;
 
   constructor({
     textureName = '',
@@ -23,26 +26,29 @@ export class TexturedBillboard extends Billboard {
   }: TexturedBillboardProps) {
     super(createMaterial(textureName, cols, rows));
 
-    this.frameDuration = frameDuration;
+    this.invFrameDuration = 1 / frameDuration;
     this.totalFrames = totalFrames;
     this.cols = cols;
     this.rows = rows;
+    this.invCols = 1 / cols;
+    this.invRows = 1 / rows;
     this.directionsToRows = directionsToRows;
   }
 
   protected getRow(direction: Direction) {
     return (
       this.rows -
-      this.totalFrames / this.cols -
+      this.totalFrames * this.invCols -
       ((this.directionsToRows[direction] ?? this.directionsToRows.default) || 0)
     );
   }
 
-  protected update(ms: number) {
+  protected update(ms = 0) {
     // Sprawdzamy, czy jakikolwiek klawisz jest aktywny (wydajniejsza metoda)
     for (const key in this.state.keys) {
       if (this.state.keys[key]) {
-        this.frame = (this.frame + ms / this.frameDuration) % this.totalFrames;
+        this.frame =
+          (this.frame + ms * this.invFrameDuration) % this.totalFrames;
         break; // Nie musimy dalej sprawdzać
       }
     }
@@ -50,12 +56,12 @@ export class TexturedBillboard extends Billboard {
     const frameIndex = Math.floor(this.frame);
     const row = this.getRow(this.direction);
     const x = frameIndex % this.cols;
-    const y = Math.floor(frameIndex / this.cols) + row;
+    const y = Math.floor(frameIndex * this.invCols) + row;
     const { material } = this.mesh;
 
     if (!(material instanceof MeshBasicMaterial)) return;
 
-    material.map?.offset.set(x / this.cols, y / this.rows);
+    material.map?.offset.set(x * this.invCols, y * this.invRows);
 
     if (this.direction === 'left') {
       this.scale.x = -Math.abs(this.scale.x);

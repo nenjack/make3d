@@ -7,7 +7,7 @@ import {
   Vector3
 } from 'three';
 import { Level } from './level';
-import { meshProps, renderer } from './state';
+import { Math_Half_PI, meshProps, renderer } from './state';
 
 export class Ocean {
   static readonly scale = 4;
@@ -136,7 +136,7 @@ export class Ocean {
 
     const mesh = new Mesh(geometry, material);
 
-    mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2);
+    mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math_Half_PI);
     mesh.position.set(0, z, 0);
     mesh.renderOrder = renderOrder;
 
@@ -150,7 +150,7 @@ export class Ocean {
 
       mesh.position.set(x, z, y);
 
-      material.uniforms.time.value += ms / 1000;
+      material.uniforms.time.value += ms * 0.001;
       material.uniforms.cameraX.value = x * size;
       material.uniforms.cameraY.value = -y * size;
     });

@@ -1,7 +1,7 @@
 import { Euler, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { Level } from './level';
 import { Player } from './player';
-import { renderer } from './state';
+import { Math_Half_PI, renderer } from './state';
 import { ViewLevel } from './view-level';
 
 export class Camera extends PerspectiveCamera {
@@ -20,6 +20,8 @@ export class Camera extends PerspectiveCamera {
 
   ref?: Player;
 
+  protected normalizedDistance!: number;
+
   constructor(fov = Camera.fov, near = Camera.near, far = Camera.far) {
     super(fov, innerWidth / innerHeight, near, far);
 
@@ -34,6 +36,12 @@ export class Camera extends PerspectiveCamera {
     renderer.animations.push((ms: number) => {
       this.update(ms * Camera.lerpRatio);
     });
+  }
+
+  onResize(width: number, height: number) {
+    this.aspect = width / height;
+    this.normalizedDistance = Camera.distance / this.aspect;
+    this.updateProjectionMatrix();
   }
 
   getFloor(_x: number, _y: number) {
@@ -54,10 +62,9 @@ export class Camera extends PerspectiveCamera {
     const { body, z, mesh } = this.ref;
 
     // Przechowujemy wartości, żeby nie obliczać ich co klatkę
-    const scale = Camera.distance / this.aspect;
-    const angle = -body.angle + Math.PI / 2;
-    const offsetX = Math.sin(angle) * scale;
-    const offsetY = Math.cos(angle) * scale;
+    const angle = -body.angle + Math_Half_PI;
+    const offsetX = Math.sin(angle) * this.normalizedDistance;
+    const offsetY = Math.cos(angle) * this.normalizedDistance;
     const cameraX = body.x - offsetX;
     const cameraY = body.y - offsetY;
     const cameraHeight = this.getFloor(cameraX, cameraY);

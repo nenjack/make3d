@@ -78,8 +78,8 @@ export class Billboard {
     return directions[directionIndex];
   }
 
-  protected update(ms: number) {
-    const deltaTime = ms / 1000;
+  protected update(ms = 0) {
+    const deltaTime = ms * 0.001;
     const floorZ = this.getFloorZ(); // Obliczamy raz
     const gear = this.gear;
 

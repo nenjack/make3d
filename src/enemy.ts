@@ -18,7 +18,7 @@ export class Enemy extends TexturedBillboard {
     this.spawn(level);
   }
 
-  protected update(ms: number) {
+  protected update(ms = 0) {
     super.update(ms);
 
     this.speed -= ms;
