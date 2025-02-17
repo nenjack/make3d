@@ -11,6 +11,9 @@ import { directions, floors, renderer, state } from './state';
 import { createMaterial, normalizeAngle } from './utils';
 
 export class Billboard {
+  protected static tempVector = new Vector3();
+  protected static tempVectorDivide = new Vector3(2, 2, 2);
+
   frame = 0;
   direction: Direction = 'up';
   material: Material;
@@ -65,20 +68,20 @@ export class Billboard {
   }
 
   update(_ms: number): void {
+    this.direction = this.getDirection();
+
     this.mesh.position.set(
       this.body.x,
       this.z + this.centerOffset,
       this.body.y
     );
-    this.direction = this.getDirection();
 
-    const { position } = renderer.camera;
-    const target = new Vector3(
-      position.x,
-      position.y * 0.2 + this.mesh.position.y * 0.8,
-      position.z
+    this.mesh.lookAt(
+      Billboard.tempVector
+        .copy(renderer.camera.position)
+        .add(this.mesh.position)
+        .divide(Billboard.tempVectorDivide)
     );
-    this.mesh.lookAt(target);
 
     if (this.totalFrames > 1) {
       this.updateTexture();

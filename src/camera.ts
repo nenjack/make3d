@@ -15,8 +15,8 @@ export class Camera extends PerspectiveCamera {
   protected static tempEuler = new Euler();
 
   static fov = 90;
-  static near = 0.001;
-  static far = 20;
+  static near = 0.01;
+  static far = 25;
 
   offsetX = 0;
   offsetY = 0;
@@ -25,8 +25,6 @@ export class Camera extends PerspectiveCamera {
 
   constructor(fov = Camera.fov, near = Camera.near, far = Camera.far) {
     super(fov, innerWidth / innerHeight, near, far);
-
-    this.up = new Vector3(0, 1, 0);
   }
 
   ready({ level, ref }: { level: ViewLevel; ref: Player }) {
@@ -62,10 +60,18 @@ export class Camera extends PerspectiveCamera {
     const cameraX = body.x - Math.sin(angle) * this.distance * gear;
     const cameraY = body.y - Math.cos(angle) * this.distance * gear;
     const cameraHeight = this.getFloor(cameraX, cameraY) / 2;
-    const cameraZ = Math.max(cameraHeight, z) + Camera.height;
+    const cameraZ = Math.max(cameraHeight, z);
 
-    const targetPosition = Camera.targetVector.set(cameraX, cameraZ, cameraY);
-    const lookAtPosition = Camera.lookAtVector.set(body.x, (z + 1) / 4, body.y);
+    const targetPosition = Camera.targetVector.set(
+      cameraX,
+      Camera.height + cameraZ,
+      cameraY
+    );
+    const lookAtPosition = Camera.lookAtVector.set(
+      body.x,
+      Camera.height + z * 0.5,
+      body.y
+    );
 
     Camera.tempEuler.copy(this.rotation);
 
