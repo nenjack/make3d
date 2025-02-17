@@ -11,6 +11,7 @@ import { Camera } from './camera';
 import { Ocean } from './ocean';
 import { queryParams } from './query-params';
 import { Billboard } from './billboard';
+import { Skybox } from './skybox';
 
 export class Renderer extends WebGLRenderer {
   static backgroundColor = 0xbbf0ff;
@@ -22,6 +23,7 @@ export class Renderer extends WebGLRenderer {
   animations: Array<(time: number) => void> = [];
   stats?: Stats;
   ocean?: Ocean;
+  skybox?: Skybox;
 
   constructor() {
     super({ antialias: true, powerPreference: 'high-performance' });

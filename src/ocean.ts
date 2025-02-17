@@ -8,9 +8,9 @@ import {
   Texture,
   Vector3
 } from 'three';
+import { Camera } from './camera';
 import { Level } from './level';
 import { Math_Half_PI, materialProps, renderer } from './state';
-import { Camera } from './camera';
 
 export class Ocean {
   static readonly scale = 4;
@@ -44,10 +44,13 @@ export class Ocean {
     texture.wrapT = RepeatWrapping;
 
     this.mesh.add(this.createDeepWater(texture));
-    this.mesh.add(this.createShallowWater(texture));
     this.onResize();
 
     renderer.scene.add(this.mesh);
+
+    setTimeout(() => {
+      this.mesh.add(this.createShallowWater(texture));
+    });
   }
 
   update(ms = 0) {

@@ -1,10 +1,12 @@
 import { Texture, Vector3 } from 'three';
 import { Box } from './box';
-import { Level } from './level';
-import { maxLevelHeight } from './state';
-import { getMatrix } from './utils';
 import { Cactus } from './cactus';
+import { Level } from './level';
+import { Ocean } from './ocean';
 import { Palm } from './palm';
+import { Skybox } from './skybox';
+import { maxLevelHeight, renderer } from './state';
+import { getMatrix } from './utils';
 
 export class ViewLevel extends Level {
   static readonly floraFill = Level.fill * 0.85;
@@ -14,10 +16,21 @@ export class ViewLevel extends Level {
 
   mesh: Box;
 
-  constructor(textures: Texture[]) {
+  constructor(
+    textures: Texture[],
+    {
+      ocean,
+      skybox
+    }: {
+      ocean?: () => Ocean;
+      skybox?: () => Skybox;
+    }
+  ) {
     super();
-
     this.mesh = this.createMesh(textures);
+
+    renderer.ocean = ocean?.();
+    renderer.skybox = skybox?.();
   }
 
   createBox(textures: Texture[]) {

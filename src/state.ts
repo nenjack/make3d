@@ -3,6 +3,7 @@ import { Texture, Vector2 } from 'three';
 import { Loader } from './loader';
 import { Direction, Key, State } from './model';
 import { Renderer } from './renderer';
+import { queryParams } from './query-params';
 
 export const minLevelHeight = 3;
 
@@ -49,3 +50,6 @@ export const directions: Direction[] = ['up', 'right', 'down', 'left'];
 export const Math_Half_PI = Math.PI * 0.5;
 
 export const Math_Double_PI = Math.PI * 2;
+
+export const defaultEnemiesCount =
+  'limit' in queryParams ? Number(queryParams.limit) : 32;
