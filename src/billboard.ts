@@ -40,7 +40,7 @@ export class Billboard {
 
   set z(z: number) {
     this._z = z;
-    this.body.group = floors[Math.round(z * 2)];
+    this.body.group = floors[Math.round(z * 2 - 0.25)];
   }
 
   protected _z = 0;

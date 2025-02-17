@@ -5,6 +5,7 @@ import { Direction, Key, State } from './model';
 import { Mouse } from './mouse';
 import { queryParams } from './query-params';
 import { Renderer } from './renderer';
+import { DeviceDetector } from './detect';
 
 export const minLevelHeight = 3;
 
@@ -48,4 +49,8 @@ export const Math_Half_PI = Math.PI * 0.5;
 export const Math_Double_PI = Math.PI * 2;
 
 export const defaultEnemiesCount =
-  'limit' in queryParams ? Number(queryParams.limit) : 32;
+  'limit' in queryParams
+    ? Number(queryParams.limit)
+    : DeviceDetector.isHighEnd
+      ? 64
+      : 16;
