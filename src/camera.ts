@@ -18,6 +18,8 @@ export class Camera extends PerspectiveCamera {
   static near = 0.001;
   static far = 20;
 
+  offsetX = 0;
+  offsetY = 0;
   ref?: Player;
   distance = Camera.distance;
 
@@ -57,10 +59,8 @@ export class Camera extends PerspectiveCamera {
     const { body, z, mesh } = this.ref;
     const gear = this.ref.gear || 1;
     const angle = -body.angle + Math_Half_PI;
-    const offsetX = Math.sin(angle) * this.distance * gear;
-    const offsetY = Math.cos(angle) * this.distance * gear;
-    const cameraX = body.x - offsetX;
-    const cameraY = body.y - offsetY;
+    const cameraX = body.x - Math.sin(angle) * this.distance * gear;
+    const cameraY = body.y - Math.cos(angle) * this.distance * gear;
     const cameraHeight = this.getFloor(cameraX, cameraY) / 2;
     const cameraZ = Math.max(cameraHeight, z) + Camera.height;
 
@@ -85,8 +85,9 @@ export class Camera extends PerspectiveCamera {
   }
 
   protected getDistanceTo(position: Vector3) {
-    const x = this.ref.body.x - position.x;
-    const y = this.ref.body.y - position.z;
+    const x = this.ref!.body.x - position.x;
+    const y = this.ref!.body.y - position.z;
+
     return x * x + y * y;
   }
 }

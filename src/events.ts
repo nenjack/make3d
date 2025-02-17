@@ -4,6 +4,7 @@ export const onPointerMove = (event: MouseEvent | TouchEvent) => {
   const pointer = event instanceof TouchEvent ? event.touches[0] : event;
 
   if (pointer && state.player) {
+    event.preventDefault();
     mouse.x = (pointer.pageX / innerWidth) * 2 - 1;
     mouse.y = (pointer.pageY / innerHeight) * 2 - 1;
   }
@@ -66,9 +67,10 @@ export const addEventListeners = () => {
   window.addEventListener('keydown', setKey(true), { passive: true });
   window.addEventListener('keyup', setKey(false), { passive: true });
   window.addEventListener('contextmenu', preventEvent, { passive: false });
+  window.addEventListener('dragstart', preventEvent, { passive: false });
   window.addEventListener('pointerdown', onPointerDown, { passive: false });
+  window.addEventListener('pointermove', onPointerMove, { passive: false });
+  window.addEventListener('touchmove', onPointerMove, { passive: false });
   window.addEventListener('pointerup', onPointerUp, { passive: true });
   window.addEventListener('touchend', onPointerUp, { passive: true });
-  window.addEventListener('pointermove', onPointerMove, { passive: true });
-  window.addEventListener('touchmove', onPointerMove, { passive: true });
 };

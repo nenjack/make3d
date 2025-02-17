@@ -42,9 +42,37 @@ export class MovingBillboard extends Billboard {
 
   update(ms: number): void {
     const deltaTime = ms * 0.001;
-    const floorZ = this.getFloorZ();
     const gear = this.gear;
 
+    this.updateAngle(deltaTime, gear);
+
+    const mouseGear = this.getMouseGear();
+    const moveSpeed =
+      (mouseGear || gear) * MovingBillboard.moveSpeed * deltaTime;
+
+    if (moveSpeed) {
+      this.body.move(moveSpeed);
+      this.body.system?.separateBody(this.body);
+    }
+
+    this.updateZ(deltaTime);
+
+    if (mouseGear) {
+      this.updateFrame(ms);
+    } else {
+      for (const key in this.state.keys) {
+        if (this.state.keys[key]) {
+          this.updateFrame(ms);
+          break;
+        }
+      }
+    }
+
+    super.update(ms);
+  }
+
+  protected updateZ(deltaTime: number) {
+    const floorZ = this.getFloorZ();
     if (this.z > floorZ) {
       this.velocity -= MovingBillboard.gravity * deltaTime;
     } else {
@@ -58,7 +86,9 @@ export class MovingBillboard extends Billboard {
         0
       );
     }
+  }
 
+  protected updateAngle(deltaTime: number, gear: number) {
     if (
       this.state.keys.left ||
       this.state.keys.right ||
@@ -76,40 +106,10 @@ export class MovingBillboard extends Billboard {
         );
       }
     }
-
-    const mouseGear = this.state.mouseDown
-      ? Math.min(1, Math.max(-1, -this.state.mouse.y * 2))
-      : 0;
-    const moveSpeed =
-      (mouseGear || gear) * MovingBillboard.moveSpeed * deltaTime;
-
-    if (moveSpeed) {
-      this.body.move(moveSpeed);
-      this.body.system?.separateBody(this.body);
-    }
-
-    if (mouseGear) {
-      this.updateFrame(ms);
-    } else {
-      for (const key in this.state.keys) {
-        if (this.state.keys[key]) {
-          this.updateFrame(ms);
-          break;
-        }
-      }
-    }
-
-    super.update(ms);
   }
 
   protected updateFrame(ms: number) {
     this.frame = (this.frame + ms * this.invFrameDuration) % this.totalFrames;
-  }
-
-  protected createBody(x: number, y: number) {
-    const body = new DynamicBody(x, y);
-    physics.insert(body);
-    return body;
   }
 
   protected updateTexture() {
@@ -133,5 +133,17 @@ export class MovingBillboard extends Billboard {
         this.scale
       );
     }
+  }
+
+  protected createBody(x: number, y: number) {
+    const body = new DynamicBody(x, y);
+    physics.insert(body);
+    return body;
+  }
+
+  protected getMouseGear() {
+    return this.state.mouseDown
+      ? Math.min(1, Math.max(-1, -this.state.mouse.y * 2))
+      : 0;
   }
 }

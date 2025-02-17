@@ -1,4 +1,4 @@
-import { Mesh, PlaneGeometry } from 'three';
+import { Mesh, PlaneGeometry, Vector3 } from 'three';
 import { BodyLike, StaticBody } from './billboard-body';
 import { Level } from './level';
 import {
@@ -50,7 +50,7 @@ export class Billboard {
     this.directionsToRows = props.directionsToRows || { default: 0 };
 
     this.scale = (props.scale || 1) / 2;
-    this.centerOffset = -0.25 + this.scale / 3; // this.scale / 4;
+    this.centerOffset = -0.2 + this.scale / 3; // this.scale / 4;
     this.material = createMaterial(props.textureName, props.cols, props.rows);
     const w = this.material.map!.image.width / this.cols;
     const h = this.material.map!.image.height / this.rows;
@@ -70,8 +70,15 @@ export class Billboard {
       this.z + this.centerOffset,
       this.body.y
     );
-    this.mesh.quaternion.copy(renderer.camera.quaternion);
     this.direction = this.getDirection();
+
+    const { position } = renderer.camera;
+    const target = new Vector3(
+      position.x,
+      position.y * 0.2 + this.mesh.position.y * 0.8,
+      position.z
+    );
+    this.mesh.lookAt(target);
 
     if (this.totalFrames > 1) {
       this.updateTexture();
