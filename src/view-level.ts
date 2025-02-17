@@ -30,7 +30,7 @@ export class ViewLevel extends Level {
   createMesh(textures: Texture[]) {
     const box = this.createBox(textures);
 
-    this.forEachHeight(this.heights, ({ col, row, x, y, height }) => {
+    this.forEachHeight(this.heights, ({ col, row, height }) => {
       box.setMatrixAt(
         row * Level.rows + col,
         getMatrix(
@@ -39,6 +39,8 @@ export class ViewLevel extends Level {
         )
       );
 
+      const x = col - Level.cols / 2;
+      const y = row - Level.rows / 2;
       this.createBoxCollider(x, y, height);
 
       if (

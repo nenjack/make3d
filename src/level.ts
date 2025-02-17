@@ -38,15 +38,12 @@ export class Level {
 
   forEachHeight(
     heights = this.heights,
-    iterator: ({ col, row, x, y, height }: Record<string, number>) => void
+    iterator: ({ col, row, height }: Record<string, number>) => void
   ) {
     heights.forEach((rows: number[], col: number) => {
       rows.forEach((height: number, row: number) => {
         if (height) {
-          const x = col - Level.cols / 2;
-          const y = row - Level.rows / 2;
-
-          iterator({ col, row, x, y, height });
+          iterator({ col, row, height });
         }
       });
     });
