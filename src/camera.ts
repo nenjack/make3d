@@ -55,10 +55,9 @@ export class Camera extends PerspectiveCamera {
     if (!this.ref) return;
 
     const { body, z, mesh } = this.ref;
-    const gear = Math.sign(this.ref.mouseGear || this.ref.gear) || 1;
     const angle = -body.angle + Math_Half_PI;
-    const cameraX = body.x - Math.sin(angle) * this.distance * gear;
-    const cameraY = body.y - Math.cos(angle) * this.distance * gear;
+    const cameraX = body.x - Math.sin(angle) * this.distance;
+    const cameraY = body.y - Math.cos(angle) * this.distance;
     const cameraHeight = this.getFloor(cameraX, cameraY) / 3;
     const cameraZ = Math.max(cameraHeight, z);
 
