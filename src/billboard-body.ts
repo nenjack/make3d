@@ -1,5 +1,5 @@
 import { Circle } from 'detect-collisions';
-import { floors } from './state';
+import { floors, Math_Double_PI } from './state';
 
 export interface BodyLike {
   x: number;
@@ -24,10 +24,10 @@ export class StaticBody implements BodyLike {
 }
 
 export class DynamicBody extends Circle {
-  static readonly radius = 0.15;
+  static readonly radius = 0.25;
   static readonly padding = 0.1;
 
-  angle = Math.random() * Math.PI * 2;
+  angle = Math.random() * Math_Double_PI;
 
   constructor(
     x: number,

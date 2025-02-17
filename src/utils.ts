@@ -6,11 +6,10 @@ import {
   NearestMipMapLinearFilter,
   Quaternion,
   Texture,
-  Vector2,
   Vector3
 } from 'three';
 import { CubeDirections, Material } from './model';
-import { loader, materialProps, textures } from './state';
+import { loader, materialProps, Math_Double_PI, textures } from './state';
 
 export const randomOf = (array: any[]) =>
   array[Math.floor(Math.random() * array.length)];
@@ -28,14 +27,12 @@ export const getMatrix = (position: Vector3, scale: Vector3) => {
 export const createMaterial = (textureName: string, cols = 1, rows = 1) => {
   try {
     const texture = textures[textureName].clone();
-    const image: HTMLImageElement = texture.image;
     const material: Material = new MeshBasicMaterial({
       ...materialProps,
       map: texture
     });
 
     if (cols > 1 || rows > 1) {
-      material.size = new Vector2(image.width / cols, image.height / rows);
       texture.repeat.set(1 / cols, 1 / rows);
     }
 
@@ -84,7 +81,7 @@ export const loadTextures = async (texturePaths: string[]) => {
 };
 
 export const normalizeAngle = (angle: number) =>
-  (2 * Math.PI + angle) % (2 * Math.PI);
+  (Math_Double_PI + angle) % Math_Double_PI;
 
 export const mapCubeTextures = <T>({
   left,

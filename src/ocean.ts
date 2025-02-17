@@ -74,7 +74,7 @@ export class Ocean {
     const material = new ShaderMaterial({
       ...materialProps,
       uniforms: {
-        time: { value: (index * Math.PI) / 2 },
+        time: { value: index * Math_Half_PI },
         waveForward: { value: waveForward },
         wavingSpeed: { value: wavingSpeed },
         waveFrequency: { value: waveFrequency },

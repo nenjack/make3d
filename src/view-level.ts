@@ -3,8 +3,11 @@ import { Box } from './box';
 import { Level } from './level';
 import { floors, physics } from './state';
 import { getMatrix } from './utils';
+import { Cactus } from './cactus';
 
 export class ViewLevel extends Level {
+  static readonly cactusChance = 0.2;
+
   mesh: Box;
 
   constructor(textures: Texture[]) {
@@ -36,7 +39,12 @@ export class ViewLevel extends Level {
             )
           );
 
-          this.createBox(x - Level.cols / 2, y - Level.rows / 2, height);
+          const realX = x - Level.cols / 2;
+          const realY = y - Level.rows / 2;
+          this.createBox(realX, realY, height);
+          if (Math.random() < ViewLevel.cactusChance) {
+            new Cactus(this, realX + 0.5, realY + 0.5);
+          }
         }
       });
     });

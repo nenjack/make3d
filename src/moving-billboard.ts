@@ -109,9 +109,17 @@ export class MovingBillboard extends Billboard {
 
     const sign = Math.sign(this.mesh.scale.x);
     if (this.direction === 'left' && sign > 0) {
-      this.mesh.scale.set(noLeft ? -1 : 1, 1, 1);
+      this.mesh.scale.set(
+        noLeft ? -this.scale : this.scale,
+        this.scale,
+        this.scale
+      );
     } else if (this.direction === 'right' && sign < 0) {
-      this.mesh.scale.set(noLeft ? 1 : -1, 1, 1);
+      this.mesh.scale.set(
+        noLeft ? this.scale : -this.scale,
+        this.scale,
+        this.scale
+      );
     }
   }
 

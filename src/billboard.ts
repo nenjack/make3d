@@ -16,6 +16,7 @@ export class Billboard {
   material: Material;
   mesh: Mesh;
   body!: BodyLike;
+  scale: number;
   cols: number;
   rows: number;
   frameDuration: number;
@@ -23,6 +24,7 @@ export class Billboard {
   invRows: number;
   invFrameDuration: number;
   totalFrames: number;
+  centerOffset: number;
   directionsToRows: DirectionsToRows;
   level?: Level;
 
@@ -46,12 +48,15 @@ export class Billboard {
     this.invFrameDuration = 1 / this.frameDuration;
     this.totalFrames = props.totalFrames || 1;
     this.directionsToRows = props.directionsToRows || { default: 0 };
-    this.material = createMaterial(props.textureName, props.cols, props.rows);
 
+    this.scale = (props.scale || 1) / 2;
+    this.centerOffset = (this.scale - 0.75) / 4;
+    this.material = createMaterial(props.textureName, props.cols, props.rows);
     const w = this.material.map!.image.width / this.cols;
     const h = this.material.map!.image.height / this.rows;
-    const m = Math.max(w, h) / (props.scale || 1);
+    const m = Math.max(w, h);
     this.mesh = new Mesh(new PlaneGeometry(w / m, h / m), this.material);
+    this.mesh.scale.set(this.scale, this.scale, this.scale);
 
     renderer.scene.add(this.mesh);
     renderer.animations.push((ms: number) => {
@@ -60,21 +65,28 @@ export class Billboard {
   }
 
   update(_ms: number): void {
-    this.mesh.position.set(this.body.x, this.z, this.body.y);
+    this.mesh.position.set(
+      this.body.x,
+      this.z + this.centerOffset,
+      this.body.y
+    );
     this.mesh.quaternion.copy(renderer.camera.quaternion);
-    this.mesh.up = renderer.camera.up;
+
     this.direction = this.getDirection();
-    this.updateTexture();
+    if (this.totalFrames > 1) {
+      this.updateTexture();
+    }
   }
 
   protected createBody(x: number, y: number) {
     return new StaticBody(x, y);
   }
 
-  protected spawn(level: Level) {
-    const x = (Math.random() * Level.cols) / 2;
-    const y = (Math.random() * Level.rows) / 2;
-
+  protected spawn(
+    level: Level,
+    x = (Math.random() * Level.cols) / 2,
+    y = (Math.random() * Level.rows) / 2
+  ) {
     this.body = this.createBody(x, y);
     this.level = level;
     this.z = this.getFloorZ();
@@ -101,7 +113,7 @@ export class Billboard {
 
   protected getDirection() {
     const angle = normalizeAngle(this.getAngle() - state.player.body.angle);
-    const directionIndex = Math.floor((2 * angle) / Math.PI); // Szybsze (4 * angle) / (2 * Math.PI)
+    const directionIndex = Math.floor((2 * angle) / Math.PI);
 
     return directions[directionIndex];
   }

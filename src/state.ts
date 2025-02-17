@@ -36,9 +36,11 @@ export const state: State = {
 
 export const materialProps = {
   transparent: true,
-  alphaTest: 0.5
+  alphaTest: 1
 };
 
 export const directions: Direction[] = ['up', 'right', 'down', 'left'];
 
 export const Math_Half_PI = Math.PI * 0.5;
+
+export const Math_Double_PI = Math.PI * 2;
