@@ -1,6 +1,7 @@
 import {
   CircleGeometry,
   Mesh,
+  MeshBasicMaterial,
   RepeatWrapping,
   ShaderMaterial,
   Texture,
@@ -12,29 +13,18 @@ import { Math_Half_PI, materialProps, renderer } from './state';
 export class Ocean {
   static readonly scale = 4;
   static readonly waveDetail = 16;
-  static readonly textureRepeat = 8; // Powtarzanie tekstury
-  static readonly config = [
-    {
-      opacity: 0.5,
-      z: 0,
-      scale: 1.2,
-      waveForward: -0.02,
-      waveFrequency: 0.01,
-      waveHeight: 0.15,
-      wavingSpeed: 1.25,
-      renderOrder: 2
-    },
-    {
-      opacity: 1,
-      z: -0.25,
-      scale: 1.6,
-      waveForward: -0.01,
-      waveFrequency: 0.01,
-      waveHeight: 0,
-      wavingSpeed: 0,
-      renderOrder: 1
-    }
-  ];
+  static readonly textureRepeat = 8;
+  static readonly shallowWater = {
+    opacity: 0.5,
+    z: -0.05,
+    scale: 1,
+    waveForward: -0.015,
+    waveHeight: 0.1,
+    wavingSpeed: 1.7,
+    renderOrder: 1
+  };
+
+  animations: Array<(time: number) => void> = [];
 
   readonly repeat: number;
   readonly cols: number;
@@ -50,14 +40,43 @@ export class Ocean {
     texture.wrapS = RepeatWrapping;
     texture.wrapT = RepeatWrapping;
 
-    renderer.scene.add(
-      ...Array.from(Ocean.config, (_: unknown, index) =>
-        this.createPlane(texture, index)
-      )
-    );
+    renderer.scene.add(this.createDeepWater(texture));
+    renderer.scene.add(this.createShallowWater(texture));
   }
 
-  protected createPlane(texture: Texture, index: number) {
+  update(ms = 0) {
+    this.animations.forEach((animation) => animation(ms));
+  }
+
+  protected createDeepWater(texture: Texture) {
+    const scale = 2;
+    const size = 2 / (scale * Ocean.textureRepeat);
+    const radius = Math.hypot(this.cols, this.rows) / 2;
+    const geometry = new CircleGeometry(radius);
+    const map = texture.clone();
+    map.repeat.set(this.cols * scale, this.rows * scale);
+
+    const material = new MeshBasicMaterial({
+      ...materialProps,
+      map
+    });
+
+    const mesh = new Mesh(geometry, material);
+    mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math_Half_PI);
+    mesh.scale.set(2, 2, 2);
+    mesh.position.set(0, -0.25, 0);
+    mesh.renderOrder = 0;
+
+    this.animations.push(() => {
+      if (!renderer.camera.ref) return;
+      const { x, y } = renderer.camera.ref.body;
+      mesh.position.set(x * size, -0.25, y * size);
+    });
+
+    return mesh;
+  }
+
+  protected createShallowWater(texture: Texture) {
     const {
       opacity,
       scale,
@@ -65,32 +84,30 @@ export class Ocean {
       renderOrder,
       waveForward,
       wavingSpeed,
-      waveFrequency,
       waveHeight
-    } = Ocean.config[index];
+    } = Ocean.shallowWater;
+    const size = 2 / Ocean.textureRepeat;
     const radius = Math.hypot(this.cols, this.rows) / 2;
     const geometry = new CircleGeometry(radius);
-
+    const map = texture.clone();
     const material = new ShaderMaterial({
       ...materialProps,
       uniforms: {
-        time: { value: index * Math_Half_PI },
+        time: { value: 0 },
         waveForward: { value: waveForward },
         wavingSpeed: { value: wavingSpeed },
-        waveFrequency: { value: waveFrequency },
         waveHeight: { value: waveHeight },
         textureRepeat: { value: Ocean.textureRepeat / scale },
-        oceanZ: { value: z },
         cameraX: { value: 0 },
         cameraY: { value: 0 },
-        map: { value: texture },
+        oceanZ: { value: z },
+        map: { value: map },
         opacity: { value: opacity }
       },
       vertexShader: `
         uniform float time;
         uniform float textureRepeat;
         uniform float wavingSpeed;
-        uniform float waveFrequency;
         uniform float waveHeight;
         uniform float cameraX;
         uniform float cameraY;
@@ -135,21 +152,14 @@ export class Ocean {
     });
 
     const mesh = new Mesh(geometry, material);
-
     mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math_Half_PI);
     mesh.position.set(0, z, 0);
     mesh.renderOrder = renderOrder;
 
-    const size = 2 / (scale * Ocean.textureRepeat);
-
-    // Animacja shadera
-    renderer.animations.push((ms: number) => {
+    this.animations.push((ms: number) => {
       if (!renderer.camera.ref) return;
-
       const { x, y } = renderer.camera.ref.body;
-
       mesh.position.set(x, z, y);
-
       material.uniforms.time.value += ms * 0.001;
       material.uniforms.cameraX.value = x * size;
       material.uniforms.cameraY.value = -y * size;

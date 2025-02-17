@@ -86,8 +86,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L12"
-                >src/ocean.ts:12</a
+                href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L13"
+                >src/ocean.ts:13</a
               >
             </li>
           </ul>
@@ -132,6 +132,15 @@
                 <section class="tsd-index-section">
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
+                    <a href="Ocean.html#animations" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>animations</span></a
+                    >
                     <a href="Ocean.html#cols" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
@@ -170,15 +179,6 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>start<wbr />Time</span></a
                     >
-                    <a href="Ocean.html#config" class="tsd-index-link"
-                      ><svg
-                        class="tsd-kind-icon"
-                        viewBox="0 0 24 24"
-                        aria-label="Property"
-                      >
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>config</span></a
-                    >
                     <a href="Ocean.html#scale" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
@@ -187,6 +187,15 @@
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>scale</span></a
+                    >
+                    <a href="Ocean.html#shallowwater" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>shallow<wbr />Water</span></a
                     >
                     <a href="Ocean.html#texturerepeat" class="tsd-index-link"
                       ><svg
@@ -212,7 +221,7 @@
                   <h3 class="tsd-index-heading">Methods</h3>
                   <div class="tsd-index-list">
                     <a
-                      href="Ocean.html#createplane"
+                      href="Ocean.html#createdeepwater"
                       class="tsd-index-link tsd-is-protected"
                       ><svg
                         class="tsd-kind-icon"
@@ -220,7 +229,27 @@
                         aria-label="Method"
                       >
                         <use href="../assets/icons.svg#icon-2048"></use></svg
-                      ><span>create<wbr />Plane</span></a
+                      ><span>create<wbr />Deep<wbr />Water</span></a
+                    >
+                    <a
+                      href="Ocean.html#createshallowwater"
+                      class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>create<wbr />Shallow<wbr />Water</span></a
+                    >
+                    <a href="Ocean.html#update" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update</span></a
                     >
                   </div>
                 </section>
@@ -323,8 +352,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L45"
-                            >src/ocean.ts:45</a
+                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L35"
+                            >src/ocean.ts:35</a
                           >
                         </li>
                       </ul>
@@ -352,6 +381,43 @@
           </summary>
           <section>
             <section class="tsd-panel tsd-member">
+              <a id="animations" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span>animations</span
+                ><a
+                  href="#animations"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">animations</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-symbol">(</span
+                ><span class="tsd-kind-parameter">time</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">)</span>
+                <span class="tsd-signature-symbol">=&gt;</span>
+                <span class="tsd-signature-type">void</span
+                ><span class="tsd-signature-symbol">[]</span
+                ><span class="tsd-signature-symbol"> = []</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L27"
+                      >src/ocean.ts:27</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
               <a id="cols" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
                 <code class="tsd-tag">Readonly</code><span>cols</span
@@ -370,8 +436,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L40"
-                      >src/ocean.ts:40</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L30"
+                      >src/ocean.ts:30</a
                     >
                   </li>
                 </ul>
@@ -399,8 +465,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L39"
-                      >src/ocean.ts:39</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L29"
+                      >src/ocean.ts:29</a
                     >
                   </li>
                 </ul>
@@ -425,8 +491,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L41"
-                      >src/ocean.ts:41</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L31"
+                      >src/ocean.ts:31</a
                     >
                   </li>
                 </ul>
@@ -456,82 +522,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L43"
-                      >src/ocean.ts:43</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member">
-              <a id="config" class="tsd-anchor"></a>
-              <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Static</code>
-                <code class="tsd-tag">Readonly</code><span>config</span
-                ><a
-                  href="#config"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">config</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-symbol">{</span><br />    <span
-                  class="tsd-kind-property"
-                  >opacity</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >renderOrder</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >scale</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >waveForward</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >waveFrequency</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >waveHeight</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >wavingSpeed</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br />    <span
-                  class="tsd-kind-property"
-                  >z</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">number</span
-                ><span class="tsd-signature-symbol">;</span><br /><span
-                  class="tsd-signature-symbol"
-                  >}</span
-                ><span class="tsd-signature-symbol">[]</span
-                ><span class="tsd-signature-symbol"> = ...</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L16"
-                      >src/ocean.ts:16</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L33"
+                      >src/ocean.ts:33</a
                     >
                   </li>
                 </ul>
@@ -557,8 +549,77 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L13"
-                      >src/ocean.ts:13</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L14"
+                      >src/ocean.ts:14</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <a id="shallowwater" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code
+                ><span>shallow<wbr />Water</span
+                ><a
+                  href="#shallowwater"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">shallowWater</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-symbol">{</span><br />    <span
+                  class="tsd-kind-property"
+                  >opacity</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >renderOrder</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >scale</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >waveForward</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >waveHeight</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >wavingSpeed</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br />    <span
+                  class="tsd-kind-property"
+                  >z</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol">;</span><br /><span
+                  class="tsd-signature-symbol"
+                  >}</span
+                ><span class="tsd-signature-symbol"> = ...</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L17"
+                      >src/ocean.ts:17</a
                     >
                   </li>
                 </ul>
@@ -588,8 +649,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L15"
-                      >src/ocean.ts:15</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L16"
+                      >src/ocean.ts:16</a
                     >
                   </li>
                 </ul>
@@ -619,8 +680,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L14"
-                      >src/ocean.ts:14</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L15"
+                      >src/ocean.ts:15</a
                     >
                   </li>
                 </ul>
@@ -645,12 +706,12 @@
           </summary>
           <section>
             <section class="tsd-panel tsd-member tsd-is-protected">
-              <a id="createplane" class="tsd-anchor"></a>
+              <a id="createdeepwater" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
                 <code class="tsd-tag">Protected</code
-                ><span>create<wbr />Plane</span
+                ><span>create<wbr />Deep<wbr />Water</span
                 ><a
-                  href="#createplane"
+                  href="#createdeepwater"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -660,18 +721,13 @@
               <ul class="tsd-signatures tsd-is-protected">
                 <li class="">
                   <div class="tsd-signature tsd-anchor-link">
-                    <a id="createplane-1" class="tsd-anchor"></a
-                    ><span class="tsd-kind-call-signature">createPlane</span
+                    <a id="createdeepwater-1" class="tsd-anchor"></a
+                    ><span class="tsd-kind-call-signature">createDeepWater</span
                     ><span class="tsd-signature-symbol">(</span><br />    <span
                       class="tsd-kind-parameter"
                       >texture</span
                     ><span class="tsd-signature-symbol">:</span>
                     <span class="tsd-signature-type">Texture</span
-                    ><span class="tsd-signature-symbol">,</span><br />    <span
-                      class="tsd-kind-parameter"
-                      >index</span
-                    ><span class="tsd-signature-symbol">:</span>
-                    <span class="tsd-signature-type">number</span
                     ><span class="tsd-signature-symbol">,</span><br /><span
                       class="tsd-signature-symbol"
                       >)</span
@@ -680,12 +736,12 @@
                     ><span class="tsd-signature-symbol">&lt;</span
                     ><span class="tsd-signature-type">CircleGeometry</span
                     ><span class="tsd-signature-symbol">,</span>
-                    <span class="tsd-signature-type">ShaderMaterial</span
+                    <span class="tsd-signature-type">MeshBasicMaterial</span
                     ><span class="tsd-signature-symbol">,</span>
                     <span class="tsd-signature-type">Object3DEventMap</span
                     ><span class="tsd-signature-symbol">&gt;</span
                     ><a
-                      href="#createplane-1"
+                      href="#createdeepwater-1"
                       aria-label="Permalink"
                       class="tsd-anchor-icon"
                       ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -704,10 +760,87 @@
                             ></span
                           >
                         </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">Mesh</span
+                      ><span class="tsd-signature-symbol">&lt;</span
+                      ><span class="tsd-signature-type">CircleGeometry</span
+                      ><span class="tsd-signature-symbol">,</span>
+                      <span class="tsd-signature-type">MeshBasicMaterial</span
+                      ><span class="tsd-signature-symbol">,</span>
+                      <span class="tsd-signature-type">Object3DEventMap</span
+                      ><span class="tsd-signature-symbol">&gt;</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L51"
+                            >src/ocean.ts:51</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <a id="createshallowwater" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Protected</code
+                ><span>create<wbr />Shallow<wbr />Water</span
+                ><a
+                  href="#createshallowwater"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div class="tsd-signature tsd-anchor-link">
+                    <a id="createshallowwater-1" class="tsd-anchor"></a
+                    ><span class="tsd-kind-call-signature"
+                      >createShallowWater</span
+                    ><span class="tsd-signature-symbol">(</span><br />    <span
+                      class="tsd-kind-parameter"
+                      >texture</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">Texture</span
+                    ><span class="tsd-signature-symbol">,</span><br /><span
+                      class="tsd-signature-symbol"
+                      >)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">Mesh</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><span class="tsd-signature-type">CircleGeometry</span
+                    ><span class="tsd-signature-symbol">,</span>
+                    <span class="tsd-signature-type">ShaderMaterial</span
+                    ><span class="tsd-signature-symbol">,</span>
+                    <span class="tsd-signature-type">Object3DEventMap</span
+                    ><span class="tsd-signature-symbol">&gt;</span
+                    ><a
+                      href="#createshallowwater-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
                         <li>
                           <span
-                            ><span class="tsd-kind-parameter">index</span>:
-                            <span class="tsd-signature-type">number</span></span
+                            ><span class="tsd-kind-parameter">texture</span>:
+                            <span class="tsd-signature-type"
+                              >Texture</span
+                            ></span
                           >
                         </li>
                       </ul>
@@ -727,8 +860,73 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L60"
-                            >src/ocean.ts:60</a
+                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L79"
+                            >src/ocean.ts:79</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <a id="update" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <span>update</span
+                ><a
+                  href="#update"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures">
+                <li class="">
+                  <div class="tsd-signature tsd-anchor-link">
+                    <a id="update-1" class="tsd-anchor"></a
+                    ><span class="tsd-kind-call-signature">update</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">ms</span
+                    ><span class="tsd-signature-symbol">?:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#update-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">ms</span>:
+                            <span class="tsd-signature-type">number</span
+                            ><span class="tsd-signature-symbol">
+                              = 0</span
+                            ></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Prozi/engine25d/blob/main/src/ocean.ts#L47"
+                            >src/ocean.ts:47</a
                           >
                         </li>
                       </ul>
@@ -929,7 +1127,15 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#cols" class=""
+                  <a href="#animations" class=""
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>animations</span></a
+                  ><a href="#cols" class=""
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -961,14 +1167,6 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>start<wbr />Time</span></a
-                  ><a href="#config" class=""
-                    ><svg
-                      class="tsd-kind-icon"
-                      viewBox="0 0 24 24"
-                      aria-label="Property"
-                    >
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>config</span></a
                   ><a href="#scale" class=""
                     ><svg
                       class="tsd-kind-icon"
@@ -977,6 +1175,14 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>scale</span></a
+                  ><a href="#shallowwater" class=""
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>shallow<wbr />Water</span></a
                   ><a href="#texturerepeat" class=""
                     ><svg
                       class="tsd-kind-icon"
@@ -1012,14 +1218,30 @@
                   >Methods
                 </summary>
                 <div>
-                  <a href="#createplane" class="tsd-is-protected"
+                  <a href="#createdeepwater" class="tsd-is-protected"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Method"
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
-                    ><span>create<wbr />Plane</span></a
+                    ><span>create<wbr />Deep<wbr />Water</span></a
+                  ><a href="#createshallowwater" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>create<wbr />Shallow<wbr />Water</span></a
+                  ><a href="#update" class=""
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update</span></a
                   >
                 </div>
               </details>

@@ -69,13 +69,11 @@ export class Camera extends PerspectiveCamera {
     const offsetY = Math.cos(angle) * this.normalizedDistance;
     const cameraX = body.x - offsetX;
     const cameraY = body.y - offsetY;
-    const cameraHeight = this.getFloor(cameraX, cameraY);
-    const cameraZ = Camera.height + Math.max(cameraHeight / 2, z);
+    const cameraHeight = this.getFloor(cameraX, cameraY) / 2;
+    const cameraZ = Math.max(cameraHeight, z) + Camera.height;
 
     const targetPosition = Camera.targetVector.set(cameraX, cameraZ, cameraY);
-    const lookAtPosition = Camera.lookAtVector
-      .set(0, 0.25, 0)
-      .add(mesh.position);
+    const lookAtPosition = Camera.lookAtVector.set(body.x, (z + 1) / 4, body.y);
 
     Camera.tempEuler.copy(this.rotation);
 

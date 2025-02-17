@@ -10,6 +10,7 @@ import {
 } from 'three';
 import { Camera } from './camera';
 import { queryParams } from './query-params';
+import { Ocean } from './ocean';
 
 export class Renderer extends WebGLRenderer {
   static backgroundColor = 0xa0e8f0;
@@ -17,17 +18,23 @@ export class Renderer extends WebGLRenderer {
   now = Date.now();
   scene = new Scene();
   camera = new Camera();
+  light: AmbientLight;
   animations: Array<(time: number) => void> = [];
-  light?: DirectionalLight;
   stats?: Stats;
+  ocean?: Ocean;
 
   constructor() {
     super({ antialias: true, powerPreference: 'high-performance' });
-
-    this.setAnimationLoop(this.animation.bind(this));
     this.outputColorSpace = LinearSRGBColorSpace;
 
-    this.scene.add(new AmbientLight(0xffeecc, 0.5));
+    if ('debug' in queryParams) {
+      setInterval(this.animation.bind(this), 40);
+    } else {
+      this.setAnimationLoop(this.animation.bind(this));
+    }
+
+    this.light = new AmbientLight(0xffeecc, 0.5);
+    this.scene.add(this.light);
     this.scene.background = new Color(Renderer.backgroundColor);
     this.onResize();
 
@@ -41,10 +48,11 @@ export class Renderer extends WebGLRenderer {
 
   animation() {
     const now = Date.now();
-    const ms = Math.min(250, now - this.now); // 15 fps is lowest allowed
+    const ms = Math.min(500, now - this.now); // 30 fps is lowest allowed
 
     this.animations.forEach((animation) => animation(ms));
     this.camera.update(ms);
+    this.ocean?.update(ms);
     this.render(this.scene, this.camera);
     this.now = now;
   }
