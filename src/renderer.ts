@@ -43,17 +43,23 @@ export class Renderer extends WebGLRenderer {
     if ('fps' in queryParams) {
       this.stats = new Stats(this);
     }
+
+    const frame = () => {
+      this.render(this.scene, this.camera);
+      requestAnimationFrame(frame);
+    };
+
+    requestAnimationFrame(frame);
   }
 
   animation() {
     const now = Date.now();
-    const ms = Math.min(100, now - this.now); // max 6 frame lag allowed
+    const ms = Math.min(50, now - this.now); // max 3 frame lag allowed = 20 fps
     if (!ms) return;
 
     this.animations.forEach((animation) => animation(ms));
     this.camera.update(ms);
     this.ocean?.update(ms);
-    this.render(this.scene, this.camera);
     this.now = now;
   }
 
