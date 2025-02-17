@@ -9,8 +9,8 @@ import { normalizeAngle } from './utils';
 export class MovingBillboard extends Billboard {
   static readonly moveSpeed = 3;
   static readonly rotateSpeed = 3;
-  static readonly gravity = 9.1;
-  static readonly jumpSpeed = 3.14;
+  static readonly gravity = 16;
+  static readonly jumpSpeed = 4.4;
 
   velocity = 0;
   state: State;
@@ -128,17 +128,9 @@ export class MovingBillboard extends Billboard {
 
     const sign = Math.sign(this.mesh.scale.x);
     if (this.direction === 'left' && sign > 0) {
-      this.mesh.scale.set(
-        noLeft ? -this.scale : this.scale,
-        this.scale,
-        this.scale
-      );
+      this.mesh.scale.set(noLeft ? -1 : 1, 1, 1);
     } else if (this.direction === 'right' && sign < 0) {
-      this.mesh.scale.set(
-        noLeft ? this.scale : -this.scale,
-        this.scale,
-        this.scale
-      );
+      this.mesh.scale.set(noLeft ? 1 : -1, 1, 1);
     }
   }
 

@@ -18,19 +18,20 @@ export class Billboard {
 
   frame = 0;
   direction: Direction = 'up';
+  directionsToRows: DirectionsToRows;
   material: Material;
   mesh: Mesh;
   body!: BodyLike;
-  scale: number;
   cols: number;
   rows: number;
+  totalFrames: number;
   frameDuration: number;
   invCols: number;
   invRows: number;
   invFrameDuration: number;
-  totalFrames: number;
   centerOffset: number;
-  directionsToRows: DirectionsToRows;
+  scaleX: number;
+  scaleY: number;
   level?: Level;
 
   get z() {
@@ -39,7 +40,7 @@ export class Billboard {
 
   set z(z: number) {
     this._z = z;
-    this.body.group = floors[Math.floor(z * 2 + 0.5)];
+    this.body.group = floors[Math.round(z * 2)];
   }
 
   protected _z = 0;
@@ -54,14 +55,18 @@ export class Billboard {
     this.totalFrames = props.totalFrames || 1;
     this.directionsToRows = props.directionsToRows || { default: 0 };
 
-    this.scale = (props.scale || 1) / 2;
-    this.centerOffset = -0.2 + this.scale / 3; // this.scale / 4;
+    const scale = props.scale || 1;
+    this.scaleX = (props.scaleX || scale) / 2;
+    this.scaleY = (props.scaleY || scale) / 2;
+    this.centerOffset = -0.2 + this.scaleY / 3; // this.scale / 4;
     this.material = createMaterial(props.textureName, props.cols, props.rows);
     const w = this.material.map!.image.width / this.cols;
     const h = this.material.map!.image.height / this.rows;
     const m = Math.max(w, h);
-    this.mesh = new Mesh(new PlaneGeometry(w / m, h / m), this.material);
-    this.mesh.scale.set(this.scale, this.scale, this.scale);
+    this.mesh = new Mesh(
+      new PlaneGeometry((this.scaleX * w) / m, (this.scaleY * h) / m),
+      this.material
+    );
 
     renderer.scene.add(this.mesh);
     Billboard.billboards.push(this);

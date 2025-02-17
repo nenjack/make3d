@@ -24,4 +24,6 @@ export interface TexturedBillboardProps {
   frameDuration?: number;
   directionsToRows?: DirectionsToRows;
   scale?: number;
+  scaleX?: number;
+  scaleY?: number;
 }
