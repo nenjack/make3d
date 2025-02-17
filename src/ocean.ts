@@ -129,7 +129,7 @@ export class Ocean {
           vec2 repeatedUV = fract(vUv + vec2(0.0, (wave + time) * waveForward)); // Powtarzanie + lekkie przesuwanie
           vec4 color = texture2D(map, repeatedUV);
       
-          gl_FragColor = vec4(color.rgb, color.a * opacity);
+          gl_FragColor = vec4(color.rgb, opacity);
         }
       `
     });

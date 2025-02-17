@@ -1,7 +1,7 @@
 import { Euler, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { Level } from './level';
 import { Player } from './player';
-import { Math_Half_PI, renderer } from './state';
+import { Math_Half_PI } from './state';
 import { ViewLevel } from './view-level';
 
 export class Camera extends PerspectiveCamera {
@@ -37,10 +37,6 @@ export class Camera extends PerspectiveCamera {
     this.setLevel(level);
     this.setRef(ref);
     this.update();
-
-    renderer.animations.push((ms: number) => {
-      this.update(ms * Camera.lerpRatio);
-    });
   }
 
   onResize(width: number, height: number) {
@@ -84,11 +80,10 @@ export class Camera extends PerspectiveCamera {
     Camera.tempEuler.copy(this.rotation);
 
     if (ms) {
-      this.position.lerp(targetPosition, ms);
-
+      const lerp = ms * Camera.lerpRatio;
+      this.position.lerp(targetPosition, lerp);
       Camera.tempQuaternion.setFromEuler(Camera.tempEuler);
-      Camera.tempQuaternion.slerp(mesh.quaternion, ms);
-
+      Camera.tempQuaternion.slerp(mesh.quaternion, lerp);
       this.rotation.setFromQuaternion(Camera.tempQuaternion);
     } else {
       this.position.copy(targetPosition);

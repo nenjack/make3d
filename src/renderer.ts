@@ -41,9 +41,10 @@ export class Renderer extends WebGLRenderer {
 
   animation() {
     const now = Date.now();
-    const time = now - this.now;
+    const ms = Math.min(250, now - this.now); // 15 fps is lowest allowed
 
-    this.animations.forEach((animation) => animation(time));
+    this.animations.forEach((animation) => animation(ms));
+    this.camera.update(ms);
     this.render(this.scene, this.camera);
     this.now = now;
   }

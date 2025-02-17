@@ -75,7 +75,10 @@ export const loadTextures = async (texturePaths: string[]) => {
     const textureName = getTextureNameFromPath(texturePath);
     const texture = resolved[index];
 
-    pixelate(texture);
+    if (!['ocean'].includes(textureName)) {
+      pixelate(texture);
+    }
+
     textures[textureName] = texture;
   });
 };

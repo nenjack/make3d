@@ -71,8 +71,8 @@ export class Billboard {
       this.body.y
     );
     this.mesh.quaternion.copy(renderer.camera.quaternion);
-
     this.direction = this.getDirection();
+
     if (this.totalFrames > 1) {
       this.updateTexture();
     }
