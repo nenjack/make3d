@@ -64,7 +64,7 @@ export class Camera extends PerspectiveCamera {
     const cameraY = body.y - offsetY;
 
     // Wyliczenie wysokości kamery
-    const cameraHeight = this.getFloor(cameraX, cameraY) / 3;
+    const cameraHeight = this.getFloor(cameraX, cameraY) / 2;
     const cameraZ = Math.max(cameraHeight, z);
 
     // Pozycja docelowa kamery
