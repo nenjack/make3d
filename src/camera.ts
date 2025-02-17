@@ -91,8 +91,8 @@ export class Camera extends PerspectiveCamera {
   }
 
   protected getDistanceTo(position: Vector3) {
-    const x = this.ref!.body.x - position.x;
-    const y = this.ref!.body.y - position.z;
+    const x = this.position.x - position.x;
+    const y = this.position.z - position.z;
 
     return x * x + y * y;
   }

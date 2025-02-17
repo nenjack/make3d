@@ -10,6 +10,7 @@ import {
 import { Camera } from './camera';
 import { Ocean } from './ocean';
 import { queryParams } from './query-params';
+import { Billboard } from './billboard';
 
 export class Renderer extends WebGLRenderer {
   static backgroundColor = 0xbbf0ff;
@@ -59,6 +60,8 @@ export class Renderer extends WebGLRenderer {
 
     this.animations.forEach((animation) => animation(ms));
     this.camera.update(ms);
+    Billboard.billboards.forEach((billboard) => billboard.update(ms));
+
     this.ocean?.update(ms);
     this.now = now;
   }

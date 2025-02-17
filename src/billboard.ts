@@ -11,6 +11,8 @@ import { directions, floors, renderer, state } from './state';
 import { createMaterial, normalizeAngle } from './utils';
 
 export class Billboard {
+  static billboards: Billboard[] = [];
+
   protected static tempVector = new Vector3();
   protected static tempVectorDivide = new Vector3(2, 2, 2);
 
@@ -62,9 +64,7 @@ export class Billboard {
     this.mesh.scale.set(this.scale, this.scale, this.scale);
 
     renderer.scene.add(this.mesh);
-    renderer.animations.push((ms: number) => {
-      this.update(ms);
-    });
+    Billboard.billboards.push(this);
   }
 
   update(_ms: number): void {
