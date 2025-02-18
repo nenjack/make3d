@@ -86,8 +86,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L1"
-                >src/detect.ts:1</a
+                href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L3"
+                >src/detect.ts:3</a
               >
             </li>
           </ul>
@@ -135,7 +135,7 @@
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
                     <a
-                      href="DeviceDetector.html#ishighend"
+                      href="DeviceDetector.html#high_end"
                       class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
@@ -143,10 +143,10 @@
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>is<wbr />High<wbr />End</span></a
+                      ><span>HIGH_<wbr />END</span></a
                     >
                     <a
-                      href="DeviceDetector.html#ismobile"
+                      href="DeviceDetector.html#is_mobile"
                       class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
@@ -154,16 +154,25 @@
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>is<wbr />Mobile</span></a
+                      ><span>IS_<wbr />MOBILE</span></a
                     >
-                    <a href="DeviceDetector.html#istv" class="tsd-index-link"
+                    <a href="DeviceDetector.html#is_tv" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>isTV</span></a
+                      ><span>IS_<wbr />TV</span></a
+                    >
+                    <a href="DeviceDetector.html#low_end" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>LOW_<wbr />END</span></a
                     >
                   </div>
                 </section>
@@ -255,12 +264,12 @@
           </summary>
           <section>
             <section class="tsd-panel tsd-member">
-              <a id="ishighend" class="tsd-anchor"></a>
+              <a id="high_end" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Static</code
-                ><span>is<wbr />High<wbr />End</span
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>HIGH_<wbr />END</span
                 ><a
-                  href="#ishighend"
+                  href="#high_end"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -268,29 +277,33 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">isHighEnd</span
+                <span class="tsd-kind-property">HIGH_END</span
                 ><span class="tsd-signature-symbol">:</span>
                 <span class="tsd-signature-type">boolean</span
-                ><span class="tsd-signature-symbol"> = ...</span>
+                ><span class="tsd-signature-symbol">
+                  = !DeviceDetector.LOW_END</span
+                >
               </div>
               <aside class="tsd-sources">
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L9"
-                      >src/detect.ts:9</a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L14"
+                      >src/detect.ts:14</a
                     >
                   </li>
                 </ul>
               </aside>
             </section>
             <section class="tsd-panel tsd-member">
-              <a id="ismobile" class="tsd-anchor"></a>
+              <a id="is_mobile" class="tsd-anchor"></a>
               <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Static</code><span>is<wbr />Mobile</span
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code
+                ><span>IS_<wbr />MOBILE</span
                 ><a
-                  href="#ismobile"
+                  href="#is_mobile"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -298,34 +311,7 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">isMobile</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">boolean</span
-                ><span class="tsd-signature-symbol"> = ...</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L2"
-                      >src/detect.ts:2</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member">
-              <a id="istv" class="tsd-anchor"></a>
-              <h3 class="tsd-anchor-link">
-                <code class="tsd-tag">Static</code><span>isTV</span
-                ><a href="#istv" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">isTV</span
+                <span class="tsd-kind-property">IS_MOBILE</span
                 ><span class="tsd-signature-symbol">:</span>
                 <span class="tsd-signature-type">boolean</span
                 ><span class="tsd-signature-symbol"> = ...</span>
@@ -337,6 +323,65 @@
                     <a
                       href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L4"
                       >src/detect.ts:4</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <a id="is_tv" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>IS_<wbr />TV</span
+                ><a href="#is_tv" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">IS_TV</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">boolean</span
+                ><span class="tsd-signature-symbol"> = ...</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L6"
+                      >src/detect.ts:6</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <a id="low_end" class="tsd-anchor"></a>
+              <h3 class="tsd-anchor-link">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>LOW_<wbr />END</span
+                ><a
+                  href="#low_end"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">LOW_END</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">boolean</span
+                ><span class="tsd-signature-symbol"> = ...</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Prozi/engine25d/blob/main/src/detect.ts#L11"
+                      >src/detect.ts:11</a
                     >
                   </li>
                 </ul>
@@ -534,30 +579,38 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#ishighend" class=""
+                  <a href="#high_end" class=""
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>is<wbr />High<wbr />End</span></a
-                  ><a href="#ismobile" class=""
+                    ><span>HIGH_<wbr />END</span></a
+                  ><a href="#is_mobile" class=""
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>is<wbr />Mobile</span></a
-                  ><a href="#istv" class=""
+                    ><span>IS_<wbr />MOBILE</span></a
+                  ><a href="#is_tv" class=""
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>isTV</span></a
+                    ><span>IS_<wbr />TV</span></a
+                  ><a href="#low_end" class=""
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>LOW_<wbr />END</span></a
                   >
                 </div>
               </details>

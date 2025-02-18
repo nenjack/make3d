@@ -62,7 +62,7 @@ export const getTextureNameFromPath = (path: string) => {
 };
 
 export const pixelate = (texture: Texture) => {
-  texture.minFilter = DeviceDetector.isHighEnd
+  texture.minFilter = DeviceDetector.HIGH_END
     ? NearestMipMapLinearFilter
     : NearestFilter;
   texture.magFilter = NearestFilter;

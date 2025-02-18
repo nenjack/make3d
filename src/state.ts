@@ -52,6 +52,6 @@ export const Math_Double_PI = Math.PI * 2;
 export const defaultEnemiesCount =
   'limit' in queryParams
     ? Number(queryParams.limit)
-    : DeviceDetector.isHighEnd
+    : DeviceDetector.HIGH_END
       ? 64
       : 16;

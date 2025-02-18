@@ -16,7 +16,7 @@ export class Camera extends PerspectiveCamera {
 
   static fov = 85;
   static near = 0.1;
-  static far = DeviceDetector.isHighEnd ? 32 : 24;
+  static far = DeviceDetector.HIGH_END ? 32 : 24;
 
   ref?: Player;
   distance = Camera.DISTANCE;

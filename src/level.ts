@@ -5,8 +5,8 @@ import { DeviceDetector } from './detect';
 export class Level {
   static readonly FILL = 0.44;
   static readonly ITERATIONS = 6;
-  static readonly COLS = DeviceDetector.isHighEnd ? 48 : 24;
-  static readonly ROWS = DeviceDetector.isHighEnd ? 48 : 24;
+  static readonly COLS = DeviceDetector.HIGH_END ? 48 : 24;
+  static readonly ROWS = DeviceDetector.HIGH_END ? 48 : 24;
 
   heights: number[][] = [];
 
