@@ -6,9 +6,9 @@ import { Math_Half_PI } from './state';
 import { ViewLevel } from './view-level';
 
 export class Camera extends PerspectiveCamera {
-  static readonly distance = 1.5;
-  static readonly height = 0.75;
-  static readonly lerpRatio = 0.0033;
+  static readonly DISTANCE = 1.5;
+  static readonly HEIGHT = 0.75;
+  static readonly LERP_RATIO = 0.0033;
 
   protected static targetVector = new Vector3();
   protected static lookAtVector = new Vector3();
@@ -19,7 +19,7 @@ export class Camera extends PerspectiveCamera {
   static far = DeviceDetector.isHighEnd ? 32 : 24;
 
   ref?: Player;
-  distance = Camera.distance;
+  distance = Camera.DISTANCE;
 
   constructor(fov = Camera.fov, near = Camera.near, far = Camera.far) {
     super(fov, innerWidth / innerHeight, near, far);
@@ -33,7 +33,7 @@ export class Camera extends PerspectiveCamera {
 
   onResize(width: number, height: number) {
     this.aspect = width / height;
-    this.distance = Camera.distance / this.aspect;
+    this.distance = Camera.DISTANCE / this.aspect;
     this.updateProjectionMatrix();
   }
 
@@ -53,11 +53,10 @@ export class Camera extends PerspectiveCamera {
     if (!this.ref) return;
     const { body, z, mesh } = this.ref;
     const angle = -body.angle + Math_Half_PI;
-    const gear = this.ref.gear || 1;
 
     // Przesunięcie kamery względem gracza
-    const offsetX = Math.sin(angle) * this.distance * gear;
-    const offsetY = Math.cos(angle) * this.distance * gear;
+    const offsetX = Math.sin(angle) * this.distance;
+    const offsetY = Math.cos(angle) * this.distance;
     const cameraX = body.x - offsetX;
     const cameraY = body.y - offsetY;
 
@@ -68,19 +67,19 @@ export class Camera extends PerspectiveCamera {
     // Pozycja docelowa kamery
     const targetPosition = Camera.targetVector.set(
       cameraX,
-      Camera.height + cameraZ,
+      Camera.HEIGHT + cameraZ,
       cameraY
     );
 
     // Punkt, na który kamera patrzy (trochę niżej niż środek gracza)
     const lookAtPosition = Camera.lookAtVector.set(
       body.x,
-      Camera.height + z * 0.5,
+      Camera.HEIGHT + z * 0.5,
       body.y
     );
 
     if (ms) {
-      const lerpFactor = ms * Camera.lerpRatio;
+      const lerpFactor = ms * Camera.LERP_RATIO;
       // Płynne przesunięcie pozycji kamery
       this.position.lerp(targetPosition, lerpFactor);
 

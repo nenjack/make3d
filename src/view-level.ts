@@ -9,10 +9,11 @@ import { renderer } from './state';
 import { getMatrix } from './utils';
 
 export class ViewLevel extends Level {
-  static readonly floraFill = Level.fill * 0.9;
-  static readonly cactusSurviveChance = 0.25;
-  static readonly palmSurviceChance = 0.1;
-  static readonly minHeightForPalm = 3;
+  static readonly FLORA_FILL = Level.FILL * 0.9;
+  static readonly FLORA_ITERATIONS = 1;
+  static readonly CACTUS_CHANCE = 0.25;
+  static readonly PALM_CHANCE = 0.1;
+  static readonly PALM_HEIGHT_START = 3;
 
   mesh: Box;
 
@@ -34,8 +35,8 @@ export class ViewLevel extends Level {
   }
 
   createBox(textures: Texture[]) {
-    const box = new Box(textures, Level.cols, Level.rows);
-    box.position.set(-Level.cols / 2, 0, -Level.rows / 2);
+    const box = new Box(textures, Level.COLS, Level.ROWS);
+    box.position.set(-Level.COLS / 2, 0, -Level.ROWS / 2);
 
     return box;
   }
@@ -45,20 +46,20 @@ export class ViewLevel extends Level {
 
     this.forEachHeight(this.heights, (col, row, height) => {
       box.setMatrixAt(
-        row * Level.rows + col,
+        row * Level.ROWS + col,
         getMatrix(
           new Vector3(col, height / 4 - 0.75, row),
           new Vector3(1, height / 2, 1)
         )
       );
 
-      const x = col - Level.cols / 2;
-      const y = row - Level.rows / 2;
+      const x = col - Level.COLS / 2;
+      const y = row - Level.ROWS / 2;
       this.createBoxCollider(x, y, height);
 
       if (
-        height >= ViewLevel.minHeightForPalm &&
-        Math.random() < ViewLevel.palmSurviceChance
+        height >= ViewLevel.PALM_HEIGHT_START &&
+        Math.random() < ViewLevel.PALM_CHANCE
       ) {
         new Palm(this, x + 0.5, y + 0.5);
       }
@@ -70,11 +71,11 @@ export class ViewLevel extends Level {
 
       if (
         height &&
-        chance * height < 2 * ViewLevel.minHeightForPalm &&
-        Math.random() < ViewLevel.cactusSurviveChance
+        Math.sqrt(chance * height) < ViewLevel.PALM_HEIGHT_START &&
+        Math.random() < ViewLevel.CACTUS_CHANCE
       ) {
-        const x = col / 2 - Level.cols / 2 + 0.25;
-        const y = row / 2 - Level.rows / 2 + 0.25;
+        const x = col / 2 - Level.COLS / 2 + 0.25;
+        const y = row / 2 - Level.ROWS / 2 + 0.25;
         new Cactus(this, x, y);
       }
     });
@@ -84,10 +85,10 @@ export class ViewLevel extends Level {
 
   createFloraHeights() {
     return this.createHeights(
-      Level.cols * 2,
-      Level.rows * 2,
-      ViewLevel.floraFill,
-      1
+      Level.COLS * 2,
+      Level.ROWS * 2,
+      ViewLevel.FLORA_FILL,
+      ViewLevel.FLORA_ITERATIONS
     );
   }
 }

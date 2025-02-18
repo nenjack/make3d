@@ -3,10 +3,10 @@ import { floors, maxLevelHeight, minLevelHeight, physics } from './state';
 import { DeviceDetector } from './detect';
 
 export class Level {
-  static readonly fill = 0.44;
-  static readonly mapIterations = 6;
-  static readonly cols = DeviceDetector.isHighEnd ? 48 : 24;
-  static readonly rows = DeviceDetector.isHighEnd ? 48 : 24;
+  static readonly FILL = 0.44;
+  static readonly ITERATIONS = 6;
+  static readonly COLS = DeviceDetector.isHighEnd ? 48 : 24;
+  static readonly ROWS = DeviceDetector.isHighEnd ? 48 : 24;
 
   heights: number[][] = [];
 
@@ -51,17 +51,17 @@ export class Level {
   }
 
   getFloor(x: number, y: number) {
-    const posX = Math.floor(x + Level.cols / 2);
-    const posY = Math.floor(y + Level.rows / 2);
+    const posX = Math.floor(x + Level.COLS / 2);
+    const posY = Math.floor(y + Level.ROWS / 2);
 
     return this.heights[posX]?.[posY] || 0;
   }
 
   protected createHeights(
-    cols = Level.cols,
-    rows = Level.rows,
-    fill = Level.fill,
-    iterations = Level.mapIterations
+    cols = Level.COLS,
+    rows = Level.ROWS,
+    fill = Level.FILL,
+    iterations = Level.ITERATIONS
   ) {
     const map = new Map.Cellular(cols, rows);
 

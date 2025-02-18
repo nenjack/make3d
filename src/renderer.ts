@@ -75,7 +75,7 @@ export class Renderer extends WebGLRenderer {
   }
 
   protected createFog() {
-    const far = this.camera.far - this.camera.distance;
+    const far = this.camera.far - Camera.DISTANCE;
 
     return new Fog(Renderer.backgroundColor, far * 0.8, far);
   }

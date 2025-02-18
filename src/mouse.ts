@@ -16,15 +16,30 @@ export class Mouse extends Vector2 {
     }
   }
 
-  updateMouseXY() {
-    const min = 2 / Math.min(innerWidth, innerHeight);
-    const centerY = state.player.getScreenPosition().y;
+  clampNumber(n: number) {
+    return Math.max(-1, Math.min(1, n));
+  }
 
-    this.x = Math.max(
-      -1,
-      Math.min(1, (this.pageX - innerWidth / 2) * min * 1.33)
-    );
-    this.y = Math.max(-1, Math.min(1, (this.pageY - centerY) * min * 2));
+  clampX(x: number, multiply: number) {
+    return this.clampNumber(x * multiply * 1.33);
+  }
+
+  clampY(y: number, multiply: number) {
+    return this.clampNumber(y * multiply * 2);
+  }
+
+  getCenterY() {
+    return state.player.getScreenPosition().y;
+  }
+
+  getMultiply() {
+    return 2 / Math.min(innerWidth, innerHeight);
+  }
+
+  updateMouseXY() {
+    const multiply = this.getMultiply();
+    this.x = this.clampX(this.pageX - innerWidth / 2, multiply);
+    this.y = this.clampY(this.pageY - this.getCenterY(), multiply);
   }
 
   preventEvent(event: PointerEvent | MouseEvent) {

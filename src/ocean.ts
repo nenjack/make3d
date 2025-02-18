@@ -13,11 +13,8 @@ import { Level } from './level';
 import { Math_Half_PI, materialProps, renderer } from './state';
 
 export class Ocean {
-  static readonly scale = 4;
-  static readonly waveDetail = 16;
-  static readonly textureRepeat = 8;
-  static readonly deepWaterZ = -0.25;
-  static readonly shallowWater = {
+  static readonly DEEP_WATER_Z = -0.25;
+  static readonly SHALLOW_WATER = {
     opacity: 0.5,
     waveTime: 0.16,
     waveHeight: 0.16,
@@ -36,8 +33,8 @@ export class Ocean {
 
   constructor(texture: Texture, repeat = 1.1) {
     this.repeat = repeat;
-    this.cols = Level.cols * repeat;
-    this.rows = Level.rows * repeat;
+    this.cols = Level.COLS * repeat;
+    this.rows = Level.ROWS * repeat;
 
     texture.wrapS = RepeatWrapping;
     texture.wrapT = RepeatWrapping;
@@ -56,7 +53,7 @@ export class Ocean {
     if (!renderer.camera.ref) return;
 
     const { x, y } = renderer.camera.ref.body;
-    this.mesh.position.set(x, Ocean.deepWaterZ, y);
+    this.mesh.position.set(x, Ocean.DEEP_WATER_Z, y);
     this.animations.forEach((animation) => animation(ms));
   }
 
@@ -95,7 +92,7 @@ export class Ocean {
 
   protected createShallowWater(texture: Texture) {
     const { opacity, renderOrder, waveTime, waveSpeed, waveHeight } =
-      Ocean.shallowWater;
+      Ocean.SHALLOW_WATER;
     const radius = Math.hypot(this.cols, this.rows) / 2;
     const geometry = new CircleGeometry(radius);
     const map = texture.clone();
@@ -156,7 +153,7 @@ export class Ocean {
 
     const mesh = new Mesh(geometry, material);
     mesh.setRotationFromAxisAngle(new Vector3(1, 0, 0), -Math_Half_PI);
-    mesh.position.set(0, Ocean.shallowWater.waveHeight, 0);
+    mesh.position.set(0, Ocean.SHALLOW_WATER.waveHeight, 0);
     mesh.renderOrder = renderOrder;
 
     this.animations.push((ms: number) => {

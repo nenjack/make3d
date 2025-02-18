@@ -3,15 +3,15 @@ import { TexturedBillboardProps } from './model';
 import { MovingBillboard } from './moving-billboard';
 
 export class Enemy extends MovingBillboard {
-  static readonly maxSpeed = 0;
-  static readonly maxRotation = 100;
-  static readonly jumpChance = 0.001;
-  static readonly rotateChance = 0.03;
+  static readonly MAX_SPEED = 0;
+  static readonly MAX_ROTATION = 100;
+  static readonly JUMP_CHANCE = 0.001;
+  static readonly ROTATE_CHANCE = 0.03;
 
   readonly isPlayer = false;
 
-  speed = Enemy.maxSpeed;
-  rotation = Enemy.maxRotation;
+  speed = Enemy.MAX_SPEED;
+  rotation = Enemy.MAX_ROTATION;
 
   constructor(level: Level, props: TexturedBillboardProps) {
     super(props);
@@ -25,27 +25,27 @@ export class Enemy extends MovingBillboard {
     this.rotation -= ms;
 
     if (this.rotation < 0) {
-      this.rotation = Enemy.maxRotation;
+      this.rotation = Enemy.MAX_ROTATION;
 
       // Reset kierunków bocznych (bez tworzenia tablicy)
       this.state.keys.left = false;
       this.state.keys.right = false;
 
       // Losowa zmiana kierunku
-      if (Math.random() < ms * Enemy.rotateChance) {
+      if (Math.random() < ms * Enemy.ROTATE_CHANCE) {
         this.state.keys[Math.random() < 0.5 ? 'left' : 'right'] = true;
       }
     }
 
     if (this.speed < 0) {
-      this.speed = Enemy.maxSpeed;
+      this.speed = Enemy.MAX_SPEED;
 
       // 90% szansy na ruch w górę
       this.state.keys.up = Math.random() < 0.9;
     }
 
     // Skok (uniknięcie podwójnego `Math.random`)
-    const jumpChance = ms * Enemy.jumpChance;
+    const jumpChance = ms * Enemy.JUMP_CHANCE;
     this.state.keys.space = Math.random() < jumpChance;
   }
 }

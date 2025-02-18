@@ -110,8 +110,8 @@ export class Billboard {
 
   protected spawn(
     level: Level,
-    x = (Math.random() * Level.cols) / 2,
-    y = (Math.random() * Level.rows) / 2
+    x = (Math.random() * Level.COLS) / 2,
+    y = (Math.random() * Level.ROWS) / 2
   ) {
     this.body = this.createBody(x, y);
     this.level = level;

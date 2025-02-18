@@ -26,23 +26,23 @@ export class StaticBody implements BodyLike {
 }
 
 export class DynamicBody extends Circle {
-  static readonly radius = 0.2;
-  static readonly padding = 0.1;
-  static readonly separate = 0.3;
+  static readonly RADIUS = 0.2;
+  static readonly PADDING = 0.1;
+  static readonly SEPARATE = 0.3;
 
   angle = Math.random() * Math_Double_PI;
 
   constructor(
     x: number,
     y: number,
-    radius = DynamicBody.radius,
-    padding = DynamicBody.padding
+    radius = DynamicBody.RADIUS,
+    padding = DynamicBody.PADDING
   ) {
     super({ x, y }, radius, { group: floors[0], padding });
   }
 
   separate(timeScale = 1) {
-    const multiply = DynamicBody.separate * timeScale;
+    const multiply = DynamicBody.SEPARATE * timeScale;
     this.system?.separateBody(this, ({ b: body, overlapV: { x, y } }) => {
       if (!body.isStatic) {
         const offsetX = x * multiply;

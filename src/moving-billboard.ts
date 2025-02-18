@@ -7,52 +7,48 @@ import { physics } from './state';
 import { normalizeAngle } from './utils';
 
 export class MovingBillboard extends Billboard {
-  static readonly moveSpeed = 0.05;
-  static readonly rotateSpeed = 3;
-  static readonly gravity = 0.005;
-  static readonly jumpSpeed = 0.075;
+  static readonly MOVE_SPEED = 0.05;
+  static readonly ROTATE_SPEED = 3;
+  static readonly GRAVITY = 0.005;
+  static readonly JUMP_SPEED = 0.075;
 
   velocity = 0;
   state: State;
   declare body: DynamicBody;
 
-  get gear() {
-    let gear = 0;
-
-    if (this.state.keys.up) {
-      gear++;
-    }
-
-    if (this.state.keys.down) {
-      gear--;
-    }
-
-    return gear;
-  }
-
-  get mouseGear() {
-    return this.state.mouseDown ? -this.state.mouse.y : 0;
-  }
-
   constructor(
     props: TexturedBillboardProps,
-    state: State = {
-      keys: {},
-      mouse: new Mouse()
-    }
+    state: State = { keys: {}, mouse: new Mouse() }
   ) {
     super(props);
     this.state = state;
   }
 
-  update(ms: number): void {
+  update(ms: number) {
     const deltaTime = ms * 0.001;
-    const mouseGear = this.mouseGear;
-    const gear = this.gear;
-    const moveSpeed = (mouseGear || gear) * MovingBillboard.moveSpeed;
+    const mouseGear = this.getMouseGear();
+    const moveSpeed = mouseGear * MovingBillboard.MOVE_SPEED;
 
-    this.updateAngle(deltaTime, gear);
+    this.updateAngle(deltaTime);
+    this.processMovement(deltaTime, moveSpeed);
+    this.handleFrameUpdate(ms, mouseGear);
 
+    super.update(ms);
+  }
+
+  getMouseGear() {
+    if (this.state.keys.up || this.state.keys.down) {
+      const mouseY = this.state.keys.up ? 0 : innerHeight;
+      const centerY = this.state.mouse.getCenterY();
+      const multiply = this.state.mouse.getMultiply();
+
+      return -this.state.mouse.clampY(mouseY - centerY, multiply);
+    }
+
+    return this.state.mouseDown ? -this.state.mouse.y : 0;
+  }
+
+  protected processMovement(deltaTime: number, moveSpeed: number) {
     let timeLeft = deltaTime * 60;
     while (timeLeft > 0) {
       const timeScale = Math.min(1, timeLeft);
@@ -61,62 +57,42 @@ export class MovingBillboard extends Billboard {
       this.updateZ(timeScale);
       timeLeft -= timeScale;
     }
+  }
 
-    if (mouseGear) {
+  protected handleFrameUpdate(ms: number, mouseGear: number) {
+    if (mouseGear || Object.values(this.state.keys).some(Boolean)) {
       this.updateFrame(ms);
-    } else {
-      for (const key in this.state.keys) {
-        if (this.state.keys[key]) {
-          this.updateFrame(ms);
-          break;
-        }
-      }
     }
-
-    super.update(ms);
   }
 
   protected updateZ(timeScale: number) {
     const floorZ = this.getFloorZ();
-    const standing = this.z === floorZ || this.velocity === 0;
-    const above = this.z > floorZ;
-    const prev = this.z;
-    const jump = standing && this.state.keys.space;
+    const isOnGround = this.z === floorZ || this.velocity === 0;
+    const isJumping = isOnGround && this.state.keys.space;
 
-    if (jump) this.velocity = MovingBillboard.jumpSpeed;
+    if (isJumping) this.velocity = MovingBillboard.JUMP_SPEED;
 
-    let next = 0;
-    if (jump || above) {
-      next = this.z + this.velocity * timeScale;
-      this.velocity -= timeScale * MovingBillboard.gravity;
+    if (isJumping || this.z > floorZ) {
+      this.z += this.velocity * timeScale;
+      this.velocity -= timeScale * MovingBillboard.GRAVITY;
     }
 
-    if (!next) return;
-    if (next < floorZ) {
-      next = prev;
+    if (this.z < floorZ) {
+      this.z = floorZ;
       this.velocity = 0;
     }
-
-    this.z = next;
   }
 
-  protected updateAngle(deltaTime: number, gear: number) {
-    if (
-      this.state.keys.left ||
-      this.state.keys.right ||
-      (this.state.mouseDown && this.state.mouse.x !== 0)
-    ) {
-      const scale = this.state.keys.left
-        ? -1
-        : this.state.keys.right
-          ? 1
-          : this.state.mouse.x;
-      if (scale !== 0) {
-        this.body.angle = normalizeAngle(
-          this.body.angle +
-            (gear || 1) * MovingBillboard.rotateSpeed * deltaTime * scale
-        );
-      }
+  protected updateAngle(deltaTime: number) {
+    const scale = this.state.keys.left
+      ? -1
+      : this.state.keys.right
+        ? 1
+        : this.state.mouse.x;
+    if (scale !== 0) {
+      this.body.angle = normalizeAngle(
+        this.body.angle + MovingBillboard.ROTATE_SPEED * deltaTime * scale
+      );
     }
   }
 
@@ -127,22 +103,20 @@ export class MovingBillboard extends Billboard {
   protected updateTexture() {
     super.updateTexture();
 
-    const noLeft = !('left' in this.directionsToRows);
-    const noRight = !('right' in this.directionsToRows);
-    if (!noLeft && !noRight) return;
+    const hasLeft = 'left' in this.directionsToRows;
+    const hasRight = 'right' in this.directionsToRows;
+    if (!hasLeft && !hasRight) return;
 
-    const sign = Math.sign(this.mesh.scale.x);
-    if (this.direction === 'left' && sign > 0) {
-      this.mesh.scale.set(noLeft ? -1 : 1, 1, 1);
-    } else if (this.direction === 'right' && sign < 0) {
-      this.mesh.scale.set(noLeft ? 1 : -1, 1, 1);
+    const oldScaleX = Math.sign(this.mesh.scale.x);
+    const newScaleX = hasLeft ? 1 : -1;
+    if (oldScaleX !== newScaleX) {
+      this.mesh.scale.set(newScaleX, 1, 1);
     }
   }
 
   protected createBody(x: number, y: number) {
     const body = new DynamicBody(x, y);
     physics.insert(body);
-
     return body;
   }
 
