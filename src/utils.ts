@@ -39,9 +39,8 @@ export const createMaterial = (textureName: string, cols = 1, rows = 1) => {
 
     return material;
   } catch (missing: any) {
-    console.warn(
-      `${textureName} missing in ${Object.keys(textures).join(', ')}`,
-      missing.message || missing
+    console.error(
+      `texture: "${textureName}" is missing in ${JSON.stringify(Object.keys(textures))}`
     );
 
     return {} as Material;
@@ -55,7 +54,7 @@ export const getTextureNameFromPath = (path: string) => {
   }
 
   return fileName
-    .split('-')
+    .split(/[-_]{1}/)
     .map((word, index) =>
       index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1)
     )

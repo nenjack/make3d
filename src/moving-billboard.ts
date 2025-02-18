@@ -113,8 +113,16 @@ export class MovingBillboard extends Billboard {
     if (hasLeft && hasRight) return;
 
     const oldScaleX = Math.sign(this.mesh.scale.x);
-    const newScaleX = hasLeft ? 1 : -1;
-    if (oldScaleX !== newScaleX) {
+    const direction = this.getDirection();
+    const directionX = hasLeft ? -1 : 1;
+    const newScaleX =
+      direction === 'left'
+        ? -directionX
+        : direction === 'right'
+          ? directionX
+          : 0;
+
+    if (newScaleX && oldScaleX !== newScaleX) {
       this.mesh.scale.set(newScaleX, 1, 1);
     }
   }

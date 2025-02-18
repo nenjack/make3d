@@ -60,7 +60,7 @@ export class Billboard {
     this.scaleX = (props.scaleX || scale) / 2;
     this.scaleY = (props.scaleY || scale) / 2;
     this.centerOffset = -0.2 + this.scaleY / 3; // this.scale / 4;
-    this.material = createMaterial(props.textureName, props.cols, props.rows);
+    this.material = createMaterial(props.textureName, this.cols, this.rows);
     const w = this.material.map!.image.width / this.cols;
     const h = this.material.map!.image.height / this.rows;
     const m = Math.max(w, h);
