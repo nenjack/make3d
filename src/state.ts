@@ -1,5 +1,5 @@
 import { groupBits, System } from 'detect-collisions';
-import { Texture } from 'three';
+import { FrontSide, Texture } from 'three';
 import { Loader } from './loader';
 import { Direction, Key, State } from './model';
 import { Mouse } from './mouse';
@@ -39,7 +39,8 @@ export const state: State = {
 
 export const materialProps = {
   transparent: true,
-  alphaTest: 1
+  alphaTest: 1,
+  side: FrontSide
 };
 
 export const directions: Direction[] = ['up', 'right', 'down', 'left'];
