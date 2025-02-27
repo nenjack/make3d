@@ -1,4 +1,10 @@
-import { Mesh, MeshBasicMaterial, PlaneGeometry, Vector3 } from 'three';
+import {
+  Mesh,
+  MeshBasicMaterial,
+  Object3D,
+  PlaneGeometry,
+  Vector3
+} from 'three';
 import { BodyLike, StaticBody } from './billboard-body';
 import { Level } from './level';
 import { BillboardProps, Direction, DirectionsToRows } from './model';
@@ -15,8 +21,7 @@ export class Billboard {
   frame = 0;
   direction: Direction = 'up';
   directionsToRows: DirectionsToRows;
-  material: MeshBasicMaterial;
-  mesh: Mesh;
+  mesh: Mesh | Object3D;
   body!: BodyLike;
   cols: number;
   rows: number;
@@ -55,11 +60,7 @@ export class Billboard {
     this.scaleX = (props.scaleX || scale) / 2;
     this.scaleY = (props.scaleY || scale) / 2;
     this.centerOffset = -0.2 + this.scaleY / 3; // this.scale / 4;
-    this.material = createMaterial(props.textureName, this.cols, this.rows);
-    const w = this.material.map!.image.width / this.cols;
-    const h = this.material.map!.image.height / this.rows;
-    const m = Math.max(w, h);
-    this.mesh = this.createMesh((this.scaleX * w) / m, (this.scaleY * h) / m);
+    this.mesh = this.createMesh(props.textureName);
 
     state.renderer.scene.add(this.mesh);
     Billboard.billboards.push(this);
@@ -91,8 +92,21 @@ export class Billboard {
     return state.renderer.camera.getScreenPosition(this.mesh);
   }
 
-  createMesh(width: number, height: number) {
-    return new Mesh(new PlaneGeometry(width, height), this.material);
+  createMesh(textureName: string) {
+    try {
+      const material = createMaterial(textureName, this.cols, this.rows);
+      const w = material.map!.image.width / this.cols;
+      const h = material.map!.image.height / this.rows;
+      const max = Math.max(w, h);
+      const width = (this.scaleX * w) / max;
+      const height = (this.scaleY * h) / max;
+
+      return new Mesh(new PlaneGeometry(width, height), material);
+    } catch (materialError) {
+      console.error({ textureName, materialError });
+
+      return new Object3D();
+    }
   }
 
   protected updateGroup() {
@@ -120,13 +134,21 @@ export class Billboard {
   }
 
   protected updateTexture() {
-    const frameIndex = Math.floor(this.frame);
-    const row = this.getRow(this.direction);
-    const x = frameIndex % this.cols;
-    const y = Math.floor(frameIndex * this.invCols) + row;
-    const { map } = this.mesh.material as any;
+    if (this.mesh instanceof Mesh) {
+      const frameIndex = Math.floor(this.frame);
+      const row = this.getRow(this.direction);
+      const x = frameIndex % this.cols;
+      const y = Math.floor(frameIndex * this.invCols) + row;
+      const materials = Array.isArray(this.mesh.material)
+        ? this.mesh.material
+        : [this.mesh.material];
 
-    map?.offset.set(x * this.invCols, y * this.invRows);
+      materials.forEach((material) => {
+        if (material instanceof MeshBasicMaterial) {
+          material.map?.offset.set(x * this.invCols, y * this.invRows);
+        }
+      });
+    }
   }
 
   protected getDirection() {

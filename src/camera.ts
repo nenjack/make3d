@@ -1,4 +1,4 @@
-import { Mesh, PerspectiveCamera, Quaternion, Vector3 } from 'three';
+import { Object3D, PerspectiveCamera, Quaternion, Vector3 } from 'three';
 import { DeviceDetector } from './detect';
 import { Level } from './level';
 import { Player } from './player';
@@ -96,7 +96,7 @@ export class Camera extends PerspectiveCamera {
     this.lookAt(lookAtPosition);
   }
 
-  getScreenPosition(target: Mesh) {
+  getScreenPosition(target: Object3D) {
     // Pobranie pozycji gracza w świecie
     target.getWorldPosition(Camera.targetVector);
 

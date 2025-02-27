@@ -10,8 +10,8 @@ export class Player extends MovingSprite {
   readonly isPlayer = true;
   readonly state = state;
 
-  constructor(level: Level, props: BillboardProps) {
-    super(level, props, state);
+  constructor({ level, ...props }: BillboardProps & { level: Level }) {
+    super({ level, ...props }, state);
 
     if (level instanceof ViewLevel) {
       state.renderer.camera.ready({ level, ref: this });
