@@ -1,5 +1,5 @@
-import { type Enemy } from './enemy'
 import { type Mouse } from './mouse'
+import { type NPC } from './npc'
 import { type Player } from './player'
 import { type Renderer } from './renderer'
 
@@ -21,7 +21,7 @@ export interface GameState extends State {
   started: boolean
   renderer: Renderer
   player: Player
-  enemies: Enemy[]
+  npcs: NPC[]
 }
 
 export interface BillboardProps {

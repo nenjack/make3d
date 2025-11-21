@@ -1,20 +1,38 @@
 import { Texture } from 'three'
 import { Ocean } from './ocean'
 import { Skybox, SkyboxProps } from './skybox'
-import { mapCubeTextures } from './utils'
+import { loadTextures, mapCubeTextures } from './utils'
 import { ViewLevel } from './view-level'
 
-export interface CubeLevelProps {
-  floor: Texture
-  sides: Texture
-  ocean: Texture
-  skybox?: SkyboxProps
+export type CubeLevelTextures = 'floor' | 'sides' | 'ocean'
+
+export interface CubeLevelProps<TTextures = string, TSkybox = TTextures>
+  extends Record<CubeLevelTextures, TTextures> {
+  skybox?: SkyboxProps<TSkybox>
 }
 
 export class CubeLevel extends ViewLevel {
+  /**
+   * @param {HTMLCanvasElement} canvas
+   * @param {CubeLevelProps} props
+   * @returns {Promise<CubeLevel>}
+   */
+  static async create(
+    canvas: HTMLCanvasElement,
+    { skybox, ...props }: CubeLevelProps = {
+      sides: 'sides.webp',
+      floor: 'floor.webp',
+      ocean: 'ocean.webp'
+    }
+  ): Promise<CubeLevel> {
+    const textures: string[] = [props.sides, props.floor, props.ocean]
+    const [sides, floor, ocean] = await loadTextures(textures)
+    return new CubeLevel(canvas, { sides, floor, ocean, skybox })
+  }
+
   constructor(
     canvas: HTMLCanvasElement,
-    { floor, sides, ocean, skybox }: CubeLevelProps
+    { floor, sides, ocean, skybox }: CubeLevelProps<Texture, string>
   ) {
     super(
       mapCubeTextures({

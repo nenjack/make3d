@@ -1,7 +1,7 @@
 import { Level } from './level'
 import { MovingSprite } from './moving-sprite'
 
-export class Enemy extends MovingSprite {
+export class NPC extends MovingSprite {
   static readonly MAX_SPEED = 0
   static readonly MAX_ROTATION = 100
   static readonly JUMP_CHANCE = 0.001
@@ -9,8 +9,8 @@ export class Enemy extends MovingSprite {
 
   readonly isPlayer = false
 
-  speed = Enemy.MAX_SPEED
-  rotation = Enemy.MAX_ROTATION
+  speed = NPC.MAX_SPEED
+  rotation = NPC.MAX_ROTATION
 
   update(ms = 0) {
     super.update(ms)
@@ -28,27 +28,27 @@ export class Enemy extends MovingSprite {
     this.rotation -= ms
 
     if (this.rotation < 0) {
-      this.rotation = Enemy.MAX_ROTATION
+      this.rotation = NPC.MAX_ROTATION
 
       // Reset kierunków bocznych (bez tworzenia tablicy)
       this.state.keys.left = false
       this.state.keys.right = false
 
       // Losowa zmiana kierunku
-      if (Math.random() < ms * Enemy.ROTATE_CHANCE) {
+      if (Math.random() < ms * NPC.ROTATE_CHANCE) {
         this.state.keys[Math.random() < 0.5 ? 'left' : 'right'] = true
       }
     }
 
     if (this.speed < 0) {
-      this.speed = Enemy.MAX_SPEED
+      this.speed = NPC.MAX_SPEED
 
       // 90% szansy na ruch w górę
       this.state.keys.up = Math.random() < 0.9
     }
 
     // Skok (uniknięcie podwójnego `Math.random`)
-    const jumpChance = ms * Enemy.JUMP_CHANCE
+    const jumpChance = ms * NPC.JUMP_CHANCE
     this.state.keys.space = Math.random() < jumpChance
   }
 }

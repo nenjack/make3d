@@ -17,7 +17,7 @@ export const doubleClickTime = 400
 
 export const keys: Partial<Record<Key, boolean>> = {}
 
-export const textures: Record<string, Texture> = {}
+export const loadedTextures: Record<string, Texture> = {}
 
 export const mouse = new Mouse()
 
@@ -36,7 +36,7 @@ export const state: GameState = {
   started: false,
   renderer: {} as any,
   player: {} as any,
-  enemies: []
+  npcs: []
 }
 
 export const materialProps = {

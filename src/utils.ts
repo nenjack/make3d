@@ -10,7 +10,12 @@ import {
 } from 'three'
 import { DeviceDetector } from './detect'
 import { CubeDirections } from './model'
-import { alphaMaterialProps, loader, Math_Double_PI, textures } from './state'
+import {
+  alphaMaterialProps,
+  loader,
+  Math_Double_PI,
+  loadedTextures
+} from './state'
 
 export const randomOf = (array: any[]) =>
   array[Math.floor(Math.random() * array.length)]
@@ -27,7 +32,7 @@ export const getMatrix = (position: Vector3, scale: Vector3) => {
 
 export const createMaterial = (textureName: string, cols = 1, rows = 1) => {
   try {
-    const texture = textures[textureName].clone()
+    const texture = loadedTextures[textureName].clone()
     const material = new MeshBasicMaterial({
       ...alphaMaterialProps,
       map: texture
@@ -41,14 +46,14 @@ export const createMaterial = (textureName: string, cols = 1, rows = 1) => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_error: unknown) {
     console.error(
-      `texture: "${textureName}" is missing in ${JSON.stringify(Object.keys(textures))}`
+      `texture: "${textureName}" is missing in ${JSON.stringify(Object.keys(loadedTextures))}`
     )
 
     return {} as MeshBasicMaterial
   }
 }
 
-export const getTextureNameFromPath = (path: string) => {
+export const getTextureName = (path: string) => {
   const fileName = path.split('/').pop()?.split('.')[0]
   if (!fileName) {
     return ''
@@ -75,12 +80,14 @@ export const loadTextures = async (texturePaths: string[]) => {
   const resolved = await Promise.all(promises)
 
   texturePaths.forEach((texturePath, index) => {
-    const textureName = getTextureNameFromPath(texturePath)
+    const textureName = getTextureName(texturePath)
     const texture = resolved[index]
 
     pixelate(texture)
-    textures[textureName] = texture
+    loadedTextures[textureName] = texture
   })
+
+  return resolved
 }
 
 export const normalizeAngle = (angle: number) =>

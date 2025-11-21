@@ -9,6 +9,12 @@ import { getMatrix } from './utils'
 import { Renderer } from './renderer'
 import { state } from './state'
 
+export interface ViewLevelProps {
+  canvas: HTMLCanvasElement
+  ocean?: () => Ocean
+  skybox?: () => Skybox
+}
+
 export class ViewLevel extends Level {
   static readonly FLORA_FILL = Level.FILL * 0.9
   static readonly FLORA_ITERATIONS = 1
@@ -18,18 +24,7 @@ export class ViewLevel extends Level {
 
   mesh: Box
 
-  constructor(
-    textures: Texture[],
-    {
-      canvas,
-      ocean,
-      skybox
-    }: {
-      canvas: HTMLCanvasElement
-      ocean?: () => Ocean
-      skybox?: () => Skybox
-    }
-  ) {
+  constructor(textures: Texture[], { canvas, ocean, skybox }: ViewLevelProps) {
     super()
 
     state.renderer = new Renderer(canvas)

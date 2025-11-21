@@ -13,7 +13,7 @@ import { CubeDirections } from './model'
  *   back: 'skybox/negy.webp'
  * }
  */
-export type SkyboxProps = Record<CubeDirections, string>
+export type SkyboxProps<T = string> = Record<CubeDirections, T>
 
 export class Skybox {
   constructor(
