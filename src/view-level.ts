@@ -1,20 +1,12 @@
 import { Texture, Vector3 } from 'three'
 import { Box } from './box'
 import { Bush, bushProps } from './bush'
+import { Events } from './events'
 import { Level } from './level'
-import { Ocean } from './ocean'
-import { Renderer } from './renderer'
-import { Skybox } from './skybox'
-import { loadedTextures, state } from './state'
+import { Renderer, RendererProps } from './renderer'
+import { loadedTextures } from './state'
 import { Tree, treeProps } from './tree'
 import { getMatrix } from './utils'
-import { addEventListeners } from './events'
-
-export interface ViewLevelProps {
-  canvas: HTMLCanvasElement
-  ocean?: () => Ocean
-  skybox?: () => Skybox
-}
 
 export class ViewLevel extends Level {
   static readonly BUSHES_FILL = Level.FILL * 0.9
@@ -31,15 +23,13 @@ export class ViewLevel extends Level {
     ViewLevel.BUSHES_ITERATIONS
   )
 
-  constructor(textures: Texture[], { canvas, ocean, skybox }: ViewLevelProps) {
+  constructor(textures: Texture[], props: RendererProps) {
     super()
-    state.renderer = new Renderer(canvas)
-    state.renderer.ocean = ocean?.()
-    state.renderer.skybox = skybox?.()
     this.mesh = this.createMesh(textures)
 
     setTimeout(() => {
-      addEventListeners()
+      Renderer.create(props)
+      Events.addEventListeners()
     })
   }
 

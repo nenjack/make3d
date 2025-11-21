@@ -25,24 +25,48 @@ export const setKey = (value: boolean) => {
   }
 }
 
-let eventListenersAdded = false
+export class Events {
+  static keyDown = setKey(true)
+  static keyUp = setKey(false)
+  static click = mouse.onPointerDown.bind(mouse)
+  static release = mouse.onPointerUp.bind(mouse)
+  static move = mouse.onPointerMove.bind(mouse)
+  static cancel = mouse.preventEvent.bind(mouse)
+  static events = {
+    pointerdown: Events.click,
+    pointermove: Events.move,
+    pointerup: Events.release,
+    touchstart: Events.cancel,
+    touchend: Events.cancel,
+    touchmove: Events.cancel,
+    dragstart: Events.cancel,
+    contextmenu: Events.cancel
+  }
 
-export const addEventListeners = () => {
-  if (eventListenersAdded) return
-  eventListenersAdded = true
+  static eventListenersAdded = false
 
-  const block = { passive: false }
+  static addEventListeners() {
+    if (Events.eventListenersAdded) return
+    Events.eventListenersAdded = true
 
-  window.addEventListener('keydown', setKey(true), { passive: true })
-  window.addEventListener('keyup', setKey(false), { passive: true })
-  window.addEventListener('pointerdown', mouse.onPointerDown.bind(mouse), block)
-  window.addEventListener('pointermove', mouse.onPointerMove.bind(mouse), block)
-  window.addEventListener('touchstart', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('touchend', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('touchmove', mouse.onPointerMove.bind(mouse), block)
-  window.addEventListener('pointerup', mouse.onPointerUp.bind(mouse), block)
-  window.addEventListener('touchend', mouse.onPointerUp.bind(mouse), block)
-  window.addEventListener('dblclick', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('dragstart', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('contextmenu', mouse.preventEvent.bind(mouse), block)
+    const options = { passive: false }
+    Object.entries(Events.events).forEach(([event, action]) => {
+      window.addEventListener(event, action, options)
+    })
+
+    window.addEventListener('keydown', Events.keyDown, { passive: true })
+    window.addEventListener('keyup', Events.keyUp, { passive: true })
+  }
+
+  static removeEventListeners() {
+    if (!Events.eventListenersAdded) return
+    Events.eventListenersAdded = false
+
+    Object.entries(Events.events).forEach(([event, action]) => {
+      window.removeEventListener(event, action)
+    })
+
+    window.removeEventListener('keydown', Events.keyDown)
+    window.removeEventListener('keyup', Events.keyUp)
+  }
 }

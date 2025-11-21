@@ -34,8 +34,8 @@ export const state: GameState = {
   keys,
   mouse,
   started: false,
-  renderer: {} as any,
-  player: {} as any,
+  renderer: null as any,
+  player: null as any,
   npcs: []
 }
 

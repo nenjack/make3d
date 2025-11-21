@@ -13,9 +13,30 @@ import { DeviceDetector } from './detect'
 import { Ocean } from './ocean'
 import { queryParams } from './query-params'
 import { Skybox } from './skybox'
+import { state } from './state'
+
+export interface RendererProps {
+  canvas: HTMLCanvasElement
+  ocean?: () => Ocean
+  skybox?: () => Skybox
+}
 
 export class Renderer extends WebGLRenderer {
   static backgroundColor = 0x44ccf0
+
+  /**
+   * @param {RendererProps} props
+   * @returns {Renderer}
+   */
+  static create({ canvas, ocean, skybox }: RendererProps): Renderer {
+    if (state.renderer) return state.renderer
+
+    state.renderer = new Renderer(canvas)
+    state.renderer.ocean = ocean?.()
+    state.renderer.skybox = skybox?.()
+
+    return state.renderer
+  }
 
   now = Date.now()
   scene = new Scene()

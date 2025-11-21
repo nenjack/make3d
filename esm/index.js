@@ -65875,8 +65875,8 @@ const state = {
   keys,
   mouse,
   started: false,
-  renderer: {},
-  player: {},
+  renderer: null,
+  player: null,
   npcs: []
 }
 const materialProps = {
@@ -67198,6 +67198,66 @@ class Skybox {
   }
 }
 
+const setKey = (value) => {
+  return (event) => {
+    switch (event.key) {
+      case 'ArrowLeft':
+        keys.left = value
+        break
+      case 'ArrowRight':
+        keys.right = value
+        break
+      case 'ArrowUp':
+        keys.up = value
+        break
+      case 'ArrowDown':
+        keys.down = value
+        break
+      case ' ':
+        keys.space = value
+        break
+    }
+  }
+}
+class Events {
+  static addEventListeners() {
+    if (Events.eventListenersAdded) return
+    Events.eventListenersAdded = true
+    const options = { passive: false }
+    Object.entries(Events.events).forEach(([event, action]) => {
+      window.addEventListener(event, action, options)
+    })
+    window.addEventListener('keydown', Events.keyDown, { passive: true })
+    window.addEventListener('keyup', Events.keyUp, { passive: true })
+  }
+  static removeEventListeners() {
+    if (!Events.eventListenersAdded) return
+    Events.eventListenersAdded = false
+    Object.entries(Events.events).forEach(([event, action]) => {
+      window.removeEventListener(event, action)
+    })
+    window.removeEventListener('keydown', Events.keyDown)
+    window.removeEventListener('keyup', Events.keyUp)
+  }
+}
+Events.keyDown = setKey(true)
+Events.keyUp = setKey(false)
+Events.click = mouse.onPointerDown.bind(mouse)
+Events.release = mouse.onPointerUp.bind(mouse)
+Events.move = mouse.onPointerMove.bind(mouse)
+Events.cancel = mouse.preventEvent.bind(mouse)
+Events.events = {
+  pointerdown: Events.click,
+  pointermove: Events.move,
+  pointerup: Events.release,
+  touchstart: Events.cancel,
+  touchend: Events.cancel,
+  touchmove: Events.cancel,
+  dragstart: Events.cancel,
+  contextmenu: Events.cancel
+}
+Events.eventListenersAdded = false
+
 var dist = {}
 
 var statsConstants = {}
@@ -67929,6 +67989,17 @@ function requireDist() {
 var distExports = requireDist()
 
 class Renderer extends WebGLRenderer {
+  /**
+   * @param {RendererProps} props
+   * @returns {Renderer}
+   */
+  static create({ canvas, ocean, skybox }) {
+    if (state.renderer) return state.renderer
+    state.renderer = new Renderer(canvas)
+    state.renderer.ocean = ocean?.()
+    state.renderer.skybox = skybox?.()
+    return state.renderer
+  }
   constructor(canvas) {
     const props = {
       antialias: DeviceDetector.HIGH_END,
@@ -67994,48 +68065,8 @@ class Tree extends Sprite {
   }
 }
 
-const setKey = (value) => {
-  return (event) => {
-    switch (event.key) {
-      case 'ArrowLeft':
-        keys.left = value
-        break
-      case 'ArrowRight':
-        keys.right = value
-        break
-      case 'ArrowUp':
-        keys.up = value
-        break
-      case 'ArrowDown':
-        keys.down = value
-        break
-      case ' ':
-        keys.space = value
-        break
-    }
-  }
-}
-let eventListenersAdded = false
-const addEventListeners = () => {
-  if (eventListenersAdded) return
-  eventListenersAdded = true
-  const block = { passive: false }
-  window.addEventListener('keydown', setKey(true), { passive: true })
-  window.addEventListener('keyup', setKey(false), { passive: true })
-  window.addEventListener('pointerdown', mouse.onPointerDown.bind(mouse), block)
-  window.addEventListener('pointermove', mouse.onPointerMove.bind(mouse), block)
-  window.addEventListener('touchstart', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('touchend', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('touchmove', mouse.onPointerMove.bind(mouse), block)
-  window.addEventListener('pointerup', mouse.onPointerUp.bind(mouse), block)
-  window.addEventListener('touchend', mouse.onPointerUp.bind(mouse), block)
-  window.addEventListener('dblclick', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('dragstart', mouse.preventEvent.bind(mouse), block)
-  window.addEventListener('contextmenu', mouse.preventEvent.bind(mouse), block)
-}
-
 class ViewLevel extends Level {
-  constructor(textures, { canvas, ocean, skybox }) {
+  constructor(textures, props) {
     super()
     this.bushesHeights = this.createHeights(
       Level.COLS * 2,
@@ -68043,12 +68074,10 @@ class ViewLevel extends Level {
       ViewLevel.BUSHES_FILL,
       ViewLevel.BUSHES_ITERATIONS
     )
-    state.renderer = new Renderer(canvas)
-    state.renderer.ocean = ocean?.()
-    state.renderer.skybox = skybox?.()
     this.mesh = this.createMesh(textures)
     setTimeout(() => {
-      addEventListeners()
+      Renderer.create(props)
+      Events.addEventListeners()
     })
   }
   createBoxMesh(textures) {
@@ -68373,6 +68402,7 @@ export {
   CubeLevel,
   DeviceDetector,
   DynamicBody,
+  Events,
   Level,
   Loader,
   Math_Double_PI,
@@ -68389,7 +68419,6 @@ export {
   StaticBody,
   Tree,
   ViewLevel,
-  addEventListeners,
   alphaMaterialProps,
   bushProps,
   createMaterial,
