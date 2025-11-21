@@ -1435,6 +1435,11 @@ inherits@2, inherits@2.0.4:
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.4.tgz#0fa2c64f932917c3433a0ded55363aae37416b7c"
   integrity sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ==
 
+inject.min@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/inject.min/-/inject.min-2.1.2.tgz#ddae0c2715f5b5c523ecef3d8ef1a4b05f6e8779"
+  integrity sha512-MbM4z63rYQQU65OzmjShxW1tAG+QO9HaWQshQ+aZOQEJHP+eQcJwgcl9kcvgd8pDplj7VuYpSfmfWTEW6bXfbw==
+
 ipaddr.js@1.9.1:
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/ipaddr.js/-/ipaddr.js-1.9.1.tgz#bff38543eeb8984825079ff3a2a8e6cbd46781b3"

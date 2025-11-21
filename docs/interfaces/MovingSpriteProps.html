@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>BillboardProps | make3d</title>
+    <title>MovingSpriteProps | make3d</title>
     <meta name="description" content="Documentation for make3d" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -85,13 +85,13 @@
       <div class="col-content">
         <div class="tsd-page-title">
           <ul class="tsd-breadcrumb" aria-label="Breadcrumb">
-            <li><a href="" aria-current="page">BillboardProps</a></li>
+            <li><a href="" aria-current="page">MovingSpriteProps</a></li>
           </ul>
-          <h1>Interface BillboardProps</h1>
+          <h1>Interface MovingSpriteProps</h1>
         </div>
         <div class="tsd-signature">
           <span class="tsd-signature-keyword">interface</span>
-          <span class="tsd-kind-interface">BillboardProps</span>
+          <span class="tsd-kind-interface">MovingSpriteProps</span>
           <span class="tsd-signature-symbol">{</span><br />    <a
             class="tsd-kind-property"
             href="#cols"
@@ -113,6 +113,15 @@
             >frameDuration</a
           ><span class="tsd-signature-symbol">?:</span>
           <span class="tsd-signature-type">number</span
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#level"
+            >level</a
+          ><span class="tsd-signature-symbol">:</span>
+          <a
+            href="../classes/Level.html"
+            class="tsd-signature-type tsd-kind-class"
+            >Level</a
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
             href="#rows"
@@ -154,22 +163,22 @@
             >}</span
           >
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="490">
+        <section class="tsd-panel tsd-hierarchy" data-refl="283">
           <h4>
-            Hierarchy (<a href="../hierarchy.html#BillboardProps"
+            Hierarchy (<a href="../hierarchy.html#MovingSpriteProps"
               >View Summary</a
             >)
           </h4>
           <ul class="tsd-hierarchy">
             <li class="tsd-hierarchy-item">
-              <span class="tsd-hierarchy-target">BillboardProps</span>
+              <a
+                href="BillboardProps.html"
+                class="tsd-signature-type tsd-kind-interface"
+                >BillboardProps</a
+              >
               <ul class="tsd-hierarchy">
                 <li class="tsd-hierarchy-item">
-                  <a
-                    href="MovingSpriteProps.html"
-                    class="tsd-signature-type tsd-kind-interface"
-                    >MovingSpriteProps</a
-                  >
+                  <span class="tsd-hierarchy-target">MovingSpriteProps</span>
                 </li>
               </ul>
             </li>
@@ -180,8 +189,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L27"
-                >src/model.ts:27</a
+                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/moving-sprite.ts#L5"
+                >src/moving-sprite.ts:5</a
               >
             </li>
           </ul>
@@ -205,7 +214,7 @@
                 <section class="tsd-index-section">
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
-                    <a href="#cols" class="tsd-index-link"
+                    <a href="#cols" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -214,7 +223,9 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>cols?</span></a
                     >
-                    <a href="#directionstorows" class="tsd-index-link"
+                    <a
+                      href="#directionstorows"
+                      class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -223,7 +234,9 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>directions<wbr />To<wbr />Rows?</span></a
                     >
-                    <a href="#frameduration" class="tsd-index-link"
+                    <a
+                      href="#frameduration"
+                      class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -232,7 +245,16 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>frame<wbr />Duration?</span></a
                     >
-                    <a href="#rows" class="tsd-index-link"
+                    <a href="#level" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>level</span></a
+                    >
+                    <a href="#rows" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -241,7 +263,7 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>rows?</span></a
                     >
-                    <a href="#scale" class="tsd-index-link"
+                    <a href="#scale" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -250,7 +272,7 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>scale?</span></a
                     >
-                    <a href="#scalex" class="tsd-index-link"
+                    <a href="#scalex" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -259,7 +281,7 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>scale<wbr />X?</span></a
                     >
-                    <a href="#scaley" class="tsd-index-link"
+                    <a href="#scaley" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -268,7 +290,9 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>scale<wbr />Y?</span></a
                     >
-                    <a href="#texturename" class="tsd-index-link"
+                    <a
+                      href="#texturename"
+                      class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -277,7 +301,9 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>texture<wbr />Name</span></a
                     >
-                    <a href="#totalframes" class="tsd-index-link"
+                    <a
+                      href="#totalframes"
+                      class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -306,7 +332,7 @@
             <h2>Properties</h2>
           </summary>
           <section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="cols">
                 <code class="tsd-tag">Optional</code><span>cols</span
                 ><a href="#cols" aria-label="Permalink" class="tsd-anchor-icon"
@@ -320,6 +346,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#cols"
+                    >cols</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -331,7 +364,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="directionstorows">
                 <code class="tsd-tag">Optional</code
                 ><span>directions<wbr />To<wbr />Rows</span
@@ -353,6 +386,13 @@
                 >
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#directionstorows"
+                    >directionsToRows</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -364,7 +404,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="frameduration">
                 <code class="tsd-tag">Optional</code
                 ><span>frame<wbr />Duration</span
@@ -382,6 +422,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#frameduration"
+                    >frameDuration</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -394,6 +441,35 @@
               </aside>
             </section>
             <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="level">
+                <span>level</span
+                ><a href="#level" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">level</span
+                ><span class="tsd-signature-symbol">:</span>
+                <a
+                  href="../classes/Level.html"
+                  class="tsd-signature-type tsd-kind-class"
+                  >Level</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/moving-sprite.ts#L6"
+                      >src/moving-sprite.ts:6</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="rows">
                 <code class="tsd-tag">Optional</code><span>rows</span
                 ><a href="#rows" aria-label="Permalink" class="tsd-anchor-icon"
@@ -407,6 +483,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#rows"
+                    >rows</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -418,7 +501,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="scale">
                 <code class="tsd-tag">Optional</code><span>scale</span
                 ><a href="#scale" aria-label="Permalink" class="tsd-anchor-icon"
@@ -432,6 +515,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#scale"
+                    >scale</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -443,7 +533,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="scalex">
                 <code class="tsd-tag">Optional</code><span>scale<wbr />X</span
                 ><a
@@ -460,6 +550,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#scalex"
+                    >scaleX</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -471,7 +568,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="scaley">
                 <code class="tsd-tag">Optional</code><span>scale<wbr />Y</span
                 ><a
@@ -488,6 +585,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#scaley"
+                    >scaleY</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -499,7 +603,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="texturename">
                 <span>texture<wbr />Name</span
                 ><a
@@ -516,6 +620,13 @@
                 <span class="tsd-signature-type">string</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#texturename"
+                    >textureName</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -527,7 +638,7 @@
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member">
+            <section class="tsd-panel tsd-member tsd-is-inherited">
               <h3 class="tsd-anchor-link" id="totalframes">
                 <code class="tsd-tag">Optional</code
                 ><span>total<wbr />Frames</span
@@ -545,6 +656,13 @@
                 <span class="tsd-signature-type">number</span>
               </div>
               <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="BillboardProps.html">BillboardProps</a>.<a
+                    href="BillboardProps.html#totalframes"
+                    >totalFrames</a
+                  >
+                </p>
                 <ul>
                   <li>
                     Defined in
@@ -719,7 +837,7 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#cols"
+                  <a href="#cols" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -727,7 +845,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>cols</span></a
-                  ><a href="#directionstorows"
+                  ><a href="#directionstorows" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -735,7 +853,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>directions<wbr />To<wbr />Rows</span></a
-                  ><a href="#frameduration"
+                  ><a href="#frameduration" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -743,7 +861,15 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>frame<wbr />Duration</span></a
-                  ><a href="#rows"
+                  ><a href="#level"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>level</span></a
+                  ><a href="#rows" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -751,7 +877,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>rows</span></a
-                  ><a href="#scale"
+                  ><a href="#scale" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -759,7 +885,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>scale</span></a
-                  ><a href="#scalex"
+                  ><a href="#scalex" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -767,7 +893,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>scale<wbr />X</span></a
-                  ><a href="#scaley"
+                  ><a href="#scaley" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -775,7 +901,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>scale<wbr />Y</span></a
-                  ><a href="#texturename"
+                  ><a href="#texturename" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -783,7 +909,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>texture<wbr />Name</span></a
-                  ><a href="#totalframes"
+                  ><a href="#totalframes" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"

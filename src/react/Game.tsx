@@ -4,7 +4,7 @@ import { loadTextures } from '../utils'
 import { textures } from '../state'
 
 export const createLevel = async (canvas: HTMLCanvasElement) => {
-  await loadTextures(['biome/top.webp', 'biome/side.webp'])
+  await loadTextures(['sides.webp', 'floor.webp', 'ocean.webp'])
   return new CubeLevel(canvas, {
     sides: textures.side,
     floor: textures.top,

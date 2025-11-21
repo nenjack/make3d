@@ -6,35 +6,37 @@
 
 **https://legacyofpain.app**
 
-### example usage
+### demo usage
 
 ```ts
-// Game.tsx
 import { CubeLevel, loadTextures, textures } from 'make3d'
-import { FC, useEffect, useRef } from 'react'
 
 export const createLevel = async (canvas: HTMLCanvasElement) => {
-  await loadTextures(['biome/top.webp', 'biome/side.webp']);
+  await loadTextures(['sides.webp', 'floor.webp', 'ocean.webp'])
   return new CubeLevel(canvas, {
-    sides: textures.side,
-    floor: textures.top,
+    sides: textures.sides,
+    floor: textures.floor,
     ocean: textures.ocean
-  });
-};
+  })
+}
+```
+
+```tsx
+import { FC, useEffect, useRef } from 'react'
 
 export const Game: FC = () => {
-  const ref = useRef<HTMLCanvasElement>(null);
+  const ref = useRef<HTMLCanvasElement>(null)
 
   useEffect(() => {
-    const canvas = ref.current;
+    const canvas = ref.current
 
     if (canvas) {
       createLevel(canvas).then((level) => {
-        // createObjects(level);
-      });
+        createObjects(level)
+      })
     }
-  }, [ref]);
+  }, [ref])
 
-  return <canvas ref={ref} id="game" />;
-};
+  return <canvas ref={ref} id="game" />
+}
 ```

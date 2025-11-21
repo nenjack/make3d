@@ -1,5 +1,5 @@
-import { MovingSprite } from './moving-sprite'
 import { Level } from './level'
+import { MovingSprite } from './moving-sprite'
 
 export class Enemy extends MovingSprite {
   static readonly MAX_SPEED = 0

@@ -1,6 +1,6 @@
 import { Level } from './level'
-import { BillboardProps, Direction } from './model'
-import { MovingSprite } from './moving-sprite'
+import { Direction } from './model'
+import { MovingSprite, MovingSpriteProps } from './moving-sprite'
 import { state } from './state'
 import { ViewLevel } from './view-level'
 
@@ -10,7 +10,7 @@ export class Player extends MovingSprite {
   readonly isPlayer = true
   readonly state = state
 
-  constructor({ level, ...props }: BillboardProps & { level: Level }) {
+  constructor({ level, ...props }: MovingSpriteProps) {
     super({ level, ...props }, state)
 
     if (level instanceof ViewLevel) {
