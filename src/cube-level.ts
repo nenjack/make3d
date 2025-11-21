@@ -20,7 +20,7 @@ export class CubeLevel extends ViewLevel {
 
   static async create(
     canvas: HTMLCanvasElement,
-    skybox: SkyboxProps
+    skybox?: SkyboxProps
   ): Promise<CubeLevel> {
     const [sides, floor, ocean] = await loadTextures([
       'sides.webp',
