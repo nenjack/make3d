@@ -1,53 +1,53 @@
 import { Texture } from 'three'
+import { bushProps } from './bush'
 import { Ocean } from './ocean'
 import { Skybox, SkyboxProps } from './skybox'
+import { treeProps } from './tree'
 import { loadTextures, mapCubeTextures } from './utils'
 import { ViewLevel } from './view-level'
 
 export type CubeLevelTextures = 'floor' | 'sides' | 'ocean'
 
-export interface CubeLevelProps<TTextures = string, TSkybox = TTextures>
-  extends Record<CubeLevelTextures, TTextures> {
-  skybox?: SkyboxProps<TSkybox>
+export interface CubeLevelProps<T = string>
+  extends Record<CubeLevelTextures, T> {
+  skybox?: SkyboxProps
 }
 
 export class CubeLevel extends ViewLevel {
-  /**
-   * @param {HTMLCanvasElement} canvas
-   * @param {CubeLevelProps} props
-   * @returns {Promise<CubeLevel>}
-   */
+  static readonly SIDES = 'sides.webp'
+  static readonly FLOOR = 'floor.webp'
+  static readonly OCEAN = 'ocean.webp'
+
   static async create(
     canvas: HTMLCanvasElement,
-    { skybox, ...props }: CubeLevelProps = {
-      sides: 'sides.webp',
-      floor: 'floor.webp',
-      ocean: 'ocean.webp'
-    }
-  ) {
-    const textures: string[] = [props.sides, props.floor, props.ocean]
-    const [sides, floor, ocean] = await loadTextures(textures)
+    skybox: SkyboxProps
+  ): Promise<CubeLevel> {
+    const [sides, floor, ocean] = await loadTextures([
+      'sides.webp',
+      'floor.webp',
+      'ocean.webp',
+      `${treeProps.textureName}.webp`,
+      `${bushProps.textureName}.webp`
+    ])
     return new CubeLevel(canvas, { sides, floor, ocean, skybox })
   }
 
   constructor(
     canvas: HTMLCanvasElement,
-    { floor, sides, ocean, skybox }: CubeLevelProps<Texture, string>
+    { sides, floor, ocean, skybox }: CubeLevelProps<Texture>
   ) {
-    super(
-      mapCubeTextures({
+    super({
+      ocean: ocean ? () => new Ocean(ocean) : undefined,
+      skybox: skybox ? () => skybox && new Skybox(skybox) : undefined,
+      canvas,
+      textures: mapCubeTextures({
         up: floor,
         down: floor,
         left: sides,
         right: sides,
         front: sides,
         back: sides
-      }),
-      {
-        ocean: () => new Ocean(ocean),
-        skybox: () => new Skybox(skybox),
-        canvas
-      }
-    )
+      })
+    })
   }
 }

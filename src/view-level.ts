@@ -8,6 +8,10 @@ import { loadedTextures } from './state'
 import { Tree, treeProps } from './tree'
 import { getMatrix } from './utils'
 
+export interface ViewLevelProps extends RendererProps {
+  textures: Texture[]
+}
+
 export class ViewLevel extends Level {
   static readonly BUSHES_FILL = Level.FILL * 0.9
   static readonly BUSHES_ITERATIONS = 1
@@ -23,14 +27,11 @@ export class ViewLevel extends Level {
     ViewLevel.BUSHES_ITERATIONS
   )
 
-  constructor(textures: Texture[], props: RendererProps) {
+  constructor({ textures, canvas, ocean, skybox }: ViewLevelProps) {
     super()
+    Renderer.create({ canvas, ocean, skybox })
+    Events.addEventListeners()
     this.mesh = this.createMesh(textures)
-
-    setTimeout(() => {
-      Renderer.create(props)
-      Events.addEventListeners()
-    })
   }
 
   createBoxMesh(textures: Texture[]) {
@@ -82,6 +83,7 @@ export class ViewLevel extends Level {
   createMesh(textures: Texture[]) {
     const mesh = this.createBoxMesh(textures)
     this.setLevelMesh(mesh)
+    this.createTrees()
     this.createBushes()
     return mesh
   }

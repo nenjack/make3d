@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>State | make3d</title>
+    <title>ViewLevelProps | make3d</title>
     <meta name="description" content="Documentation for make3d" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -85,92 +85,74 @@
       <div class="col-content">
         <div class="tsd-page-title">
           <ul class="tsd-breadcrumb" aria-label="Breadcrumb">
-            <li><a href="" aria-current="page">State</a></li>
+            <li><a href="" aria-current="page">ViewLevelProps</a></li>
           </ul>
-          <h1>Interface State</h1>
+          <h1>Interface ViewLevelProps</h1>
         </div>
         <div class="tsd-signature">
           <span class="tsd-signature-keyword">interface</span>
-          <span class="tsd-kind-interface">State</span>
+          <span class="tsd-kind-interface">ViewLevelProps</span>
           <span class="tsd-signature-symbol">{</span><br />    <a
             class="tsd-kind-property"
-            href="#keys"
-            >keys</a
+            href="#canvas"
+            >canvas</a
           ><span class="tsd-signature-symbol">:</span>
-          <span class="tsd-signature-type">Record</span
-          ><span class="tsd-signature-symbol">&lt;</span
-          ><span class="tsd-signature-type">string</span
-          ><span class="tsd-signature-symbol">,</span>
-          <span class="tsd-signature-type">boolean</span
-          ><span class="tsd-signature-symbol">&gt;</span
+          <span class="tsd-signature-type">HTMLCanvasElement</span
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
-            href="#mouse"
-            >mouse</a
-          ><span class="tsd-signature-symbol">:</span>
-          <a
-            href="../classes/Mouse.html"
-            class="tsd-signature-type tsd-kind-class"
-            >Mouse</a
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#mousedown"
-            >mouseDown</a
+            href="#ocean"
+            >ocean</a
           ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">boolean</span
-          ><span class="tsd-signature-symbol">;</span><br />    <span
-            class="tsd-signature-symbol"
-            >[</span
-          ><span class="tsd-kind-index-signature">key</span
+          <span class="tsd-signature-symbol">()</span>
+          <span class="tsd-signature-symbol">=&gt;</span>
+          <a
+            href="../classes/Ocean.html"
+            class="tsd-signature-type tsd-kind-class"
+            >Ocean</a
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#skybox"
+            >skybox</a
+          ><span class="tsd-signature-symbol">?:</span>
+          <span class="tsd-signature-symbol">()</span>
+          <span class="tsd-signature-symbol">=&gt;</span>
+          <a
+            href="../classes/Skybox.html"
+            class="tsd-signature-type tsd-kind-class"
+            >Skybox</a
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#textures"
+            >textures</a
           ><span class="tsd-signature-symbol">:</span>
-          <span class="tsd-signature-type">string</span
-          ><span class="tsd-signature-symbol">]:</span>
-          <span class="tsd-signature-type">any</span
+          <span class="tsd-signature-type">Texture</span
+          ><span class="tsd-signature-symbol">&lt;</span
+          ><span class="tsd-signature-type">unknown</span
+          ><span class="tsd-signature-symbol">&gt;</span
+          ><span class="tsd-signature-symbol">[]</span
           ><span class="tsd-signature-symbol">;</span><br /><span
             class="tsd-signature-symbol"
             >}</span
           >
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="1119">
+        <section class="tsd-panel tsd-hierarchy" data-refl="2248">
           <h4>
-            Hierarchy (<a href="../hierarchy.html#State">View Summary</a>)
+            Hierarchy (<a href="../hierarchy.html#ViewLevelProps"
+              >View Summary</a
+            >)
           </h4>
           <ul class="tsd-hierarchy">
             <li class="tsd-hierarchy-item">
-              <span class="tsd-signature-type">Record</span
-              ><span class="tsd-signature-symbol">&lt;</span
-              ><span class="tsd-signature-type">string</span
-              ><span class="tsd-signature-symbol">,</span>
-              <span class="tsd-signature-type">any</span
-              ><span class="tsd-signature-symbol">&gt;</span>
+              <a
+                href="RendererProps.html"
+                class="tsd-signature-type tsd-kind-interface"
+                >RendererProps</a
+              >
               <ul class="tsd-hierarchy">
                 <li class="tsd-hierarchy-item">
-                  <span class="tsd-hierarchy-target">State</span>
-                  <ul class="tsd-hierarchy">
-                    <li class="tsd-hierarchy-item">
-                      <a
-                        href="GameState.html"
-                        class="tsd-signature-type tsd-kind-interface"
-                        >GameState</a
-                      >
-                    </li>
-                  </ul>
+                  <span class="tsd-hierarchy-target">ViewLevelProps</span>
                 </li>
               </ul>
-            </li>
-          </ul>
-        </section>
-        <section class="tsd-panel">
-          <h4 class="tsd-before-signature">Indexable</h4>
-          <ul class="tsd-signatures">
-            <li class="tsd-index-signature">
-              <div class="tsd-signature">
-                <span class="tsd-signature-symbol">[</span
-                ><span class="tsd-kind-parameter">key</span>:
-                <span class="tsd-signature-type">string</span
-                ><span class="tsd-signature-symbol">]:</span>
-                <span class="tsd-signature-type">any</span>
-              </div>
             </li>
           </ul>
         </section>
@@ -179,8 +161,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L14"
-                >src/model.ts:14</a
+                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/view-level.ts#L11"
+                >src/view-level.ts:11</a
               >
             </li>
           </ul>
@@ -204,32 +186,41 @@
                 <section class="tsd-index-section">
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
-                    <a href="#keys" class="tsd-index-link"
+                    <a href="#canvas" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>keys</span></a
+                      ><span>canvas</span></a
                     >
-                    <a href="#mouse" class="tsd-index-link"
+                    <a href="#ocean" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>mouse</span></a
+                      ><span>ocean?</span></a
                     >
-                    <a href="#mousedown" class="tsd-index-link"
+                    <a href="#skybox" class="tsd-index-link tsd-is-inherited"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>mouse<wbr />Down?</span></a
+                      ><span>skybox?</span></a
+                    >
+                    <a href="#textures" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>textures</span></a
                     >
                   </div>
                 </section>
@@ -251,71 +242,11 @@
             <h2>Properties</h2>
           </summary>
           <section>
-            <section class="tsd-panel tsd-member">
-              <h3 class="tsd-anchor-link" id="keys">
-                <span>keys</span
-                ><a href="#keys" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">keys</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">Record</span
-                ><span class="tsd-signature-symbol">&lt;</span
-                ><span class="tsd-signature-type">string</span
-                ><span class="tsd-signature-symbol">,</span>
-                <span class="tsd-signature-type">boolean</span
-                ><span class="tsd-signature-symbol">&gt;</span>
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L15"
-                      >src/model.ts:15</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member">
-              <h3 class="tsd-anchor-link" id="mouse">
-                <span>mouse</span
-                ><a href="#mouse" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">mouse</span
-                ><span class="tsd-signature-symbol">:</span>
-                <a
-                  href="../classes/Mouse.html"
-                  class="tsd-signature-type tsd-kind-class"
-                  >Mouse</a
-                >
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L16"
-                      >src/model.ts:16</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member">
-              <h3 class="tsd-anchor-link" id="mousedown">
-                <code class="tsd-tag">Optional</code
-                ><span>mouse<wbr />Down</span
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <h3 class="tsd-anchor-link" id="canvas">
+                <span>canvas</span
                 ><a
-                  href="#mousedown"
+                  href="#canvas"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -323,17 +254,135 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">mouseDown</span
+                <span class="tsd-kind-property">canvas</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">HTMLCanvasElement</span>
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="RendererProps.html">RendererProps</a>.<a
+                    href="RendererProps.html#canvas"
+                    >canvas</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/renderer.ts#L19"
+                      >src/renderer.ts:19</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <h3 class="tsd-anchor-link" id="ocean">
+                <code class="tsd-tag">Optional</code><span>ocean</span
+                ><a href="#ocean" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">ocean</span
                 ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">boolean</span>
+                <span class="tsd-signature-symbol">()</span>
+                <span class="tsd-signature-symbol">=&gt;</span>
+                <a
+                  href="../classes/Ocean.html"
+                  class="tsd-signature-type tsd-kind-class"
+                  >Ocean</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="RendererProps.html">RendererProps</a>.<a
+                    href="RendererProps.html#ocean"
+                    >ocean</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/renderer.ts#L20"
+                      >src/renderer.ts:20</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-inherited">
+              <h3 class="tsd-anchor-link" id="skybox">
+                <code class="tsd-tag">Optional</code><span>skybox</span
+                ><a
+                  href="#skybox"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">skybox</span
+                ><span class="tsd-signature-symbol">?:</span>
+                <span class="tsd-signature-symbol">()</span>
+                <span class="tsd-signature-symbol">=&gt;</span>
+                <a
+                  href="../classes/Skybox.html"
+                  class="tsd-signature-type tsd-kind-class"
+                  >Skybox</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Inherited from
+                  <a href="RendererProps.html">RendererProps</a>.<a
+                    href="RendererProps.html#skybox"
+                    >skybox</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/renderer.ts#L21"
+                      >src/renderer.ts:21</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="textures">
+                <span>textures</span
+                ><a
+                  href="#textures"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">textures</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">Texture</span
+                ><span class="tsd-signature-symbol">&lt;</span
+                ><span class="tsd-signature-type">unknown</span
+                ><span class="tsd-signature-symbol">&gt;</span
+                ><span class="tsd-signature-symbol">[]</span>
               </div>
               <aside class="tsd-sources">
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L17"
-                      >src/model.ts:17</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/view-level.ts#L12"
+                      >src/view-level.ts:12</a
                     >
                   </li>
                 </ul>
@@ -502,30 +551,38 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#keys"
+                  <a href="#canvas" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>keys</span></a
-                  ><a href="#mouse"
+                    ><span>canvas</span></a
+                  ><a href="#ocean" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>mouse</span></a
-                  ><a href="#mousedown"
+                    ><span>ocean</span></a
+                  ><a href="#skybox" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>mouse<wbr />Down</span></a
+                    ><span>skybox</span></a
+                  ><a href="#textures"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>textures</span></a
                   >
                 </div>
               </details>

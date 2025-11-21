@@ -24,16 +24,18 @@ export interface RendererProps {
 export class Renderer extends WebGLRenderer {
   static backgroundColor = 0x44ccf0
 
-  /**
-   * @param {RendererProps} props
-   * @returns {Renderer}
-   */
   static create({ canvas, ocean, skybox }: RendererProps): Renderer {
-    if (state.renderer) return state.renderer
+    if (!state.renderer) {
+      state.renderer = new Renderer(canvas)
+    }
 
-    state.renderer = new Renderer(canvas)
-    state.renderer.ocean = ocean?.()
-    state.renderer.skybox = skybox?.()
+    if (!state.renderer.ocean) {
+      state.renderer.ocean = ocean?.()
+    }
+
+    if (!state.renderer.skybox) {
+      state.renderer.skybox = skybox?.()
+    }
 
     return state.renderer
   }
