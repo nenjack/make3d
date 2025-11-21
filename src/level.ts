@@ -28,7 +28,15 @@ export class Level {
       .map((arrays) => arrays.map((value) => Math.max(0, value)))
   }
 
-  createBoxCollider(x: number, y: number, height: number) {
+  getXY(col: number, row: number) {
+    return {
+      x: col - Level.COLS / 2,
+      y: row - Level.ROWS / 2
+    }
+  }
+
+  setColliderAt(col: number, row: number, height: number) {
+    const { x, y } = this.getXY(col, row)
     for (let floor = 0; floor < height; floor++) {
       physics.createBox({ x, y }, 1, 1, {
         isStatic: true,

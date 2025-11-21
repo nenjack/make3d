@@ -25,7 +25,12 @@ export const setKey = (value: boolean) => {
   }
 }
 
+let eventListenersAdded = false
+
 export const addEventListeners = () => {
+  if (eventListenersAdded) return
+  eventListenersAdded = true
+
   const block = { passive: false }
 
   window.addEventListener('keydown', setKey(true), { passive: true })

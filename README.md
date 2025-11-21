@@ -6,12 +6,11 @@
 
 **https://legacyofpain.app**
 
-### minimal demo
+## demo
 
 ```ts
-import { CubeLevel, Player } from 'make3d'
-
-CubeLevel.create(canvas).then((level) => {
-  new Player({ level, textureName: 'player' })
+import { CubeLevel, Player, state } from './make3d/index.js'
+CubeLevel.create(canvas).then(async (level) => {
+  state.player = await Player.create(level)
 })
 ```

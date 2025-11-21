@@ -2,7 +2,27 @@ import { Level } from './level'
 import { Direction } from './model'
 import { MovingSprite, MovingSpriteProps } from './moving-sprite'
 import { state } from './state'
+import { getTextureName, loadTextures } from './utils'
 import { ViewLevel } from './view-level'
+
+export const playerProps = {
+  textureName: 'player',
+  scale: 1.25,
+  totalFrames: 3,
+  cols: 3,
+  rows: 4,
+  directionsToRows: {
+    down: 0,
+    left: 1,
+    up: 2,
+    right: 3
+  }
+}
+
+export interface LevelProps
+  extends Omit<MovingSpriteProps, 'level' | 'textureName'> {
+  texture: string
+}
 
 export class Player extends MovingSprite {
   static readonly DIRECTIONS: Direction[] = ['left', 'right', 'down', 'up']
@@ -10,8 +30,23 @@ export class Player extends MovingSprite {
   readonly isPlayer = true
   readonly state = state
 
+  /**
+   *
+   * @param {Level} level
+   * @param {LevelProps} props
+   * @returns
+   */
+  static async create(
+    level: Level,
+    { texture, ...props }: LevelProps = { texture: 'player.webp' }
+  ) {
+    await loadTextures([texture])
+    const textureName = getTextureName(texture)
+    return new Player({ level, textureName, ...props })
+  }
+
   constructor({ level, ...props }: MovingSpriteProps) {
-    super({ level, ...props }, state)
+    super({ level, ...playerProps, ...props }, state)
 
     if (level instanceof ViewLevel) {
       state.renderer.camera.ready({ level, ref: this })

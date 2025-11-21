@@ -1,13 +1,14 @@
 import { Texture, Vector3 } from 'three'
 import { Box } from './box'
-import { Cactus } from './cactus'
+import { Bush, bushProps } from './bush'
 import { Level } from './level'
 import { Ocean } from './ocean'
-import { Palm } from './palm'
-import { Skybox } from './skybox'
-import { getMatrix } from './utils'
 import { Renderer } from './renderer'
-import { state } from './state'
+import { Skybox } from './skybox'
+import { loadedTextures, state } from './state'
+import { Tree, treeProps } from './tree'
+import { getMatrix } from './utils'
+import { addEventListeners } from './events'
 
 export interface ViewLevelProps {
   canvas: HTMLCanvasElement
@@ -16,79 +17,91 @@ export interface ViewLevelProps {
 }
 
 export class ViewLevel extends Level {
-  static readonly FLORA_FILL = Level.FILL * 0.9
-  static readonly FLORA_ITERATIONS = 1
-  static readonly CACTUS_CHANCE = 0.25
-  static readonly PALM_CHANCE = 0.1
-  static readonly PALM_HEIGHT_START = 3
+  static readonly BUSHES_FILL = Level.FILL * 0.9
+  static readonly BUSHES_ITERATIONS = 1
+  static readonly BUSH_CHANCE = 0.25
+  static readonly TREE_CHANCE = 0.1
+  static readonly TREE_HEIGHT_START = 3
 
   mesh: Box
+  bushesHeights = this.createHeights(
+    Level.COLS * 2,
+    Level.ROWS * 2,
+    ViewLevel.BUSHES_FILL,
+    ViewLevel.BUSHES_ITERATIONS
+  )
 
   constructor(textures: Texture[], { canvas, ocean, skybox }: ViewLevelProps) {
     super()
-
     state.renderer = new Renderer(canvas)
     state.renderer.ocean = ocean?.()
     state.renderer.skybox = skybox?.()
-
     this.mesh = this.createMesh(textures)
+
+    setTimeout(() => {
+      addEventListeners()
+    })
   }
 
-  createBox(textures: Texture[]) {
+  createBoxMesh(textures: Texture[]) {
     const box = new Box(textures, Level.COLS, Level.ROWS)
     box.position.set(-Level.COLS / 2, 0, -Level.ROWS / 2)
 
     return box
   }
 
-  createMesh(textures: Texture[]) {
-    const box = this.createBox(textures)
-
+  setLevelMesh(mesh: Box) {
     this.forEachHeight(this.heights, (col, row, height) => {
-      box.setMatrixAt(
-        row * Level.ROWS + col,
-        getMatrix(
-          new Vector3(col, height / 4 - 0.75, row),
-          new Vector3(1, height / 2, 1)
-        )
-      )
-
-      const x = col - Level.COLS / 2
-      const y = row - Level.ROWS / 2
-      this.createBoxCollider(x, y, height)
-
-      if (
-        height >= ViewLevel.PALM_HEIGHT_START &&
-        Math.random() < ViewLevel.PALM_CHANCE
-      ) {
-        new Palm(this, x + 0.5, y + 0.5)
-      }
+      this.setLevelAt(col, row, height, mesh)
+      this.setColliderAt(col, row, height)
     })
-
-    const flora = this.createFloraHeights()
-    this.forEachHeight(flora, (col, row, chance) => {
-      const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
-
-      if (
-        height &&
-        Math.sqrt(chance * height) < ViewLevel.PALM_HEIGHT_START &&
-        Math.random() < ViewLevel.CACTUS_CHANCE
-      ) {
-        const x = col / 2 - Level.COLS / 2 + 0.25
-        const y = row / 2 - Level.ROWS / 2 + 0.25
-        new Cactus(this, x, y)
-      }
-    })
-
-    return box
   }
 
-  createFloraHeights() {
-    return this.createHeights(
-      Level.COLS * 2,
-      Level.ROWS * 2,
-      ViewLevel.FLORA_FILL,
-      ViewLevel.FLORA_ITERATIONS
+  createTrees() {
+    if (treeProps.textureName in loadedTextures) {
+      this.forEachHeight(this.heights, (col, row) => {
+        const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
+        if (
+          height >= ViewLevel.TREE_HEIGHT_START &&
+          Math.random() < ViewLevel.TREE_CHANCE
+        ) {
+          const { x, y } = this.getXY(col, row)
+          new Tree(this, x + 0.5, y + 0.5)
+        }
+      })
+    }
+  }
+
+  createBushes() {
+    if (bushProps.textureName in loadedTextures) {
+      this.forEachHeight(this.bushesHeights, (col, row, chance) => {
+        const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
+        if (
+          height &&
+          Math.sqrt(chance * height) < ViewLevel.TREE_HEIGHT_START &&
+          Math.random() < ViewLevel.BUSH_CHANCE
+        ) {
+          const x = col / 2 - Level.COLS / 2 + 0.25
+          const y = row / 2 - Level.ROWS / 2 + 0.25
+          new Bush(this, x, y)
+        }
+      })
+    }
+  }
+
+  createMesh(textures: Texture[]) {
+    const mesh = this.createBoxMesh(textures)
+    this.setLevelMesh(mesh)
+    this.createBushes()
+    return mesh
+  }
+
+  setLevelAt(col: number, row: number, height: number, mesh: Box) {
+    const matrix = getMatrix(
+      new Vector3(col, height / 4 - 0.75, row),
+      new Vector3(1, height / 2, 1)
     )
+
+    mesh.setMatrixAt(row * Level.ROWS + col, matrix)
   }
 }

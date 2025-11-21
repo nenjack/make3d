@@ -24,7 +24,7 @@ export class CubeLevel extends ViewLevel {
       floor: 'floor.webp',
       ocean: 'ocean.webp'
     }
-  ): Promise<CubeLevel> {
+  ) {
     const textures: string[] = [props.sides, props.floor, props.ocean]
     const [sides, floor, ocean] = await loadTextures(textures)
     return new CubeLevel(canvas, { sides, floor, ocean, skybox })

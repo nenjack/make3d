@@ -111,16 +111,13 @@
               ></strong
             >
           </p>
-          <h3 id="minimal-demo" class="tsd-anchor-link">
-            minimal demo<a
-              href="#minimal-demo"
-              aria-label="Permalink"
-              class="tsd-anchor-icon"
+          <h2 id="demo" class="tsd-anchor-link">
+            demo<a href="#demo" aria-label="Permalink" class="tsd-anchor-icon"
               ><svg viewBox="0 0 24 24" aria-hidden="true">
                 <use href="assets/icons.svg#icon-anchor"></use></svg
             ></a>
-          </h3>
-          <pre><code class="ts"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">CubeLevel</span><span class="hl-1">, </span><span class="hl-2">Player</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;make3d&#39;</span><br/><br/><span class="hl-2">CubeLevel</span><span class="hl-1">.</span><span class="hl-4">create</span><span class="hl-1">(</span><span class="hl-2">canvas</span><span class="hl-1">).</span><span class="hl-4">then</span><span class="hl-1">((</span><span class="hl-2">level</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-4">Player</span><span class="hl-1">({ </span><span class="hl-2">level</span><span class="hl-1">, </span><span class="hl-2">textureName:</span><span class="hl-1"> </span><span class="hl-3">&#39;player&#39;</span><span class="hl-1"> })</span><br/><span class="hl-1">})</span>
+          </h2>
+          <pre><code class="ts"><span class="hl-0">import</span><span class="hl-1"> { </span><span class="hl-2">CubeLevel</span><span class="hl-1">, </span><span class="hl-2">Player</span><span class="hl-1">, </span><span class="hl-2">state</span><span class="hl-1"> } </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;./make3d/index.js&#39;</span><br/><span class="hl-2">CubeLevel</span><span class="hl-1">.</span><span class="hl-4">create</span><span class="hl-1">(</span><span class="hl-2">canvas</span><span class="hl-1">).</span><span class="hl-4">then</span><span class="hl-1">(</span><span class="hl-5">async</span><span class="hl-1"> (</span><span class="hl-2">level</span><span class="hl-1">) </span><span class="hl-5">=&gt;</span><span class="hl-1"> {</span><br/><span class="hl-1">  </span><span class="hl-2">state</span><span class="hl-1">.</span><span class="hl-2">player</span><span class="hl-1"> = </span><span class="hl-0">await</span><span class="hl-1"> </span><span class="hl-2">Player</span><span class="hl-1">.</span><span class="hl-4">create</span><span class="hl-1">(</span><span class="hl-2">level</span><span class="hl-1">)</span><br/><span class="hl-1">})</span>
 </code><button type="button">Copy</button></pre>
         </div>
       </div>
@@ -276,11 +273,7 @@
                   >
                 </li>
                 <li>
-                  <ul>
-                    <li>
-                      <a href="#minimal-demo"><span>minimal demo</span></a>
-                    </li>
-                  </ul>
+                  <a href="#demo"><span>demo</span></a>
                 </li>
               </ul>
             </div>
