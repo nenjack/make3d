@@ -11,6 +11,7 @@
     "module": "none",
     "outDir": "dist",
     "rootDir": "src",
+    "jsx": "react",
     "skipLibCheck": true
   },
   "include": ["src/*.ts", "src/**/*.ts"],
