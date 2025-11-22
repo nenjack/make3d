@@ -37,8 +37,8 @@ export class CubeLevel extends ViewLevel {
     { sides, floor, ocean, skybox }: CubeLevelProps<Texture>
   ) {
     super({
-      ocean: ocean ? () => new Ocean(ocean) : undefined,
-      skybox: skybox ? () => skybox && new Skybox(skybox) : undefined,
+      ocean: () => new Ocean(ocean),
+      skybox: () => new Skybox(skybox),
       canvas,
       textures: mapCubeTextures({
         up: floor,
