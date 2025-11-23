@@ -1,5 +1,5 @@
 import { Texture, Vector3 } from 'three'
-import { Box } from '../box'
+import { BoxMesh } from './box-mesh'
 import { Renderer } from '../core/renderer'
 import { Events } from '../events'
 import { loadedTextures } from '../state'
@@ -20,7 +20,7 @@ export interface LevelProps<T = Texture> {
 
 export class Level extends BaseLevel {
   static TREE_TEXTURE = Tree.DEFAULT_PROPS.textureName
-  static BUSH_TEXTURE = Tree.DEFAULT_PROPS.textureName
+  static BUSH_TEXTURE = Bush.DEFAULT_PROPS.textureName
 
   static readonly BUSHES_FILL = Level.FILL * 0.9
   static readonly BUSHES_ITERATIONS = 1
@@ -31,7 +31,7 @@ export class Level extends BaseLevel {
   static readonly FLOOR = 'floor.webp'
   static readonly OCEAN = 'ocean.webp'
 
-  mesh: Box
+  mesh: BoxMesh
   bushesHeights = this.createHeights(
     Level.COLS * 2,
     Level.ROWS * 2,
@@ -66,12 +66,12 @@ export class Level extends BaseLevel {
   }
 
   createBoxMesh(textures: Texture[]) {
-    const box = new Box(textures, Level.COLS, Level.ROWS)
+    const box = new BoxMesh(textures, Level.COLS, Level.ROWS)
     box.position.set(-Level.COLS / 2, 0, -Level.ROWS / 2)
     return box
   }
 
-  setLevelMesh(mesh: Box) {
+  setLevelMesh(mesh: BoxMesh) {
     this.forEachHeight(this.heights, (col, row, height) => {
       this.setLevelAt(col, row, height, mesh)
       this.setColliderAt(col, row, height)
@@ -114,11 +114,11 @@ export class Level extends BaseLevel {
     const mesh = this.createBoxMesh(textures)
     this.setLevelMesh(mesh)
     this.createTrees()
-    // this.createBushes()
+    this.createBushes()
     return mesh
   }
 
-  setLevelAt(col: number, row: number, height: number, mesh: Box) {
+  setLevelAt(col: number, row: number, height: number, mesh: BoxMesh) {
     const matrix = getMatrix(
       new Vector3(col, height / 4 - 0.75, row),
       new Vector3(1, height / 2, 1)
