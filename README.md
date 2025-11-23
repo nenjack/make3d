@@ -9,7 +9,7 @@
 ## demo
 
 ```ts
-import { CubeLevel, Player } from './make3d/index.js'
+import { Level, Player } from './make3d/index.js'
 
-CubeLevel.create().then(Player.create)
+Level.create().then(Player.create)
 ```
