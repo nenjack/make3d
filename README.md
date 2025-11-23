@@ -9,7 +9,7 @@
 ## demo
 
 ```ts
-import { Level, Player } from './make3d/index.js'
+import { Level, Player } from 'make3d'
 
 Level.create().then(Player.create)
 ```

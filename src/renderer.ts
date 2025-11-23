@@ -17,7 +17,7 @@ import { Skybox, SkyboxProps } from './skybox'
 import { state } from './state'
 
 export interface RendererProps {
-  canvas: HTMLCanvasElement
+  canvas?: HTMLCanvasElement
   ocean?: Texture
   skybox?: SkyboxProps
 }

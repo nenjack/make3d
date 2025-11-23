@@ -11,11 +11,11 @@ import { getMatrix, loadTextures, mapCubeTextures } from './utils'
 
 export interface LevelProps<T = Texture> {
   textures: Texture[]
-  canvas: HTMLCanvasElement
+  canvas?: HTMLCanvasElement
+  skybox?: SkyboxProps
+  ocean?: T
   floor?: T
   sides?: T
-  ocean?: T
-  skybox?: SkyboxProps
 }
 
 export class Level extends AbstractLevel {
@@ -36,7 +36,7 @@ export class Level extends AbstractLevel {
   static readonly FLOOR = 'floor.webp'
   static readonly OCEAN = 'ocean.webp'
 
-  static async create(canvas: HTMLCanvasElement): Promise<Level> {
+  static async create(canvas?: HTMLCanvasElement): Promise<Level> {
     const [sides, floor, ocean] = await loadTextures([
       'sides.webp',
       'floor.webp',
