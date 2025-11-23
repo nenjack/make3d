@@ -68171,7 +68171,7 @@ Level.FLOOR = 'floor.webp'
 Level.OCEAN = 'ocean.webp'
 
 class Sprite extends Billboard {
-  constructor(props, state) {
+  constructor(props, state = { keys: {}, mouse: new Mouse() }) {
     super(props)
     this.velocity = 0
     this.state = state

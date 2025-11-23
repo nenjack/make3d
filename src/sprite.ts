@@ -2,6 +2,7 @@ import { Billboard } from './billboard'
 import { DynamicBody } from './billboard-body'
 import { Level } from './level'
 import { BillboardProps, State } from './model'
+import { Mouse } from './mouse'
 import { physics } from './state'
 import { normalizeAngle } from './utils'
 
@@ -15,7 +16,10 @@ export class Sprite extends Billboard {
   state: State
   declare body: DynamicBody
 
-  constructor(props: BillboardProps, state: State) {
+  constructor(
+    props: BillboardProps,
+    state: State = { keys: {}, mouse: new Mouse() }
+  ) {
     super(props)
     this.state = state
     this.spawn(props.level)
