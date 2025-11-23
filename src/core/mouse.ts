@@ -1,5 +1,5 @@
 import { Vector2 } from 'three'
-import { doubleClickTime, state } from './state'
+import { doubleClickTime, state } from '../state'
 
 export class Mouse extends Vector2 {
   pageX = innerWidth / 2

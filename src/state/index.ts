@@ -1,10 +1,10 @@
 import { groupBits, System } from 'check2d'
 import { FrontSide, Texture } from 'three'
-import { DeviceDetector } from './detect-mobile'
-import { Loader } from './loader'
-import { Direction, GameState, Key } from './model'
-import { Mouse } from './mouse'
-import { queryParams } from './query-params'
+import { Mouse } from '../core/mouse'
+import { Loader } from '../loader'
+import { Direction, GameState, Key } from '../model'
+import { DeviceDetector } from '../utils/detect-mobile'
+import { queryParams } from '../utils/query-params'
 
 export const minLevelHeight = 2
 

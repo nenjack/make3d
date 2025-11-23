@@ -1,8 +1,8 @@
+import { type Mouse } from './core/mouse'
+import { type Renderer } from './core/renderer'
 import { type Level } from './level'
-import { type Mouse } from './mouse'
 import { type NPC } from './view/npc'
 import { type Player } from './view/player'
-import { type Renderer } from './renderer'
 
 export type Direction = 'down' | 'right' | 'up' | 'left'
 

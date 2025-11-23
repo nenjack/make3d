@@ -10,7 +10,7 @@ import { type Level } from '../level'
 import { BaseLevel } from '../level/base-level'
 import { BaseBody, BillboardProps, Direction, DirectionsToRows } from '../model'
 import { directions, floors, state } from '../state'
-import { createMaterial, normalizeAngle } from '../utils'
+import { createMaterial, normalizeAngle } from '../utils/view-utils'
 
 export class Billboard {
   static compensateGroupZ = 0.2

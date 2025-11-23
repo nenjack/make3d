@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 import { CubeDirections } from '../model'
 import { loader as loadingManager, state } from '../state'
-import { mapCubeTextures, pixelate } from '../utils'
+import { mapCubeTextures, pixelate } from '../utils/view-utils'
 
 export type SkyboxProps<T = string> = Record<CubeDirections, T>
 

@@ -8,14 +8,14 @@ import {
   Texture,
   Vector3
 } from 'three'
-import { DeviceDetector } from './detect-mobile'
-import { CubeDirections } from './model'
+import { CubeDirections } from '../model'
 import {
   alphaMaterialProps,
+  loadedTextures,
   loader,
-  Math_Double_PI,
-  loadedTextures
-} from './state'
+  Math_Double_PI
+} from '../state'
+import { DeviceDetector } from './detect-mobile'
 
 export const randomOf = (array: any[]) =>
   array[Math.floor(Math.random() * array.length)]

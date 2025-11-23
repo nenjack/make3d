@@ -1,7 +1,7 @@
 import { Level } from '../level'
 import { BillboardProps, Direction } from '../model'
 import { state } from '../state'
-import { getTextureName, loadTextures } from '../utils'
+import { getTextureName, loadTextures } from '../utils/view-utils'
 import { Sprite } from './sprite'
 
 export interface PlayerProps

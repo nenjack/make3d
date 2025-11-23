@@ -1,7 +1,7 @@
 {
   "name": "make3d",
   "description": "make3d - ddd retro boomer game engine",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./esm/index.js",
@@ -37,7 +37,8 @@
   },
   "files": [
     "dist/*.*",
-    "esm/index.js"
+    "dist/**/*.*",
+    "esm/index.*"
   ],
   "license": "MIT",
   "dependencies": {

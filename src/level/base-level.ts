@@ -1,6 +1,6 @@
 import { Map } from 'rot-js'
 import { floors, maxLevelHeight, minLevelHeight, physics } from '../state'
-import { DeviceDetector } from '../detect-mobile'
+import { DeviceDetector } from '../utils/detect-mobile'
 
 export abstract class BaseLevel {
   static readonly FILL = 0.44

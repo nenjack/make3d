@@ -8,7 +8,7 @@ import {
   Texture,
   Vector3
 } from 'three'
-import { Camera } from '../camera'
+import { Camera } from '../core/camera'
 import { BaseLevel } from '../level/base-level'
 import {
   Math_Half_PI,

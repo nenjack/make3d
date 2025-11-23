@@ -2,9 +2,9 @@ import { Billboard } from './billboard'
 import { DynamicBody } from '../body/dynamic-body'
 import { Level } from '../level'
 import { BillboardProps, State } from '../model'
-import { Mouse } from '../mouse'
+import { Mouse } from '../core/mouse'
 import { physics } from '../state'
-import { normalizeAngle } from '../utils'
+import { normalizeAngle } from '../utils/view-utils'
 
 export class Sprite extends Billboard {
   static readonly MOVE_SPEED = 0.05

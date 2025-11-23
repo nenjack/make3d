@@ -9,14 +9,14 @@ import {
   WebGLRenderer,
   WebGLRendererParameters
 } from 'three'
+import { Level } from '../level'
+import { state } from '../state'
+import { DeviceDetector } from '../utils/detect-mobile'
+import { queryParams } from '../utils/query-params'
+import { Billboard } from '../view/billboard'
+import { Ocean } from '../view/ocean'
+import { Skybox, SkyboxProps } from '../view/skybox'
 import { Camera } from './camera'
-import { DeviceDetector } from './detect-mobile'
-import { Level } from './level'
-import { queryParams } from './query-params'
-import { Skybox, SkyboxProps } from './view/skybox'
-import { state } from './state'
-import { Billboard } from './view/billboard'
-import { Ocean } from './view/ocean'
 
 export interface RendererProps {
   canvas?: HTMLCanvasElement

@@ -1,8 +1,8 @@
 import { Object3D, PerspectiveCamera, Quaternion, Vector3 } from 'three'
-import { DeviceDetector } from './detect-mobile'
-import { Level } from './level'
-import { Math_Half_PI } from './state'
-import { Billboard } from './view/billboard'
+import { Level } from '../level'
+import { Math_Half_PI } from '../state'
+import { DeviceDetector } from '../utils/detect-mobile'
+import { Billboard } from '../view/billboard'
 
 export class Camera extends PerspectiveCamera {
   static readonly DISTANCE = 1.5
