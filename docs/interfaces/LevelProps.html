@@ -87,93 +87,72 @@
           <ul class="tsd-breadcrumb" aria-label="Breadcrumb">
             <li><a href="" aria-current="page">LevelProps</a></li>
           </ul>
-          <h1>Interface LevelProps</h1>
+          <h1>Interface LevelProps&lt;T&gt;</h1>
         </div>
         <div class="tsd-signature">
           <span class="tsd-signature-keyword">interface</span>
-          <span class="tsd-kind-interface">LevelProps</span>
+          <span class="tsd-kind-interface">LevelProps</span
+          ><span class="tsd-signature-symbol">&lt;</span
+          ><a class="tsd-signature-type tsd-kind-type-parameter" href="#t">T</a>
+          <span class="tsd-signature-symbol">=</span>
+          <span class="tsd-signature-type">Texture</span
+          ><span class="tsd-signature-symbol">&gt;</span>
           <span class="tsd-signature-symbol">{</span><br />    <a
             class="tsd-kind-property"
-            href="#cols"
-            >cols</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
+            href="#canvas"
+            >canvas</a
+          ><span class="tsd-signature-symbol">:</span>
+          <span class="tsd-signature-type">HTMLCanvasElement</span
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
-            href="#directionstorows"
-            >directionsToRows</a
+            href="#floor"
+            >floor</a
+          ><span class="tsd-signature-symbol">?:</span>
+          <a class="tsd-signature-type tsd-kind-type-parameter" href="#t">T</a
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#ocean"
+            >ocean</a
+          ><span class="tsd-signature-symbol">?:</span>
+          <a class="tsd-signature-type tsd-kind-type-parameter" href="#t">T</a
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#sides"
+            >sides</a
+          ><span class="tsd-signature-symbol">?:</span>
+          <a class="tsd-signature-type tsd-kind-type-parameter" href="#t">T</a
+          ><span class="tsd-signature-symbol">;</span><br />    <a
+            class="tsd-kind-property"
+            href="#skybox"
+            >skybox</a
           ><span class="tsd-signature-symbol">?:</span>
           <a
-            href="../types/DirectionsToRows.html"
+            href="../types/SkyboxProps.html"
             class="tsd-signature-type tsd-kind-type-alias"
-            >DirectionsToRows</a
+            >SkyboxProps</a
           ><span class="tsd-signature-symbol">;</span><br />    <a
             class="tsd-kind-property"
-            href="#frameduration"
-            >frameDuration</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#rows"
-            >rows</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#scale"
-            >scale</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#scalex"
-            >scaleX</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#scaley"
-            >scaleY</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#texture"
-            >texture</a
+            href="#textures"
+            >textures</a
           ><span class="tsd-signature-symbol">:</span>
-          <span class="tsd-signature-type">string</span
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#totalframes"
-            >totalFrames</a
-          ><span class="tsd-signature-symbol">?:</span>
-          <span class="tsd-signature-type">number</span
+          <span class="tsd-signature-type">Texture</span
+          ><span class="tsd-signature-symbol">&lt;</span
+          ><span class="tsd-signature-type">unknown</span
+          ><span class="tsd-signature-symbol">&gt;</span
+          ><span class="tsd-signature-symbol">[]</span
           ><span class="tsd-signature-symbol">;</span><br /><span
             class="tsd-signature-symbol"
             >}</span
           >
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="1740">
-          <h4>Hierarchy</h4>
-          <ul class="tsd-hierarchy">
-            <li class="tsd-hierarchy-item">
-              <span class="tsd-signature-type">Omit</span
-              ><span class="tsd-signature-symbol">&lt;</span
-              ><a
-                href="MovingSpriteProps.html"
-                class="tsd-signature-type tsd-kind-interface"
-                >MovingSpriteProps</a
-              ><span class="tsd-signature-symbol">,</span>
-              <span class="tsd-signature-type">&quot;level&quot;</span>
-              <span class="tsd-signature-symbol">|</span>
-              <span class="tsd-signature-type">&quot;textureName&quot;</span
-              ><span class="tsd-signature-symbol">&gt;</span>
-              <ul class="tsd-hierarchy">
-                <li class="tsd-hierarchy-item">
-                  <span class="tsd-hierarchy-target">LevelProps</span>
-                </li>
-              </ul>
+        <section class="tsd-panel">
+          <h4>Type Parameters</h4>
+          <ul class="tsd-type-parameter-list">
+            <li>
+              <span id="t"
+                ><span class="tsd-kind-type-parameter">T</span> =
+                <span class="tsd-signature-type">Texture</span></span
+              >
             </li>
           </ul>
         </section>
@@ -182,8 +161,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/player.ts#L22"
-                >src/player.ts:22</a
+                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L12"
+                >src/level.ts:12</a
               >
             </li>
           </ul>
@@ -207,92 +186,59 @@
                 <section class="tsd-index-section">
                   <h3 class="tsd-index-heading">Properties</h3>
                   <div class="tsd-index-list">
-                    <a href="#cols" class="tsd-index-link tsd-is-inherited"
+                    <a href="#canvas" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>cols?</span></a
+                      ><span>canvas</span></a
                     >
-                    <a
-                      href="#directionstorows"
-                      class="tsd-index-link tsd-is-inherited"
+                    <a href="#floor" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>directions<wbr />To<wbr />Rows?</span></a
+                      ><span>floor?</span></a
                     >
-                    <a
-                      href="#frameduration"
-                      class="tsd-index-link tsd-is-inherited"
+                    <a href="#ocean" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>frame<wbr />Duration?</span></a
+                      ><span>ocean?</span></a
                     >
-                    <a href="#rows" class="tsd-index-link tsd-is-inherited"
+                    <a href="#sides" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>rows?</span></a
+                      ><span>sides?</span></a
                     >
-                    <a href="#scale" class="tsd-index-link tsd-is-inherited"
+                    <a href="#skybox" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>scale?</span></a
+                      ><span>skybox?</span></a
                     >
-                    <a href="#scalex" class="tsd-index-link tsd-is-inherited"
+                    <a href="#textures" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>scale<wbr />X?</span></a
-                    >
-                    <a href="#scaley" class="tsd-index-link tsd-is-inherited"
-                      ><svg
-                        class="tsd-kind-icon"
-                        viewBox="0 0 24 24"
-                        aria-label="Property"
-                      >
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>scale<wbr />Y?</span></a
-                    >
-                    <a href="#texture" class="tsd-index-link"
-                      ><svg
-                        class="tsd-kind-icon"
-                        viewBox="0 0 24 24"
-                        aria-label="Property"
-                      >
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>texture</span></a
-                    >
-                    <a
-                      href="#totalframes"
-                      class="tsd-index-link tsd-is-inherited"
-                      ><svg
-                        class="tsd-kind-icon"
-                        viewBox="0 0 24 24"
-                        aria-label="Property"
-                      >
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>total<wbr />Frames?</span></a
+                      ><span>textures</span></a
                     >
                   </div>
                 </section>
@@ -314,44 +260,11 @@
             <h2>Properties</h2>
           </summary>
           <section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="cols">
-                <code class="tsd-tag">Optional</code><span>cols</span
-                ><a href="#cols" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">cols</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#cols"
-                    >cols</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L29"
-                      >src/model.ts:29</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="directionstorows">
-                <code class="tsd-tag">Optional</code
-                ><span>directions<wbr />To<wbr />Rows</span
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="canvas">
+                <span>canvas</span
                 ><a
-                  href="#directionstorows"
+                  href="#canvas"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -359,237 +272,108 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">directionsToRows</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <a
-                  href="../types/DirectionsToRows.html"
-                  class="tsd-signature-type tsd-kind-type-alias"
-                  >DirectionsToRows</a
-                >
+                <span class="tsd-kind-property">canvas</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">HTMLCanvasElement</span>
               </div>
               <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#directionstorows"
-                    >directionsToRows</a
-                  >
-                </p>
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L33"
-                      >src/model.ts:33</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="frameduration">
-                <code class="tsd-tag">Optional</code
-                ><span>frame<wbr />Duration</span
-                ><a
-                  href="#frameduration"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">frameDuration</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#frameduration"
-                    >frameDuration</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L32"
-                      >src/model.ts:32</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="rows">
-                <code class="tsd-tag">Optional</code><span>rows</span
-                ><a href="#rows" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">rows</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#rows"
-                    >rows</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L30"
-                      >src/model.ts:30</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="scale">
-                <code class="tsd-tag">Optional</code><span>scale</span
-                ><a href="#scale" aria-label="Permalink" class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">scale</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#scale"
-                    >scale</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L34"
-                      >src/model.ts:34</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="scalex">
-                <code class="tsd-tag">Optional</code><span>scale<wbr />X</span
-                ><a
-                  href="#scalex"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">scaleX</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#scalex"
-                    >scaleX</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L35"
-                      >src/model.ts:35</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="scaley">
-                <code class="tsd-tag">Optional</code><span>scale<wbr />Y</span
-                ><a
-                  href="#scaley"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">scaleY</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
-              </div>
-              <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#scaley"
-                    >scaleY</a
-                  >
-                </p>
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L36"
-                      >src/model.ts:36</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L14"
+                      >src/level.ts:14</a
                     >
                   </li>
                 </ul>
               </aside>
             </section>
             <section class="tsd-panel tsd-member">
-              <h3 class="tsd-anchor-link" id="texture">
-                <span>texture</span
-                ><a
-                  href="#texture"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
+              <h3 class="tsd-anchor-link" id="floor">
+                <code class="tsd-tag">Optional</code><span>floor</span
+                ><a href="#floor" aria-label="Permalink" class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">texture</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">string</span>
+                <span class="tsd-kind-property">floor</span
+                ><span class="tsd-signature-symbol">?:</span>
+                <a class="tsd-signature-type tsd-kind-type-parameter" href="#t"
+                  >T</a
+                >
               </div>
               <aside class="tsd-sources">
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/player.ts#L24"
-                      >src/player.ts:24</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L15"
+                      >src/level.ts:15</a
                     >
                   </li>
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
-              <h3 class="tsd-anchor-link" id="totalframes">
-                <code class="tsd-tag">Optional</code
-                ><span>total<wbr />Frames</span
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="ocean">
+                <code class="tsd-tag">Optional</code><span>ocean</span
+                ><a href="#ocean" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">ocean</span
+                ><span class="tsd-signature-symbol">?:</span>
+                <a class="tsd-signature-type tsd-kind-type-parameter" href="#t"
+                  >T</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L17"
+                      >src/level.ts:17</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="sides">
+                <code class="tsd-tag">Optional</code><span>sides</span
+                ><a href="#sides" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">sides</span
+                ><span class="tsd-signature-symbol">?:</span>
+                <a class="tsd-signature-type tsd-kind-type-parameter" href="#t"
+                  >T</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L16"
+                      >src/level.ts:16</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="skybox">
+                <code class="tsd-tag">Optional</code><span>skybox</span
                 ><a
-                  href="#totalframes"
+                  href="#skybox"
                   aria-label="Permalink"
                   class="tsd-anchor-icon"
                   ><svg viewBox="0 0 24 24" aria-hidden="true">
@@ -597,24 +381,53 @@
                 ></a>
               </h3>
               <div class="tsd-signature">
-                <span class="tsd-kind-property">totalFrames</span
+                <span class="tsd-kind-property">skybox</span
                 ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">number</span>
+                <a
+                  href="../types/SkyboxProps.html"
+                  class="tsd-signature-type tsd-kind-type-alias"
+                  >SkyboxProps</a
+                >
               </div>
               <aside class="tsd-sources">
-                <p>
-                  Inherited from
-                  <a href="BillboardProps.html">BillboardProps</a>.<a
-                    href="BillboardProps.html#totalframes"
-                    >totalFrames</a
-                  >
-                </p>
                 <ul>
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L31"
-                      >src/model.ts:31</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L18"
+                      >src/level.ts:18</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="textures">
+                <span>textures</span
+                ><a
+                  href="#textures"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">textures</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">Texture</span
+                ><span class="tsd-signature-symbol">&lt;</span
+                ><span class="tsd-signature-type">unknown</span
+                ><span class="tsd-signature-symbol">&gt;</span
+                ><span class="tsd-signature-symbol">[]</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level.ts#L13"
+                      >src/level.ts:13</a
                     >
                   </li>
                 </ul>
@@ -783,78 +596,54 @@
                   >Properties
                 </summary>
                 <div>
-                  <a href="#cols" class="tsd-is-inherited"
+                  <a href="#canvas"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>cols</span></a
-                  ><a href="#directionstorows" class="tsd-is-inherited"
+                    ><span>canvas</span></a
+                  ><a href="#floor"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>directions<wbr />To<wbr />Rows</span></a
-                  ><a href="#frameduration" class="tsd-is-inherited"
+                    ><span>floor</span></a
+                  ><a href="#ocean"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>frame<wbr />Duration</span></a
-                  ><a href="#rows" class="tsd-is-inherited"
+                    ><span>ocean</span></a
+                  ><a href="#sides"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>rows</span></a
-                  ><a href="#scale" class="tsd-is-inherited"
+                    ><span>sides</span></a
+                  ><a href="#skybox"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>scale</span></a
-                  ><a href="#scalex" class="tsd-is-inherited"
+                    ><span>skybox</span></a
+                  ><a href="#textures"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
                       aria-label="Property"
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>scale<wbr />X</span></a
-                  ><a href="#scaley" class="tsd-is-inherited"
-                    ><svg
-                      class="tsd-kind-icon"
-                      viewBox="0 0 24 24"
-                      aria-label="Property"
-                    >
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>scale<wbr />Y</span></a
-                  ><a href="#texture"
-                    ><svg
-                      class="tsd-kind-icon"
-                      viewBox="0 0 24 24"
-                      aria-label="Property"
-                    >
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>texture</span></a
-                  ><a href="#totalframes" class="tsd-is-inherited"
-                    ><svg
-                      class="tsd-kind-icon"
-                      viewBox="0 0 24 24"
-                      aria-label="Property"
-                    >
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>total<wbr />Frames</span></a
+                    ><span>textures</span></a
                   >
                 </div>
               </details>

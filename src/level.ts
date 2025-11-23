@@ -1,85 +1,126 @@
-import { Map } from 'rot-js'
-import { floors, maxLevelHeight, minLevelHeight, physics } from './state'
-import { DeviceDetector } from './detect'
+import { Texture, Vector3 } from 'three'
+import { AbstractLevel } from './abstract-level'
+import { Box } from './box'
+import { Bush, bushProps } from './bush'
+import { Events } from './events'
+import { Renderer } from './renderer'
+import { SkyboxProps } from './skybox'
+import { loadedTextures } from './state'
+import { Tree, treeProps } from './tree'
+import { getMatrix, loadTextures, mapCubeTextures } from './utils'
 
-export class Level {
-  static readonly FILL = 0.44
-  static readonly ITERATIONS = 6
-  static readonly COLS = DeviceDetector.HIGH_END ? 48 : 24
-  static readonly ROWS = DeviceDetector.HIGH_END ? 48 : 24
+export interface LevelProps<T = Texture> {
+  textures: Texture[]
+  canvas: HTMLCanvasElement
+  floor?: T
+  sides?: T
+  ocean?: T
+  skybox?: SkyboxProps
+}
 
-  heights: number[][] = []
+export class Level extends AbstractLevel {
+  static readonly BUSHES_FILL = Level.FILL * 0.9
+  static readonly BUSHES_ITERATIONS = 1
+  static readonly BUSH_CHANCE = 0.25
+  static readonly TREE_CHANCE = 0.1
+  static readonly TREE_HEIGHT_START = 3
 
-  constructor() {
-    this.heights = Array.from({ length: maxLevelHeight + minLevelHeight }, () =>
-      this.createHeights()
-    )
-      .reduce(
-        (arrays, array) =>
-          array.map(
-            (column, x) =>
-              column.map(
-                (value, y) => (arrays[x]?.[y] ?? -minLevelHeight) + value
-              ),
-            []
-          ),
-        []
-      )
-      .map((arrays) => arrays.map((value) => Math.max(0, value)))
+  mesh: Box
+  bushesHeights = this.createHeights(
+    Level.COLS * 2,
+    Level.ROWS * 2,
+    Level.BUSHES_FILL,
+    Level.BUSHES_ITERATIONS
+  )
+  static readonly SIDES = 'sides.webp'
+  static readonly FLOOR = 'floor.webp'
+  static readonly OCEAN = 'ocean.webp'
+
+  static async create(canvas: HTMLCanvasElement): Promise<Level> {
+    const [sides, floor, ocean] = await loadTextures([
+      'sides.webp',
+      'floor.webp',
+      'ocean.webp',
+      `${treeProps.textureName}.webp`,
+      `${bushProps.textureName}.webp`
+    ])
+    const textures = mapCubeTextures({
+      up: floor,
+      down: floor,
+      left: sides,
+      right: sides,
+      front: sides,
+      back: sides
+    })
+    return new Level({ textures, canvas, ocean })
   }
 
-  getXY(col: number, row: number) {
-    return {
-      x: col - Level.COLS / 2,
-      y: row - Level.ROWS / 2
-    }
+  constructor({ textures, canvas, ocean, skybox }: LevelProps) {
+    super()
+    Renderer.create({ canvas, ocean, skybox })
+    Events.addEventListeners()
+    this.mesh = this.createMesh(textures)
   }
 
-  setColliderAt(col: number, row: number, height: number) {
-    const { x, y } = this.getXY(col, row)
-    for (let floor = 0; floor < height; floor++) {
-      physics.createBox({ x, y }, 1, 1, {
-        isStatic: true,
-        group: floors[floor]
-      })
-    }
+  createBoxMesh(textures: Texture[]) {
+    const box = new Box(textures, Level.COLS, Level.ROWS)
+    box.position.set(-Level.COLS / 2, 0, -Level.ROWS / 2)
+    return box
   }
 
-  forEachHeight(
-    heights = this.heights,
-    iterator: (col: number, row: number, height: number) => void
-  ) {
-    heights.forEach((rows: number[], col: number) => {
-      rows.forEach((height: number, row: number) => {
-        if (height) {
-          iterator(col, row, height)
-        }
-      })
+  setLevelMesh(mesh: Box) {
+    this.forEachHeight(this.heights, (col, row, height) => {
+      this.setLevelAt(col, row, height, mesh)
+      this.setColliderAt(col, row, height)
     })
   }
 
-  getFloor(x: number, y: number) {
-    const posX = Math.floor(x + Level.COLS / 2)
-    const posY = Math.floor(y + Level.ROWS / 2)
-
-    return this.heights[posX]?.[posY] || 0
+  createTrees() {
+    if (treeProps.textureName in loadedTextures) {
+      this.forEachHeight(this.heights, (col, row) => {
+        const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
+        if (
+          height >= Level.TREE_HEIGHT_START &&
+          Math.random() < Level.TREE_CHANCE
+        ) {
+          const { x, y } = this.getXY(col, row)
+          new Tree(this, x + 0.5, y + 0.5)
+        }
+      })
+    }
   }
 
-  protected createHeights(
-    cols = Level.COLS,
-    rows = Level.ROWS,
-    fill = Level.FILL,
-    iterations = Level.ITERATIONS
-  ) {
-    const map = new Map.Cellular(cols, rows)
-
-    map.randomize(fill)
-    for (let i = 0; i < iterations; i++) {
-      map.create()
+  createBushes() {
+    if (bushProps.textureName in loadedTextures) {
+      this.forEachHeight(this.bushesHeights, (col, row, chance) => {
+        const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
+        if (
+          height &&
+          Math.sqrt(chance * height) < Level.TREE_HEIGHT_START &&
+          Math.random() < Level.BUSH_CHANCE
+        ) {
+          const x = col / 2 - Level.COLS / 2 + 0.25
+          const y = row / 2 - Level.ROWS / 2 + 0.25
+          new Bush(this, x, y)
+        }
+      })
     }
+  }
 
-    const { _map: heights } = map
+  createMesh(textures: Texture[]) {
+    const mesh = this.createBoxMesh(textures)
+    this.setLevelMesh(mesh)
+    this.createTrees()
+    // this.createBushes()
+    return mesh
+  }
 
-    return heights
+  setLevelAt(col: number, row: number, height: number, mesh: Box) {
+    const matrix = getMatrix(
+      new Vector3(col, height / 4 - 0.75, row),
+      new Vector3(1, height / 2, 1)
+    )
+
+    mesh.setMatrixAt(row * Level.ROWS + col, matrix)
   }
 }

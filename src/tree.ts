@@ -1,13 +1,13 @@
+import { Billboard } from './billboard'
 import { Level } from './level'
-import { Sprite } from './sprite'
 
 export const treeProps = {
   textureName: 'tree',
   scale: 3
 }
 
-export class Tree extends Sprite {
+export class Tree extends Billboard {
   constructor(level: Level, x?: number, y?: number) {
-    super(treeProps, level, x, y)
+    super({ ...treeProps, level, x, y })
   }
 }

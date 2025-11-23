@@ -1,9 +1,8 @@
 import { Level } from './level'
-import { Direction } from './model'
-import { MovingSprite, MovingSpriteProps } from './moving-sprite'
+import { BillboardProps, Direction } from './model'
+import { Sprite } from './sprite'
 import { state } from './state'
 import { getTextureName, loadTextures } from './utils'
-import { ViewLevel } from './view-level'
 
 export const playerProps = {
   textureName: 'player',
@@ -19,39 +18,35 @@ export const playerProps = {
   }
 }
 
-export interface LevelProps
-  extends Omit<MovingSpriteProps, 'level' | 'textureName'> {
+export interface PlayerProps
+  extends Omit<BillboardProps, 'level' | 'textureName'> {
   texture: string
 }
 
-export class Player extends MovingSprite {
+export class Player extends Sprite {
   static readonly DIRECTIONS: Direction[] = ['left', 'right', 'down', 'up']
 
-  readonly isPlayer = true
-  readonly state = state
-
-  /**
-   *
-   * @param {Level} level
-   * @param {LevelProps} props
-   * @returns
-   */
   static async create(
     level: Level,
-    { texture, ...props }: LevelProps = { texture: 'player.webp' }
+    { texture, ...props }: PlayerProps = { texture: 'player.webp' }
   ) {
     await loadTextures([texture])
     const textureName = getTextureName(texture)
     return new Player({ level, textureName, ...props })
   }
 
-  constructor({ level, ...props }: MovingSpriteProps) {
+  readonly isPlayer = true
+  readonly state = state
+
+  constructor({ level, ...props }: BillboardProps) {
     super({ level, ...playerProps, ...props }, state)
 
-    if (level instanceof ViewLevel) {
+    if (level instanceof Level) {
       state.renderer.camera.ready({ level, ref: this })
       state.renderer.scene.add(level.mesh)
     }
+
+    state.player = this
   }
 
   update(ms: number) {

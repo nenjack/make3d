@@ -9,8 +9,7 @@
 ## demo
 
 ```ts
-import { CubeLevel, Player, state } from './make3d/index.js'
-CubeLevel.create(canvas).then(async (level) => {
-  state.player = await Player.create(level)
-})
+import { CubeLevel, Player } from './make3d/index.js'
+
+CubeLevel.create().then(Player.create)
 ```

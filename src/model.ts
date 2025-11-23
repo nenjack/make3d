@@ -1,3 +1,4 @@
+import { type Level } from './level'
 import { type Mouse } from './mouse'
 import { type NPC } from './npc'
 import { type Player } from './player'
@@ -26,6 +27,9 @@ export interface GameState extends State {
 
 export interface BillboardProps {
   textureName: string
+  level: Level
+  x?: number
+  y?: number
   cols?: number
   rows?: number
   totalFrames?: number

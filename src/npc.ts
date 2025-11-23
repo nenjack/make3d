@@ -1,7 +1,7 @@
-import { Level } from './level'
-import { MovingSprite } from './moving-sprite'
+import { AbstractLevel } from './abstract-level'
+import { Sprite } from './sprite'
 
-export class NPC extends MovingSprite {
+export class NPC extends Sprite {
   static readonly MAX_SPEED = 0
   static readonly MAX_ROTATION = 100
   static readonly JUMP_CHANCE = 0.001
@@ -17,7 +17,7 @@ export class NPC extends MovingSprite {
 
     const dx = this.mesh.position.x
     const dy = this.mesh.position.z
-    const radius = (Level.COLS + Level.ROWS) / 2
+    const radius = (AbstractLevel.COLS + AbstractLevel.ROWS) / 2
     const diff = Math.sqrt(dx * dx + dy * dy) - radius
 
     if (diff > 0 && Math.random() < diff / radius) {

@@ -8,11 +8,13 @@ import {
   Texture,
   Vector3
 } from 'three'
+import { AbstractLevel } from './abstract-level'
 import { Camera } from './camera'
-import { Level } from './level'
 import { Math_Half_PI, alphaMaterialProps, materialProps, state } from './state'
 
 export class Ocean {
+  static readonly COLS = AbstractLevel.COLS
+  static readonly ROWS = AbstractLevel.ROWS
   static readonly DEEP_WATER_Z = -0.25
   static readonly SHALLOW_WATER = {
     opacity: 0.5,
@@ -33,8 +35,8 @@ export class Ocean {
 
   constructor(texture: Texture, repeat = 1.1) {
     this.repeat = repeat
-    this.cols = Level.COLS * repeat
-    this.rows = Level.ROWS * repeat
+    this.cols = Ocean.COLS * repeat
+    this.rows = Ocean.ROWS * repeat
 
     texture.wrapS = RepeatWrapping
     texture.wrapT = RepeatWrapping

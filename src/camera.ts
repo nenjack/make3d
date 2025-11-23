@@ -3,7 +3,6 @@ import { DeviceDetector } from './detect'
 import { Level } from './level'
 import { Player } from './player'
 import { Math_Half_PI } from './state'
-import { ViewLevel } from './view-level'
 
 export class Camera extends PerspectiveCamera {
   static readonly DISTANCE = 1.5
@@ -25,7 +24,7 @@ export class Camera extends PerspectiveCamera {
     super(fov, innerWidth / innerHeight, near, far)
   }
 
-  ready({ level, ref }: { level: ViewLevel; ref: Player }) {
+  ready({ level, ref }: { level: Level; ref: Player }) {
     this.setLevel(level)
     this.setRef(ref)
     this.update()

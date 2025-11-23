@@ -13,12 +13,9 @@
     </style>
   </head>
   <body>
-    <canvas id="canvas" />
     <script type="module">
-      import { CubeLevel, Player, state } from './make3d/index.js'
-      CubeLevel.create(canvas).then(async (level) => {
-        state.player = await Player.create(level)
-      })
+      import { Level, Player } from './make3d/index.js'
+      Level.create().then(Player.create)
     </script>
   </body>
 </html>

@@ -89,7 +89,7 @@
           </ul>
           <h1>Class Sprite</h1>
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="2122">
+        <section class="tsd-panel tsd-hierarchy" data-refl="1654">
           <h4>
             Hierarchy (<a href="../hierarchy.html#Sprite">View Summary</a>)
           </h4>
@@ -104,16 +104,16 @@
                   <ul class="tsd-hierarchy">
                     <li class="tsd-hierarchy-item">
                       <a
-                        href="Bush.html"
+                        href="Player.html"
                         class="tsd-signature-type tsd-kind-class"
-                        >Bush</a
+                        >Player</a
                       >
                     </li>
                     <li class="tsd-hierarchy-item">
                       <a
-                        href="Tree.html"
+                        href="NPC.html"
                         class="tsd-signature-type tsd-kind-class"
-                        >Tree</a
+                        >NPC</a
                       >
                     </li>
                   </ul>
@@ -127,8 +127,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L5"
-                >src/sprite.ts:5</a
+                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L8"
+                >src/sprite.ts:8</a
               >
             </li>
           </ul>
@@ -177,7 +177,7 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>_<wbr />z</span></a
                     >
-                    <a href="#body" class="tsd-index-link tsd-is-inherited"
+                    <a href="#body" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -320,6 +320,15 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>scale<wbr />Y</span></a
                     >
+                    <a href="#state" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>state</span></a
+                    >
                     <a
                       href="#totalframes"
                       class="tsd-index-link tsd-is-inherited"
@@ -330,6 +339,15 @@
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>total<wbr />Frames</span></a
+                    >
+                    <a href="#velocity" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>velocity</span></a
                     >
                     <a
                       href="#billboards"
@@ -352,6 +370,42 @@
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>compensate<wbr />Group<wbr />Z</span></a
+                    >
+                    <a href="#gravity" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>GRAVITY</span></a
+                    >
+                    <a href="#jump_speed" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>JUMP_<wbr />SPEED</span></a
+                    >
+                    <a href="#move_speed" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>MOVE_<wbr />SPEED</span></a
+                    >
+                    <a href="#rotate_speed" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>ROTATE_<wbr />SPEED</span></a
                     >
                     <a
                       href="#tempvector"
@@ -396,7 +450,7 @@
                   <div class="tsd-index-list">
                     <a
                       href="#createbody"
-                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      class="tsd-index-link tsd-is-protected"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -438,6 +492,15 @@
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>get<wbr />Floor<wbr />Z</span></a
                     >
+                    <a href="#getmousegear" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>get<wbr />Mouse<wbr />Gear</span></a
+                    >
                     <a
                       href="#getrow"
                       class="tsd-index-link tsd-is-protected tsd-is-inherited"
@@ -461,8 +524,28 @@
                       ><span>get<wbr />Screen<wbr />Position</span></a
                     >
                     <a
-                      href="#spawn"
-                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      href="#handleframeupdate"
+                      class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>handle<wbr />Frame<wbr />Update</span></a
+                    >
+                    <a
+                      href="#processmovement"
+                      class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>process<wbr />Movement</span></a
+                    >
+                    <a href="#spawn" class="tsd-index-link tsd-is-protected"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -471,7 +554,7 @@
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>spawn</span></a
                     >
-                    <a href="#update" class="tsd-index-link tsd-is-inherited"
+                    <a href="#update" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -479,6 +562,28 @@
                       >
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>update</span></a
+                    >
+                    <a
+                      href="#updateangle"
+                      class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Angle</span></a
+                    >
+                    <a
+                      href="#updateframe"
+                      class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Frame</span></a
                     >
                     <a
                       href="#updategroup"
@@ -493,7 +598,7 @@
                     >
                     <a
                       href="#updatetexture"
-                      class="tsd-index-link tsd-is-protected tsd-is-inherited"
+                      class="tsd-index-link tsd-is-protected"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -501,6 +606,15 @@
                       >
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>update<wbr />Texture</span></a
+                    >
+                    <a href="#updatez" class="tsd-index-link tsd-is-protected"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Method"
+                      >
+                        <use href="../assets/icons.svg#icon-2048"></use></svg
+                      ><span>update<wbr />Z</span></a
                     >
                   </div>
                 </section>
@@ -552,20 +666,12 @@
                       class="tsd-signature-type tsd-kind-interface"
                       >BillboardProps</a
                     ><span class="tsd-signature-symbol">,</span>
-                    <span class="tsd-kind-parameter">level</span
+                    <span class="tsd-kind-parameter">state</span
                     ><span class="tsd-signature-symbol">:</span>
                     <a
-                      href="Level.html"
-                      class="tsd-signature-type tsd-kind-class"
-                      >Level</a
-                    ><span class="tsd-signature-symbol">,</span>
-                    <span class="tsd-kind-parameter">x</span
-                    ><span class="tsd-signature-symbol">?:</span>
-                    <span class="tsd-signature-type">number</span
-                    ><span class="tsd-signature-symbol">,</span>
-                    <span class="tsd-kind-parameter">y</span
-                    ><span class="tsd-signature-symbol">?:</span>
-                    <span class="tsd-signature-type">number</span
+                      href="../interfaces/State.html"
+                      class="tsd-signature-type tsd-kind-interface"
+                      >State</a
                     ><span class="tsd-signature-symbol">)</span
                     ><span class="tsd-signature-symbol">:</span>
                     <a href="" class="tsd-signature-type tsd-kind-class"
@@ -594,26 +700,12 @@
                         </li>
                         <li>
                           <span
-                            ><span class="tsd-kind-parameter">level</span>:
+                            ><span class="tsd-kind-parameter">state</span>:
                             <a
-                              href="Level.html"
-                              class="tsd-signature-type tsd-kind-class"
-                              >Level</a
+                              href="../interfaces/State.html"
+                              class="tsd-signature-type tsd-kind-interface"
+                              >State</a
                             ></span
-                          >
-                        </li>
-                        <li>
-                          <span
-                            ><code class="tsd-tag">Optional</code
-                            ><span class="tsd-kind-parameter">x</span>:
-                            <span class="tsd-signature-type">number</span></span
-                          >
-                        </li>
-                        <li>
-                          <span
-                            ><code class="tsd-tag">Optional</code
-                            ><span class="tsd-kind-parameter">y</span>:
-                            <span class="tsd-signature-type">number</span></span
                           >
                         </li>
                       </ul>
@@ -635,8 +727,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L6"
-                            >src/sprite.ts:6</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L18"
+                            >src/sprite.ts:18</a
                           >
                         </li>
                       </ul>
@@ -688,14 +780,14 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L47"
-                      >src/billboard.ts:47</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L48"
+                      >src/billboard.ts:48</a
                     >
                   </li>
                 </ul>
               </aside>
             </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
+            <section class="tsd-panel tsd-member">
               <h3 class="tsd-anchor-link" id="body">
                 <span>body</span
                 ><a href="#body" aria-label="Permalink" class="tsd-anchor-icon"
@@ -707,14 +799,14 @@
                 <span class="tsd-kind-property">body</span
                 ><span class="tsd-signature-symbol">:</span>
                 <a
-                  href="../interfaces/BodyLike.html"
-                  class="tsd-signature-type tsd-kind-interface"
-                  >BodyLike</a
+                  href="DynamicBody.html"
+                  class="tsd-signature-type tsd-kind-class"
+                  >DynamicBody</a
                 >
               </div>
               <aside class="tsd-sources">
                 <p>
-                  Inherited from <a href="Billboard.html">Billboard</a>.<a
+                  Overrides <a href="Billboard.html">Billboard</a>.<a
                     href="Billboard.html#body"
                     >body</a
                   >
@@ -723,8 +815,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L25"
-                      >src/billboard.ts:25</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L16"
+                      >src/sprite.ts:16</a
                     >
                   </li>
                 </ul>
@@ -757,8 +849,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L33"
-                      >src/billboard.ts:33</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L34"
+                      >src/billboard.ts:34</a
                     >
                   </li>
                 </ul>
@@ -788,8 +880,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L26"
-                      >src/billboard.ts:26</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L27"
+                      >src/billboard.ts:27</a
                     >
                   </li>
                 </ul>
@@ -826,8 +918,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L22"
-                      >src/billboard.ts:22</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L23"
+                      >src/billboard.ts:23</a
                     >
                   </li>
                 </ul>
@@ -864,8 +956,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L23"
-                      >src/billboard.ts:23</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L24"
+                      >src/billboard.ts:24</a
                     >
                   </li>
                 </ul>
@@ -896,8 +988,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L21"
-                      >src/billboard.ts:21</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L22"
+                      >src/billboard.ts:22</a
                     >
                   </li>
                 </ul>
@@ -930,8 +1022,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L29"
-                      >src/billboard.ts:29</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L30"
+                      >src/billboard.ts:30</a
                     >
                   </li>
                 </ul>
@@ -964,8 +1056,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L30"
-                      >src/billboard.ts:30</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L31"
+                      >src/billboard.ts:31</a
                     >
                   </li>
                 </ul>
@@ -998,8 +1090,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L32"
-                      >src/billboard.ts:32</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L33"
+                      >src/billboard.ts:33</a
                     >
                   </li>
                 </ul>
@@ -1032,8 +1124,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L31"
-                      >src/billboard.ts:31</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L32"
+                      >src/billboard.ts:32</a
                     >
                   </li>
                 </ul>
@@ -1065,8 +1157,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L36"
-                      >src/billboard.ts:36</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L37"
+                      >src/billboard.ts:37</a
                     >
                   </li>
                 </ul>
@@ -1128,8 +1220,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L24"
-                      >src/billboard.ts:24</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L25"
+                      >src/billboard.ts:25</a
                     >
                   </li>
                 </ul>
@@ -1159,8 +1251,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L27"
-                      >src/billboard.ts:27</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L28"
+                      >src/billboard.ts:28</a
                     >
                   </li>
                 </ul>
@@ -1193,8 +1285,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L34"
-                      >src/billboard.ts:34</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L35"
+                      >src/billboard.ts:35</a
                     >
                   </li>
                 </ul>
@@ -1227,8 +1319,37 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L35"
-                      >src/billboard.ts:35</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L36"
+                      >src/billboard.ts:36</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="state">
+                <span>state</span
+                ><a href="#state" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">state</span
+                ><span class="tsd-signature-symbol">:</span>
+                <a
+                  href="../interfaces/State.html"
+                  class="tsd-signature-type tsd-kind-interface"
+                  >State</a
+                >
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L15"
+                      >src/sprite.ts:15</a
                     >
                   </li>
                 </ul>
@@ -1261,8 +1382,37 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L28"
-                      >src/billboard.ts:28</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L29"
+                      >src/billboard.ts:29</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="velocity">
+                <span>velocity</span
+                ><a
+                  href="#velocity"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">velocity</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol"> = 0</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L14"
+                      >src/sprite.ts:14</a
                     >
                   </li>
                 </ul>
@@ -1300,8 +1450,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L15"
-                      >src/billboard.ts:15</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L16"
+                      >src/billboard.ts:16</a
                     >
                   </li>
                 </ul>
@@ -1336,8 +1486,127 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L16"
-                      >src/billboard.ts:16</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L17"
+                      >src/billboard.ts:17</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="gravity">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code><span>GRAVITY</span
+                ><a
+                  href="#gravity"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">GRAVITY</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">0.005</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L11"
+                      >src/sprite.ts:11</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="jump_speed">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code
+                ><span>JUMP_<wbr />SPEED</span
+                ><a
+                  href="#jump_speed"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">JUMP_SPEED</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">0.075</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L12"
+                      >src/sprite.ts:12</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="move_speed">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code
+                ><span>MOVE_<wbr />SPEED</span
+                ><a
+                  href="#move_speed"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">MOVE_SPEED</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">0.05</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L9"
+                      >src/sprite.ts:9</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="rotate_speed">
+                <code class="tsd-tag">Static</code>
+                <code class="tsd-tag">Readonly</code
+                ><span>ROTATE_<wbr />SPEED</span
+                ><a
+                  href="#rotate_speed"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">ROTATE_SPEED</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">3</span>
+              </div>
+              <aside class="tsd-sources">
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L10"
+                      >src/sprite.ts:10</a
                     >
                   </li>
                 </ul>
@@ -1374,8 +1643,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L18"
-                      >src/billboard.ts:18</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L19"
+                      >src/billboard.ts:19</a
                     >
                   </li>
                 </ul>
@@ -1413,8 +1682,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L19"
-                      >src/billboard.ts:19</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L20"
+                      >src/billboard.ts:20</a
                     >
                   </li>
                 </ul>
@@ -1463,8 +1732,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L38"
-                            >src/billboard.ts:38</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L39"
+                            >src/billboard.ts:39</a
                           >
                         </li>
                       </ul>
@@ -1504,8 +1773,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L42"
-                            >src/billboard.ts:42</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L43"
+                            >src/billboard.ts:43</a
                           >
                         </li>
                       </ul>
@@ -1530,9 +1799,7 @@
             <h2>Methods</h2>
           </summary>
           <section>
-            <section
-              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
-            >
+            <section class="tsd-panel tsd-member tsd-is-protected">
               <h3 class="tsd-anchor-link" id="createbody">
                 <code class="tsd-tag">Protected</code
                 ><span>create<wbr />Body</span
@@ -1544,8 +1811,8 @@
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
-              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
-                <li class="tsd-is-inherited">
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
                   <div class="tsd-signature tsd-anchor-link" id="createbody-1">
                     <span class="tsd-kind-call-signature">createBody</span
                     ><span class="tsd-signature-symbol">(</span
@@ -1559,9 +1826,9 @@
                     ><span class="tsd-signature-symbol">)</span
                     ><span class="tsd-signature-symbol">:</span>
                     <a
-                      href="StaticBody.html"
+                      href="DynamicBody.html"
                       class="tsd-signature-type tsd-kind-class"
-                      >StaticBody</a
+                      >DynamicBody</a
                     ><a
                       href="#createbody-1"
                       aria-label="Permalink"
@@ -1591,14 +1858,14 @@
                     <h4 class="tsd-returns-title">
                       Returns
                       <a
-                        href="StaticBody.html"
+                        href="DynamicBody.html"
                         class="tsd-signature-type tsd-kind-class"
-                        >StaticBody</a
+                        >DynamicBody</a
                       >
                     </h4>
                     <aside class="tsd-sources">
                       <p>
-                        Inherited from <a href="Billboard.html">Billboard</a>.<a
+                        Overrides <a href="Billboard.html">Billboard</a>.<a
                           href="Billboard.html#createbody"
                           >createBody</a
                         >
@@ -1607,8 +1874,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L114"
-                            >src/billboard.ts:114</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L127"
+                            >src/sprite.ts:127</a
                           >
                         </li>
                       </ul>
@@ -1680,8 +1947,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L91"
-                            >src/billboard.ts:91</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L105"
+                            >src/billboard.ts:105</a
                           >
                         </li>
                       </ul>
@@ -1745,8 +2012,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L151"
-                            >src/billboard.ts:151</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L165"
+                            >src/billboard.ts:165</a
                           >
                         </li>
                       </ul>
@@ -1825,8 +2092,56 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L129"
-                            >src/billboard.ts:129</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L143"
+                            >src/billboard.ts:143</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="getmousegear">
+                <span>get<wbr />Mouse<wbr />Gear</span
+                ><a
+                  href="#getmousegear"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures">
+                <li class="">
+                  <div
+                    class="tsd-signature tsd-anchor-link"
+                    id="getmousegear-1"
+                  >
+                    <span class="tsd-kind-call-signature">getMouseGear</span
+                    ><span class="tsd-signature-symbol">()</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><a
+                      href="#getmousegear-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">number</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L36"
+                            >src/sprite.ts:36</a
                           >
                         </li>
                       </ul>
@@ -1900,8 +2215,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L160"
-                            >src/billboard.ts:160</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L174"
+                            >src/billboard.ts:174</a
                           >
                         </li>
                       </ul>
@@ -1971,8 +2286,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L87"
-                            >src/billboard.ts:87</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L101"
+                            >src/billboard.ts:101</a
                           >
                         </li>
                       </ul>
@@ -1981,9 +2296,156 @@
                 </li>
               </ul>
             </section>
-            <section
-              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
-            >
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <h3 class="tsd-anchor-link" id="handleframeupdate">
+                <code class="tsd-tag">Protected</code
+                ><span>handle<wbr />Frame<wbr />Update</span
+                ><a
+                  href="#handleframeupdate"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div
+                    class="tsd-signature tsd-anchor-link"
+                    id="handleframeupdate-1"
+                  >
+                    <span class="tsd-kind-call-signature"
+                      >handleFrameUpdate</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">ms</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">,</span>
+                    <span class="tsd-kind-parameter">mouseGear</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#handleframeupdate-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">ms</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">mouseGear</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L59"
+                            >src/sprite.ts:59</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <h3 class="tsd-anchor-link" id="processmovement">
+                <code class="tsd-tag">Protected</code
+                ><span>process<wbr />Movement</span
+                ><a
+                  href="#processmovement"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div
+                    class="tsd-signature tsd-anchor-link"
+                    id="processmovement-1"
+                  >
+                    <span class="tsd-kind-call-signature">processMovement</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">deltaTime</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">,</span>
+                    <span class="tsd-kind-parameter">moveSpeed</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#processmovement-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">deltaTime</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">moveSpeed</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L48"
+                            >src/sprite.ts:48</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
               <h3 class="tsd-anchor-link" id="spawn">
                 <code class="tsd-tag">Protected</code><span>spawn</span
                 ><a href="#spawn" aria-label="Permalink" class="tsd-anchor-icon"
@@ -1991,8 +2453,8 @@
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
-              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
-                <li class="tsd-is-inherited">
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
                   <div class="tsd-signature tsd-anchor-link" id="spawn-1">
                     <span class="tsd-kind-call-signature">spawn</span
                     ><span class="tsd-signature-symbol">(</span
@@ -2037,20 +2499,16 @@
                         </li>
                         <li>
                           <span
+                            ><code class="tsd-tag">Optional</code
                             ><span class="tsd-kind-parameter">x</span>:
-                            <span class="tsd-signature-type">number</span
-                            ><span class="tsd-signature-symbol">
-                              = ...</span
-                            ></span
+                            <span class="tsd-signature-type">number</span></span
                           >
                         </li>
                         <li>
                           <span
+                            ><code class="tsd-tag">Optional</code
                             ><span class="tsd-kind-parameter">y</span>:
-                            <span class="tsd-signature-type">number</span
-                            ><span class="tsd-signature-symbol">
-                              = ...</span
-                            ></span
+                            <span class="tsd-signature-type">number</span></span
                           >
                         </li>
                       </ul>
@@ -2060,7 +2518,7 @@
                     </h4>
                     <aside class="tsd-sources">
                       <p>
-                        Inherited from <a href="Billboard.html">Billboard</a>.<a
+                        Overrides <a href="Billboard.html">Billboard</a>.<a
                           href="Billboard.html#spawn"
                           >spawn</a
                         >
@@ -2069,8 +2527,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L118"
-                            >src/billboard.ts:118</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L133"
+                            >src/sprite.ts:133</a
                           >
                         </li>
                       </ul>
@@ -2079,7 +2537,7 @@
                 </li>
               </ul>
             </section>
-            <section class="tsd-panel tsd-member tsd-is-inherited">
+            <section class="tsd-panel tsd-member">
               <h3 class="tsd-anchor-link" id="update">
                 <span>update</span
                 ><a
@@ -2090,12 +2548,12 @@
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
-              <ul class="tsd-signatures tsd-is-inherited">
-                <li class="tsd-is-inherited">
+              <ul class="tsd-signatures">
+                <li class="">
                   <div class="tsd-signature tsd-anchor-link" id="update-1">
                     <span class="tsd-kind-call-signature">update</span
                     ><span class="tsd-signature-symbol">(</span
-                    ><span class="tsd-kind-parameter">_ms</span
+                    ><span class="tsd-kind-parameter">ms</span
                     ><span class="tsd-signature-symbol">:</span>
                     <span class="tsd-signature-type">number</span
                     ><span class="tsd-signature-symbol">)</span
@@ -2115,7 +2573,7 @@
                       <ul class="tsd-parameter-list">
                         <li>
                           <span
-                            ><span class="tsd-kind-parameter">_ms</span>:
+                            ><span class="tsd-kind-parameter">ms</span>:
                             <span class="tsd-signature-type">number</span></span
                           >
                         </li>
@@ -2126,7 +2584,7 @@
                     </h4>
                     <aside class="tsd-sources">
                       <p>
-                        Inherited from <a href="Billboard.html">Billboard</a>.<a
+                        Overrides <a href="Billboard.html">Billboard</a>.<a
                           href="Billboard.html#update"
                           >update</a
                         >
@@ -2135,8 +2593,130 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L69"
-                            >src/billboard.ts:69</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L24"
+                            >src/sprite.ts:24</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <h3 class="tsd-anchor-link" id="updateangle">
+                <code class="tsd-tag">Protected</code
+                ><span>update<wbr />Angle</span
+                ><a
+                  href="#updateangle"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div class="tsd-signature tsd-anchor-link" id="updateangle-1">
+                    <span class="tsd-kind-call-signature">updateAngle</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">deltaTime</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#updateangle-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">deltaTime</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L83"
+                            >src/sprite.ts:83</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <h3 class="tsd-anchor-link" id="updateframe">
+                <code class="tsd-tag">Protected</code
+                ><span>update<wbr />Frame</span
+                ><a
+                  href="#updateframe"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div class="tsd-signature tsd-anchor-link" id="updateframe-1">
+                    <span class="tsd-kind-call-signature">updateFrame</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">ms</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#updateframe-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">ms</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L101"
+                            >src/sprite.ts:101</a
                           >
                         </li>
                       </ul>
@@ -2189,8 +2769,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L109"
-                            >src/billboard.ts:109</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L123"
+                            >src/billboard.ts:123</a
                           >
                         </li>
                       </ul>
@@ -2199,9 +2779,7 @@
                 </li>
               </ul>
             </section>
-            <section
-              class="tsd-panel tsd-member tsd-is-protected tsd-is-inherited"
-            >
+            <section class="tsd-panel tsd-member tsd-is-protected">
               <h3 class="tsd-anchor-link" id="updatetexture">
                 <code class="tsd-tag">Protected</code
                 ><span>update<wbr />Texture</span
@@ -2213,8 +2791,8 @@
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
-              <ul class="tsd-signatures tsd-is-protected tsd-is-inherited">
-                <li class="tsd-is-inherited">
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
                   <div
                     class="tsd-signature tsd-anchor-link"
                     id="updatetexture-1"
@@ -2237,7 +2815,7 @@
                     </h4>
                     <aside class="tsd-sources">
                       <p>
-                        Inherited from <a href="Billboard.html">Billboard</a>.<a
+                        Overrides <a href="Billboard.html">Billboard</a>.<a
                           href="Billboard.html#updatetexture"
                           >updateTexture</a
                         >
@@ -2246,8 +2824,68 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/billboard.ts#L133"
-                            >src/billboard.ts:133</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L105"
+                            >src/sprite.ts:105</a
+                          >
+                        </li>
+                      </ul>
+                    </aside>
+                  </div>
+                </li>
+              </ul>
+            </section>
+            <section class="tsd-panel tsd-member tsd-is-protected">
+              <h3 class="tsd-anchor-link" id="updatez">
+                <code class="tsd-tag">Protected</code><span>update<wbr />Z</span
+                ><a
+                  href="#updatez"
+                  aria-label="Permalink"
+                  class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <ul class="tsd-signatures tsd-is-protected">
+                <li class="">
+                  <div class="tsd-signature tsd-anchor-link" id="updatez-1">
+                    <span class="tsd-kind-call-signature">updateZ</span
+                    ><span class="tsd-signature-symbol">(</span
+                    ><span class="tsd-kind-parameter">timeScale</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">number</span
+                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <span class="tsd-signature-type">void</span
+                    ><a
+                      href="#updatez-1"
+                      aria-label="Permalink"
+                      class="tsd-anchor-icon"
+                      ><svg viewBox="0 0 24 24" aria-hidden="true">
+                        <use href="../assets/icons.svg#icon-anchor"></use></svg
+                    ></a>
+                  </div>
+                  <div class="tsd-description">
+                    <div class="tsd-parameters">
+                      <h4 class="tsd-parameters-title">Parameters</h4>
+                      <ul class="tsd-parameter-list">
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">timeScale</span>:
+                            <span class="tsd-signature-type">number</span></span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                    <h4 class="tsd-returns-title">
+                      Returns <span class="tsd-signature-type">void</span>
+                    </h4>
+                    <aside class="tsd-sources">
+                      <ul>
+                        <li>
+                          Defined in
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/sprite.ts#L65"
+                            >src/sprite.ts:65</a
                           >
                         </li>
                       </ul>
@@ -2454,7 +3092,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>_<wbr />z</span></a
-                  ><a href="#body" class="tsd-is-inherited"
+                  ><a href="#body"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -2574,6 +3212,14 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>scale<wbr />Y</span></a
+                  ><a href="#state"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>state</span></a
                   ><a href="#totalframes" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
@@ -2582,6 +3228,14 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>total<wbr />Frames</span></a
+                  ><a href="#velocity"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>velocity</span></a
                   ><a href="#billboards" class="tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
@@ -2598,6 +3252,38 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>compensate<wbr />Group<wbr />Z</span></a
+                  ><a href="#gravity"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>GRAVITY</span></a
+                  ><a href="#jump_speed"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>JUMP_<wbr />SPEED</span></a
+                  ><a href="#move_speed"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>MOVE_<wbr />SPEED</span></a
+                  ><a href="#rotate_speed"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>ROTATE_<wbr />SPEED</span></a
                   ><a
                     href="#tempvector"
                     class="tsd-is-protected tsd-is-inherited"
@@ -2664,9 +3350,7 @@
                   >Methods
                 </summary>
                 <div>
-                  <a
-                    href="#createbody"
-                    class="tsd-is-protected tsd-is-inherited"
+                  <a href="#createbody" class="tsd-is-protected"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -2702,6 +3386,14 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>get<wbr />Floor<wbr />Z</span></a
+                  ><a href="#getmousegear"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>get<wbr />Mouse<wbr />Gear</span></a
                   ><a href="#getrow" class="tsd-is-protected tsd-is-inherited"
                     ><svg
                       class="tsd-kind-icon"
@@ -2718,7 +3410,23 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>get<wbr />Screen<wbr />Position</span></a
-                  ><a href="#spawn" class="tsd-is-protected tsd-is-inherited"
+                  ><a href="#handleframeupdate" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>handle<wbr />Frame<wbr />Update</span></a
+                  ><a href="#processmovement" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>process<wbr />Movement</span></a
+                  ><a href="#spawn" class="tsd-is-protected"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -2726,7 +3434,7 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>spawn</span></a
-                  ><a href="#update" class="tsd-is-inherited"
+                  ><a href="#update"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -2734,6 +3442,22 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>update</span></a
+                  ><a href="#updateangle" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Angle</span></a
+                  ><a href="#updateframe" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Frame</span></a
                   ><a
                     href="#updategroup"
                     class="tsd-is-protected tsd-is-inherited"
@@ -2744,9 +3468,7 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>update<wbr />Group</span></a
-                  ><a
-                    href="#updatetexture"
-                    class="tsd-is-protected tsd-is-inherited"
+                  ><a href="#updatetexture" class="tsd-is-protected"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -2754,6 +3476,14 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>update<wbr />Texture</span></a
+                  ><a href="#updatez" class="tsd-is-protected"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Method"
+                    >
+                      <use href="../assets/icons.svg#icon-2048"></use></svg
+                    ><span>update<wbr />Z</span></a
                   >
                 </div>
               </details>

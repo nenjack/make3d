@@ -4,6 +4,7 @@ import {
   Fog,
   LinearSRGBColorSpace,
   Scene,
+  Texture,
   WebGLRenderer,
   WebGLRendererParameters
 } from 'three'
@@ -12,13 +13,13 @@ import { Camera } from './camera'
 import { DeviceDetector } from './detect'
 import { Ocean } from './ocean'
 import { queryParams } from './query-params'
-import { Skybox } from './skybox'
+import { Skybox, SkyboxProps } from './skybox'
 import { state } from './state'
 
 export interface RendererProps {
   canvas: HTMLCanvasElement
-  ocean?: () => Ocean
-  skybox?: () => Skybox
+  ocean?: Texture
+  skybox?: SkyboxProps
 }
 
 export class Renderer extends WebGLRenderer {
@@ -29,12 +30,12 @@ export class Renderer extends WebGLRenderer {
       state.renderer = new Renderer(canvas)
     }
 
-    if (!state.renderer.ocean) {
-      state.renderer.ocean = ocean?.()
+    if (!state.renderer.ocean && ocean) {
+      state.renderer.ocean = new Ocean(ocean)
     }
 
-    if (!state.renderer.skybox) {
-      state.renderer.skybox = skybox?.()
+    if (!state.renderer.skybox && skybox) {
+      state.renderer.skybox = new Skybox(skybox)
     }
 
     return state.renderer

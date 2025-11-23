@@ -5,8 +5,9 @@ import {
   PlaneGeometry,
   Vector3
 } from 'three'
+import { AbstractLevel } from './abstract-level'
 import { BodyLike, StaticBody } from './billboard-body'
-import { Level } from './level'
+import { type Level } from './level'
 import { BillboardProps, Direction, DirectionsToRows } from './model'
 import { directions, floors, state } from './state'
 import { createMaterial, normalizeAngle } from './utils'
@@ -46,31 +47,44 @@ export class Billboard {
 
   protected _z = 0
 
-  constructor(props: BillboardProps) {
-    this.cols = props.cols || 1
-    this.rows = props.rows || 1
-    this.frameDuration = props.frameDuration || 120
+  constructor({
+    level,
+    x,
+    y,
+    scaleX,
+    scaleY,
+    cols = 1,
+    rows = 1,
+    totalFrames = 1,
+    scale = 1,
+    frameDuration = 120,
+    textureName,
+    ...props
+  }: BillboardProps) {
+    this.cols = cols
+    this.rows = rows
     this.invCols = 1 / this.cols
     this.invRows = 1 / this.rows
+    this.frameDuration = frameDuration || 120
     this.invFrameDuration = 1 / this.frameDuration
-    this.totalFrames = props.totalFrames || 1
+    this.totalFrames = totalFrames || 1
     this.directionsToRows = props.directionsToRows || { default: 0 }
 
-    const scale = props.scale || 1
-    this.scaleX = (props.scaleX || scale) / 2
-    this.scaleY = (props.scaleY || scale) / 2
-    this.centerOffset = -0.2 + this.scaleY / 3 // this.scale / 4;
-    this.mesh = this.createMesh(props.textureName)
+    this.scaleX = (scaleX || scale) / 2
+    this.scaleY = (scaleY || scale) / 2
+    this.centerOffset = -0.2 + this.scaleY / 3
+    this.mesh = this.createMesh(textureName)
 
     state.renderer.scene.add(this.mesh)
     Billboard.billboards.push(this)
+
+    this.spawn(level, x, y)
   }
 
   update(_ms: number): void {
     this.direction = this.getDirection()
 
     this.mesh.position.set(this.body.x, this.z + this.centerOffset, this.body.y)
-
     this.mesh.lookAt(
       Billboard.tempVector.set(
         state.renderer.camera.position.x,
@@ -117,8 +131,8 @@ export class Billboard {
 
   protected spawn(
     level: Level,
-    x = (Math.random() - 0.5) * (Level.COLS * 0.5),
-    y = (Math.random() - 0.5) * (Level.ROWS * 0.5)
+    x = (Math.random() - 0.5) * (AbstractLevel.COLS * 0.5),
+    y = (Math.random() - 0.5) * (AbstractLevel.ROWS * 0.5)
   ) {
     this.body = this.createBody(x, y)
     this.level = level

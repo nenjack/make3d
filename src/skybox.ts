@@ -4,14 +4,12 @@ import { mapCubeTextures, pixelate } from './utils'
 import { CubeDirections } from './model'
 
 /**
- * {
- *   up: 'skybox/posz.webp',
- *   down: 'skybox/negz.webp',
- *   left: 'skybox/negx.webp',
- *   right: 'skybox/posx.webp',
- *   front: 'skybox/posy.webp',
- *   back: 'skybox/negy.webp'
- * }
+ * up: 'skybox/posz.webp',
+ * down: 'skybox/negz.webp',
+ * left: 'skybox/negx.webp',
+ * right: 'skybox/posx.webp',
+ * front: 'skybox/posy.webp',
+ * back: 'skybox/negy.webp'
  */
 export type SkyboxProps<T = string> = Record<CubeDirections, T>
 
