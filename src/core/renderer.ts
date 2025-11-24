@@ -10,7 +10,6 @@ import {
   WebGLRendererParameters
 } from 'three'
 import { state } from '../state'
-import { DeviceDetector } from '../utils/detect-mobile'
 import { queryParams } from '../utils/query-params'
 import { Ocean } from '../view/ocean'
 import { Skybox, SkyboxProps } from '../view/skybox'
@@ -59,8 +58,8 @@ export class Renderer extends WebGLRenderer {
 
   constructor(canvas?: HTMLCanvasElement) {
     const props: WebGLRendererParameters = {
-      antialias: DeviceDetector.HIGH_END,
-      powerPreference: 'high-performance' as const
+      powerPreference: 'high-performance',
+      antialias: true
     }
 
     if (canvas) {

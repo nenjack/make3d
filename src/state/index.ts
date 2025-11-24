@@ -55,9 +55,9 @@ export const Math_Half_PI = Math.PI * 0.5
 
 export const Math_Double_PI = Math.PI * 2
 
-export const defaultEnemiesCount =
+export const defaultNPCsCount =
   'limit' in queryParams
     ? Number(queryParams.limit)
     : DeviceDetector.HIGH_END
       ? 64
-      : 16
+      : 24

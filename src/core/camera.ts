@@ -6,7 +6,7 @@ import { Billboard } from '../view/billboard'
 
 export class Camera extends PerspectiveCamera {
   static readonly DISTANCE = 1.5
-  static readonly FAR = DeviceDetector.HIGH_END ? 32 : 24
+  static readonly FAR = DeviceDetector.HIGH_END ? 32 : 16
 
   protected static readonly HEIGHT = 0.75
   protected static readonly LERP_RATIO = 0.0033
