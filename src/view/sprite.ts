@@ -1,10 +1,10 @@
-import { Billboard } from './billboard'
 import { DynamicBody } from '../body/dynamic-body'
-import { Level } from '../level'
-import { BillboardProps, State } from '../model'
 import { Mouse } from '../core/mouse'
+import { Level } from '../level'
+import { BillboardProps, SpriteState } from '../model'
 import { physics } from '../state'
 import { normalizeAngle } from '../utils/view-utils'
+import { Billboard } from './billboard'
 
 export class Sprite extends Billboard {
   protected static readonly MOVE_SPEED = 0.05
@@ -15,11 +15,11 @@ export class Sprite extends Billboard {
   body: DynamicBody
 
   protected velocity = 0
-  protected state: State
+  protected state: SpriteState
 
   constructor(
     props: BillboardProps,
-    state: State = { keys: {}, mouse: new Mouse() }
+    state: SpriteState = { keys: {}, mouse: new Mouse() }
   ) {
     super(props)
     this.state = state

@@ -2,14 +2,14 @@ import { groupBits, System } from 'check2d'
 import { FrontSide, Texture } from 'three'
 import { Mouse } from '../core/mouse'
 import { Loader } from '../loader'
-import { Direction, GameState, Key } from '../model'
+import { AppState, Direction, Key } from '../model'
 import { DeviceDetector } from '../utils/detect-mobile'
 import { queryParams } from '../utils/query-params'
 
-export const minLevelHeight = 2
+export const minLevelHeight = DeviceDetector.HIGH_END ? 2 : 1
 
 export const maxLevelHeight =
-  'height' in queryParams ? Number(queryParams.height) : 10
+  'height' in queryParams ? Number(queryParams.height) : 8
 
 export const waterZ = 0.5
 
@@ -30,12 +30,11 @@ export const floors = Array.from(
   (_: unknown, power) => groupBits(128 * Math.pow(2, power))
 )
 
-export const state: GameState = {
+export const state: AppState = {
   keys,
   mouse,
-  started: false,
-  renderer: null as any,
-  player: null as any,
+  renderer: null,
+  player: null,
   npcs: []
 }
 

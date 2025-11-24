@@ -49,6 +49,8 @@ export class Ocean {
     this.mesh.add(this.createShallowWater(texture))
 
     this.onResize()
+    window.addEventListener('resize', () => this.onResize())
+
     state.renderer.add(this)
   }
 

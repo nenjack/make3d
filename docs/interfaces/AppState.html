@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="IE=edge" />
-    <title>GameState | make3d</title>
+    <title>AppState | make3d</title>
     <meta name="description" content="Documentation for make3d" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="../assets/style.css" />
@@ -85,13 +85,13 @@
       <div class="col-content">
         <div class="tsd-page-title">
           <ul class="tsd-breadcrumb" aria-label="Breadcrumb">
-            <li><a href="" aria-current="page">GameState</a></li>
+            <li><a href="" aria-current="page">AppState</a></li>
           </ul>
-          <h1>Interface GameState</h1>
+          <h1>Interface AppState</h1>
         </div>
         <div class="tsd-signature">
           <span class="tsd-signature-keyword">interface</span>
-          <span class="tsd-kind-interface">GameState</span>
+          <span class="tsd-kind-interface">AppState</span>
           <span class="tsd-signature-symbol">{</span><br />    <a
             class="tsd-kind-property"
             href="#keys"
@@ -146,12 +146,6 @@
             href="../classes/Renderer.html"
             class="tsd-signature-type tsd-kind-class"
             >Renderer</a
-          ><span class="tsd-signature-symbol">;</span><br />    <a
-            class="tsd-kind-property"
-            href="#started"
-            >started</a
-          ><span class="tsd-signature-symbol">:</span>
-          <span class="tsd-signature-type">boolean</span
           ><span class="tsd-signature-symbol">;</span><br />    <span
             class="tsd-signature-symbol"
             >[</span
@@ -165,18 +159,20 @@
             >}</span
           >
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="911">
+        <section class="tsd-panel tsd-hierarchy" data-refl="907">
           <h4>
-            Hierarchy (<a href="../hierarchy.html#GameState">View Summary</a>)
+            Hierarchy (<a href="../hierarchy.html#AppState">View Summary</a>)
           </h4>
           <ul class="tsd-hierarchy">
             <li class="tsd-hierarchy-item">
-              <a href="State.html" class="tsd-signature-type tsd-kind-interface"
-                >State</a
+              <a
+                href="SpriteState.html"
+                class="tsd-signature-type tsd-kind-interface"
+                >SpriteState</a
               >
               <ul class="tsd-hierarchy">
                 <li class="tsd-hierarchy-item">
-                  <span class="tsd-hierarchy-target">GameState</span>
+                  <span class="tsd-hierarchy-target">AppState</span>
                 </li>
               </ul>
             </li>
@@ -280,15 +276,6 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>renderer</span></a
                     >
-                    <a href="#started" class="tsd-index-link"
-                      ><svg
-                        class="tsd-kind-icon"
-                        viewBox="0 0 24 24"
-                        aria-label="Property"
-                      >
-                        <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>started</span></a
-                    >
                   </div>
                 </section>
               </div>
@@ -329,8 +316,8 @@
               </div>
               <aside class="tsd-sources">
                 <p>
-                  Inherited from <a href="State.html">State</a>.<a
-                    href="State.html#keys"
+                  Inherited from <a href="SpriteState.html">SpriteState</a>.<a
+                    href="SpriteState.html#keys"
                     >keys</a
                   >
                 </p>
@@ -364,8 +351,8 @@
               </div>
               <aside class="tsd-sources">
                 <p>
-                  Inherited from <a href="State.html">State</a>.<a
-                    href="State.html#mouse"
+                  Inherited from <a href="SpriteState.html">SpriteState</a>.<a
+                    href="SpriteState.html#mouse"
                     >mouse</a
                   >
                 </p>
@@ -399,8 +386,8 @@
               </div>
               <aside class="tsd-sources">
                 <p>
-                  Inherited from <a href="State.html">State</a>.<a
-                    href="State.html#mousedown"
+                  Inherited from <a href="SpriteState.html">SpriteState</a>.<a
+                    href="SpriteState.html#mousedown"
                     >mouseDown</a
                   >
                 </p>
@@ -437,8 +424,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L26"
-                      >src/model.ts:26</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L25"
+                      >src/model.ts:25</a
                     >
                   </li>
                 </ul>
@@ -469,8 +456,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L25"
-                      >src/model.ts:25</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L24"
+                      >src/model.ts:24</a
                     >
                   </li>
                 </ul>
@@ -495,34 +482,6 @@
                   class="tsd-signature-type tsd-kind-class"
                   >Renderer</a
                 >
-              </div>
-              <aside class="tsd-sources">
-                <ul>
-                  <li>
-                    Defined in
-                    <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/model.ts#L24"
-                      >src/model.ts:24</a
-                    >
-                  </li>
-                </ul>
-              </aside>
-            </section>
-            <section class="tsd-panel tsd-member">
-              <h3 class="tsd-anchor-link" id="started">
-                <span>started</span
-                ><a
-                  href="#started"
-                  aria-label="Permalink"
-                  class="tsd-anchor-icon"
-                  ><svg viewBox="0 0 24 24" aria-hidden="true">
-                    <use href="../assets/icons.svg#icon-anchor"></use></svg
-                ></a>
-              </h3>
-              <div class="tsd-signature">
-                <span class="tsd-kind-property">started</span
-                ><span class="tsd-signature-symbol">:</span>
-                <span class="tsd-signature-type">boolean</span>
               </div>
               <aside class="tsd-sources">
                 <ul>
@@ -747,14 +706,6 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>renderer</span></a
-                  ><a href="#started"
-                    ><svg
-                      class="tsd-kind-icon"
-                      viewBox="0 0 24 24"
-                      aria-label="Property"
-                    >
-                      <use href="../assets/icons.svg#icon-1024"></use></svg
-                    ><span>started</span></a
                   >
                 </div>
               </details>

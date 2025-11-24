@@ -1,5 +1,4 @@
 import { Texture, Vector3 } from 'three'
-import { BoxMesh } from './box-mesh'
 import { Renderer } from '../core/renderer'
 import { Events } from '../events'
 import { loadedTextures } from '../state'
@@ -8,14 +7,16 @@ import { Bush } from '../view/bush'
 import { SkyboxProps } from '../view/skybox'
 import { Tree } from '../view/tree'
 import { BaseLevel } from './base-level'
+import { BoxMesh } from './box-mesh'
 
-export interface LevelProps<T = Texture> {
+export type LevelPropsKeys = 'ocean' | 'floor' | 'sides'
+
+export type LevelCreateProps<T = string> = Partial<Record<LevelPropsKeys, T>>
+
+export interface LevelProps<T = Texture> extends LevelCreateProps<T> {
   textures: Texture[]
   canvas?: HTMLCanvasElement
   skybox?: SkyboxProps
-  ocean?: T
-  floor?: T
-  sides?: T
 }
 
 export class Level extends BaseLevel {
@@ -25,26 +26,39 @@ export class Level extends BaseLevel {
   protected static readonly SIDES = 'sides.webp'
   protected static readonly FLOOR = 'floor.webp'
   protected static readonly OCEAN = 'ocean.webp'
-  protected static readonly BUSHES_FILL = Level.FILL * 0.9
-  protected static readonly BUSHES_ITERATIONS = 1
-  protected static readonly BUSH_CHANCE = 0.25
-  protected static readonly TREE_CHANCE = 0.1
-  protected static readonly TREE_HEIGHT_START = 3
+  protected static readonly TREE_FILL = 0.3
+  protected static readonly TREE_CHANCE = 0.3
+  protected static readonly TREE_HEIGHT_START = 1
+  protected static readonly TREE_ITERATIONS = 2
+  protected static readonly BUSH_FILL = 0.35
+  protected static readonly BUSH_CHANCE = 0.6
+  protected static readonly BUSH_HEIGHT_START = 0
+  protected static readonly BUSH_ITERATIONS = 1
 
   mesh: BoxMesh
+
+  protected readonly treeHeights = this.createHeights(
+    Level.COLS,
+    Level.ROWS,
+    Level.TREE_FILL,
+    Level.TREE_ITERATIONS
+  )
 
   protected readonly bushesHeights = this.createHeights(
     Level.COLS * 2,
     Level.ROWS * 2,
-    Level.BUSHES_FILL,
-    Level.BUSHES_ITERATIONS
+    Level.BUSH_FILL,
+    Level.BUSH_ITERATIONS
   )
 
-  static async create(canvas?: HTMLCanvasElement): Promise<Level> {
+  static async create(
+    canvas?: HTMLCanvasElement,
+    props?: LevelCreateProps
+  ): Promise<Level> {
     const [sides, floor, ocean] = await loadTextures([
-      'sides.webp',
-      'floor.webp',
-      'ocean.webp',
+      props?.sides || 'sides.webp',
+      props?.floor || 'floor.webp',
+      props?.ocean || 'ocean.webp',
       `${Level.TREE_TEXTURE}.webp`,
       `${Level.BUSH_TEXTURE}.webp`
     ])
@@ -82,10 +96,10 @@ export class Level extends BaseLevel {
 
   protected createTrees() {
     if (Level.TREE_TEXTURE in loadedTextures) {
-      this.forEachHeight(this.heights, (col, row) => {
-        const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
+      this.forEachHeight(this.treeHeights, (col, row) => {
+        const height = this.treeHeights[col][row]
         if (
-          height >= Level.TREE_HEIGHT_START &&
+          height > Level.TREE_HEIGHT_START &&
           Math.random() < Level.TREE_CHANCE
         ) {
           const { x, y } = this.getXY(col, row)
@@ -97,11 +111,10 @@ export class Level extends BaseLevel {
 
   protected createBushes() {
     if (Level.BUSH_TEXTURE in loadedTextures) {
-      this.forEachHeight(this.bushesHeights, (col, row, chance) => {
+      this.forEachHeight(this.bushesHeights, (col, row) => {
         const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
         if (
-          height &&
-          Math.sqrt(chance * height) < Level.TREE_HEIGHT_START &&
+          height > Level.BUSH_HEIGHT_START &&
           Math.random() < Level.BUSH_CHANCE
         ) {
           const x = col / 2 - Level.COLS / 2 + 0.25

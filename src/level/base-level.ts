@@ -6,26 +6,26 @@ export abstract class BaseLevel {
   static readonly COLS = DeviceDetector.HIGH_END ? 48 : 24
   static readonly ROWS = DeviceDetector.HIGH_END ? 48 : 24
 
-  protected static readonly FILL = 0.44
-  protected static readonly ITERATIONS = 6
+  static heightReducer(input: number[][], heights: number[][]) {
+    return heights.map(
+      (column: number[], x: number) =>
+        column.map(
+          (value, y) => (input[x]?.[y] ?? BaseLevel.BASE_HEIGHT) + value
+        ),
+      []
+    )
+  }
+
+  protected static readonly FILL = 0.5
+  protected static readonly ITERATIONS = 4
+  protected static readonly BASE_HEIGHT = -minLevelHeight * 2
 
   protected readonly heights: number[][] = []
 
   constructor() {
-    this.heights = Array.from({ length: maxLevelHeight + minLevelHeight }, () =>
-      this.createHeights()
-    )
-      .reduce(
-        (arrays, array) =>
-          array.map(
-            (column, x) =>
-              column.map(
-                (value, y) => (arrays[x]?.[y] ?? -minLevelHeight) + value
-              ),
-            []
-          ),
-        []
-      )
+    const length = maxLevelHeight + minLevelHeight
+    this.heights = Array.from({ length }, () => this.createHeights())
+      .reduce(BaseLevel.heightReducer, [])
       .map((arrays) => arrays.map((value) => Math.max(0, value)))
   }
 

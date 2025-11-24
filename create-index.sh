@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd src
-echo '' > index.ts
+rm index.ts
 for f in $(find . -name '*.ts'); do
     if [[ "$f" == "./index.ts" ]]; then
         continue

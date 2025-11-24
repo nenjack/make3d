@@ -9,12 +9,12 @@ import {
   WebGLRenderer,
   WebGLRendererParameters
 } from 'three'
+import { SetProps } from '../model'
 import { state } from '../state'
 import { queryParams } from '../utils/query-params'
 import { Ocean } from '../view/ocean'
 import { Skybox, SkyboxProps } from '../view/skybox'
 import { Camera } from './camera'
-import { SetProps } from '../model'
 
 export interface RendererProps {
   canvas?: HTMLCanvasElement
@@ -37,7 +37,6 @@ export class Renderer extends WebGLRenderer {
   skybox?: Skybox
 
   protected readonly children: RendererChild[] = []
-  protected readonly animations: Array<(time: number) => void> = []
   protected now = Date.now()
 
   static create({ canvas, ocean, skybox }: RendererProps): Renderer {
@@ -69,26 +68,21 @@ export class Renderer extends WebGLRenderer {
     super(props)
     this.outputColorSpace = LinearSRGBColorSpace
     this.scene.background = new Color(Renderer.backgroundColor)
-    this.createFog()
-    this.onResize()
-
-    window.addEventListener('resize', () => this.onResize())
 
     if ('fps' in queryParams) {
       this.stats = new Stats(this)
-    }
-
-    const animationFrame = () => this.animation()
-    if ('debug' in queryParams) {
-      setInterval(animationFrame, 40)
-    } else {
-      this.setAnimationLoop(animationFrame)
     }
 
     this.domElement.classList.add('make3d')
     if (!this.domElement.parentElement) {
       document.body.appendChild(this.domElement)
     }
+
+    this.createFog()
+    this.setAnimationLoop(this.animation.bind(this))
+
+    this.onResize()
+    window.addEventListener('resize', () => this.onResize())
   }
 
   add(child: RendererChild) {
@@ -96,10 +90,9 @@ export class Renderer extends WebGLRenderer {
   }
 
   onResize() {
-    setTimeout(() => {
+    requestAnimationFrame(() => {
       this.setSize(innerWidth, innerHeight)
       this.camera.onResize(innerWidth, innerHeight)
-      this.ocean?.onResize()
       this.render(this.scene, this.camera)
     })
   }
@@ -119,16 +112,11 @@ export class Renderer extends WebGLRenderer {
     const ms = Math.min(50, now - this.now) // max 3 frame lag allowed = 20 fps
     if (!ms) return
 
-    this.animations.forEach((animation) => {
-      animation(ms)
-    })
-
     this.children.forEach((child) => {
       child.update(ms)
     })
 
     this.camera.update(ms)
-    this.ocean?.update(ms)
     this.now = now
 
     this.render(this.scene, this.camera)

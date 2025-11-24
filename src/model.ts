@@ -13,14 +13,13 @@ export type Key = Direction | 'space'
 
 export type CubeDirections = Direction | 'front' | 'back'
 
-export interface State extends Record<string, any> {
+export interface SpriteState extends Record<string, any> {
   keys: Record<string, boolean>
   mouse: Mouse
   mouseDown?: boolean
 }
 
-export interface GameState extends State {
-  started: boolean
+export interface AppState extends SpriteState {
   renderer: Renderer
   player: Player
   npcs: NPC[]
