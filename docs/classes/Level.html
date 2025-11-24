@@ -532,6 +532,10 @@
                       href="../interfaces/LevelProps.html"
                       class="tsd-signature-type tsd-kind-interface"
                       >LevelProps</a
+                    ><span class="tsd-signature-symbol">,</span>
+                    <span class="tsd-kind-parameter">setLevel</span
+                    ><span class="tsd-signature-symbol">?:</span>
+                    <span class="tsd-signature-type">boolean</span
                     ><span class="tsd-signature-symbol">)</span
                     ><span class="tsd-signature-symbol">:</span>
                     <a href="" class="tsd-signature-type tsd-kind-class"
@@ -560,6 +564,15 @@
                             ></span
                           >
                         </li>
+                        <li>
+                          <span
+                            ><span class="tsd-kind-parameter">setLevel</span>:
+                            <span class="tsd-signature-type">boolean</span
+                            ><span class="tsd-signature-symbol">
+                              = true</span
+                            ></span
+                          >
+                        </li>
                       </ul>
                     </div>
                     <h4 class="tsd-returns-title">
@@ -579,8 +592,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L62"
-                            >src/level/index.ts:62</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L66"
+                            >src/level/index.ts:66</a
                           >
                         </li>
                       </ul>
@@ -1303,8 +1316,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L69"
-                            >src/level/index.ts:69</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L81"
+                            >src/level/index.ts:81</a
                           >
                         </li>
                       </ul>
@@ -1352,8 +1365,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L105"
-                            >src/level/index.ts:105</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L117"
+                            >src/level/index.ts:117</a
                           >
                         </li>
                       </ul>
@@ -1553,8 +1566,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L75"
-                            >src/level/index.ts:75</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L87"
+                            >src/level/index.ts:87</a
                           >
                         </li>
                       </ul>
@@ -1599,8 +1612,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L83"
-                            >src/level/index.ts:83</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L95"
+                            >src/level/index.ts:95</a
                           >
                         </li>
                       </ul>
@@ -2077,8 +2090,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L136"
-                            >src/level/index.ts:136</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L148"
+                            >src/level/index.ts:148</a
                           >
                         </li>
                       </ul>
@@ -2148,8 +2161,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L129"
-                            >src/level/index.ts:129</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/level/index.ts#L141"
+                            >src/level/index.ts:141</a
                           >
                         </li>
                       </ul>
@@ -2173,18 +2186,25 @@
                 <li class="">
                   <div class="tsd-signature tsd-anchor-link" id="create-1">
                     <span class="tsd-kind-call-signature">create</span
-                    ><span class="tsd-signature-symbol">(</span
-                    ><span class="tsd-kind-parameter">canvas</span
+                    ><span class="tsd-signature-symbol">(</span><br />    <span
+                      class="tsd-kind-parameter"
+                      >canvas</span
                     ><span class="tsd-signature-symbol">?:</span>
                     <span class="tsd-signature-type">HTMLCanvasElement</span
-                    ><span class="tsd-signature-symbol">,</span>
-                    <span class="tsd-kind-parameter">props</span
+                    ><span class="tsd-signature-symbol">,</span><br />    <span
+                      class="tsd-kind-parameter"
+                      >__namedParameters</span
                     ><span class="tsd-signature-symbol">?:</span>
                     <a
                       href="../types/LevelCreateProps.html"
                       class="tsd-signature-type tsd-kind-type-alias"
                       >LevelCreateProps</a
-                    ><span class="tsd-signature-symbol">)</span
+                    ><span class="tsd-signature-symbol">&lt;</span
+                    ><span class="tsd-signature-type">string</span
+                    ><span class="tsd-signature-symbol">&gt;</span
+                    ><span class="tsd-signature-symbol">,</span><br /><span
+                      class="tsd-signature-symbol"
+                      >)</span
                     ><span class="tsd-signature-symbol">:</span>
                     <span class="tsd-signature-type">Promise</span
                     ><span class="tsd-signature-symbol">&lt;</span
@@ -2214,12 +2234,18 @@
                         </li>
                         <li>
                           <span
-                            ><code class="tsd-tag">Optional</code
-                            ><span class="tsd-kind-parameter">props</span>:
+                            ><span class="tsd-kind-parameter"
+                              >__namedParameters</span
+                            >:
                             <a
                               href="../types/LevelCreateProps.html"
                               class="tsd-signature-type tsd-kind-type-alias"
                               >LevelCreateProps</a
+                            ><span class="tsd-signature-symbol">&lt;</span
+                            ><span class="tsd-signature-type">string</span
+                            ><span class="tsd-signature-symbol">&gt;</span
+                            ><span class="tsd-signature-symbol">
+                              = {}</span
                             ></span
                           >
                         </li>

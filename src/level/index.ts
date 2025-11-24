@@ -1,7 +1,7 @@
 import { Texture, Vector3 } from 'three'
 import { Renderer } from '../core/renderer'
 import { Events } from '../events'
-import { loadedTextures } from '../state'
+import { loadedTextures, state } from '../state'
 import { getMatrix, loadTextures, mapCubeTextures } from '../utils/view-utils'
 import { Bush } from '../view/bush'
 import { SkyboxProps } from '../view/skybox'
@@ -9,7 +9,7 @@ import { Tree } from '../view/tree'
 import { BaseLevel } from './base-level'
 import { BoxMesh } from './box-mesh'
 
-export type LevelPropsKeys = 'ocean' | 'floor' | 'sides'
+export type LevelPropsKeys = 'ocean' | 'floor' | 'sides' | 'tree' | 'bush'
 
 export type LevelCreateProps<T = string> = Partial<Record<LevelPropsKeys, T>>
 
@@ -39,31 +39,43 @@ export class Level extends BaseLevel {
 
   static async create(
     canvas?: HTMLCanvasElement,
-    props?: LevelCreateProps
+    {
+      sides: sidesUrl = 'sides.webp',
+      floor: floorUrl = 'floor.webp',
+      ocean: oceanUrl = 'ocean.webp',
+      tree = `${Level.TREE_TEXTURE}.webp`,
+      bush = `${Level.BUSH_TEXTURE}.webp`
+    }: LevelCreateProps<string> = {}
   ): Promise<Level> {
-    const [sides, floor, ocean] = await loadTextures([
-      props?.sides || 'sides.webp',
-      props?.floor || 'floor.webp',
-      props?.ocean || 'ocean.webp',
-      `${Level.TREE_TEXTURE}.webp`,
-      `${Level.BUSH_TEXTURE}.webp`
-    ])
-    const textures = mapCubeTextures({
-      up: floor,
-      down: floor,
-      left: sides,
-      right: sides,
-      front: sides,
-      back: sides
+    const texturesToLoad = [sidesUrl, floorUrl, oceanUrl, tree, bush]
+    const [sides, floor, ocean] = await loadTextures(texturesToLoad)
+    return new Level({
+      canvas,
+      ocean,
+      textures: mapCubeTextures({
+        up: floor,
+        down: floor,
+        left: sides,
+        right: sides,
+        front: sides,
+        back: sides
+      })
     })
-    return new Level({ textures, canvas, ocean })
   }
 
-  constructor({ textures, canvas, ocean, skybox }: LevelProps) {
-    super()
+  constructor(
+    { textures, canvas, ocean, skybox }: LevelProps,
+    setLevel = true
+  ) {
     Renderer.create({ canvas, ocean, skybox })
     Events.addEventListeners()
+
+    super()
     this.mesh = this.createMesh(textures)
+
+    if (setLevel) {
+      state.renderer.setLevel(this)
+    }
   }
 
   protected createBoxMesh(textures: Texture[]) {

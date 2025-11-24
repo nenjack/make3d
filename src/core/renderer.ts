@@ -97,14 +97,16 @@ export class Renderer extends WebGLRenderer {
     })
   }
 
-  set({ level, target }: SetProps) {
-    this.scene.clear()
-    this.scene.add(level.mesh)
+  setTarget(target: SetProps['target']) {
+    this.camera.setTarget(target)
     this.children.forEach((child) => {
       this.scene.add(child.mesh)
     })
+  }
 
-    this.camera.set({ level, target })
+  setLevel(level: SetProps['level']) {
+    this.camera.setLevel(level)
+    this.scene.add(level.mesh)
   }
 
   protected animation() {

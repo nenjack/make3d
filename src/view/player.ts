@@ -37,11 +37,13 @@ export class Player extends Sprite {
 
   readonly state: SpriteState
 
-  constructor({ level, ...props }: BillboardProps) {
+  constructor({ level, ...props }: BillboardProps, setTarget = true) {
     super({ ...Player.DEFAULT_PROPS, level, ...props }, state)
 
-    state.player = this
-    state.renderer.set({ level, target: this })
+    if (setTarget) {
+      state.player = this
+      state.renderer.setTarget(this)
+    }
   }
 
   update(ms: number) {

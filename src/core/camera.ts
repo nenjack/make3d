@@ -67,9 +67,12 @@ export class Camera extends PerspectiveCamera {
     return { x: screenX, y: screenY }
   }
 
-  set({ level, target }) {
-    this.setLevelFloor(level)
-    this.setTarget(target)
+  setLevel(level: Level) {
+    this.getFloor = (x, y) => level.getFloor(x, y)
+  }
+
+  setTarget(target: Billboard) {
+    this.target = target
   }
 
   protected getFloor(_x: number, _y: number) {
@@ -106,13 +109,5 @@ export class Camera extends PerspectiveCamera {
     const quaternion = this.target.mesh.quaternion
 
     return { position, lookAt, quaternion }
-  }
-
-  protected setLevelFloor(level: Level) {
-    this.getFloor = (x, y) => level.getFloor(x, y)
-  }
-
-  protected setTarget(target: Billboard) {
-    this.target = target
   }
 }
