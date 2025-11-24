@@ -26,13 +26,13 @@ export class Level extends BaseLevel {
   protected static readonly SIDES = 'sides.webp'
   protected static readonly FLOOR = 'floor.webp'
   protected static readonly OCEAN = 'ocean.webp'
-  protected static readonly TREE_FILL = 0.3
-  protected static readonly TREE_CHANCE = 0.3
-  protected static readonly TREE_HEIGHT_START = 1
+  protected static readonly TREE_FILL = 0.5
+  protected static readonly TREE_CHANCE = 0.25
+  protected static readonly TREE_HEIGHT_START = 2
   protected static readonly TREE_ITERATIONS = 2
   protected static readonly BUSH_FILL = 0.35
   protected static readonly BUSH_CHANCE = 0.6
-  protected static readonly BUSH_HEIGHT_START = 0
+  protected static readonly BUSH_HEIGHT_START = 1
   protected static readonly BUSH_ITERATIONS = 1
 
   mesh: BoxMesh
@@ -96,10 +96,11 @@ export class Level extends BaseLevel {
 
   protected createTrees() {
     if (Level.TREE_TEXTURE in loadedTextures) {
-      this.forEachHeight(this.treeHeights, (col, row) => {
-        const height = this.treeHeights[col][row]
+      this.forEachHeight(this.heights, (col, row, height) => {
+        const allow = this.treeHeights[col][row]
         if (
-          height > Level.TREE_HEIGHT_START &&
+          allow &&
+          height >= Level.TREE_HEIGHT_START &&
           Math.random() < Level.TREE_CHANCE
         ) {
           const { x, y } = this.getXY(col, row)
@@ -111,10 +112,11 @@ export class Level extends BaseLevel {
 
   protected createBushes() {
     if (Level.BUSH_TEXTURE in loadedTextures) {
-      this.forEachHeight(this.bushesHeights, (col, row) => {
+      this.forEachHeight(this.bushesHeights, (col, row, allow) => {
         const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
         if (
-          height > Level.BUSH_HEIGHT_START &&
+          allow &&
+          height >= Level.BUSH_HEIGHT_START &&
           Math.random() < Level.BUSH_CHANCE
         ) {
           const x = col / 2 - Level.COLS / 2 + 0.25

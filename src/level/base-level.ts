@@ -9,16 +9,13 @@ export abstract class BaseLevel {
   static heightReducer(input: number[][], heights: number[][]) {
     return heights.map(
       (column: number[], x: number) =>
-        column.map(
-          (value, y) => (input[x]?.[y] ?? BaseLevel.BASE_HEIGHT) + value
-        ),
+        column.map((value, y) => (input[x]?.[y] ?? -minLevelHeight) + value),
       []
     )
   }
 
   protected static readonly FILL = 0.5
   protected static readonly ITERATIONS = 4
-  protected static readonly BASE_HEIGHT = -minLevelHeight * 2
 
   protected readonly heights: number[][] = []
 
