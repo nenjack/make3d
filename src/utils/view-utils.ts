@@ -15,7 +15,6 @@ import {
   loader,
   Math_Double_PI
 } from '../state'
-import { DeviceDetector } from './detect-mobile'
 
 export const loadTextures = async (texturePaths: string[]) => {
   const promises = texturePaths.map((texturePath) => loader.load(texturePath))
@@ -35,9 +34,7 @@ export const loadTextures = async (texturePaths: string[]) => {
 export const pixelate = (texture: Texture) => {
   texture.colorSpace = NoColorSpace
   texture.magFilter = NearestFilter
-  texture.minFilter = DeviceDetector.HIGH_END
-    ? NearestMipMapLinearFilter
-    : NearestFilter
+  texture.minFilter = NearestMipMapLinearFilter
 }
 
 export const normalizeAngle = (angle: number) =>

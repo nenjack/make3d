@@ -71,8 +71,8 @@ export class Renderer extends WebGLRenderer {
     this.outputColorSpace = LinearSRGBColorSpace
     this.scene.background = new Color(Renderer.backgroundColor)
     this.createFog()
-
     this.onResize()
+
     window.addEventListener('resize', () => this.onResize())
 
     if ('fps' in queryParams) {
@@ -86,6 +86,7 @@ export class Renderer extends WebGLRenderer {
       this.setAnimationLoop(animationFrame)
     }
 
+    this.domElement.classList.add('make3d')
     if (!this.domElement.parentElement) {
       document.body.appendChild(this.domElement)
     }
