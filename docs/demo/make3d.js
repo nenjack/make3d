@@ -71475,9 +71475,6 @@ class StaticBody {
 }
 
 class Billboard {
-    /**
-     * create billboard
-     */
     static async create(level, { texture, ...props }, Class = Billboard) {
         await loadTextures([texture]);
         const textureName = getTextureName(texture);
@@ -71638,9 +71635,6 @@ DynamicBody.SEPARATION_DYNAMIC = 0.33;
 DynamicBody.SEPARATION_STATIC = 0.5;
 
 class Sprite extends Billboard {
-    /**
-     * create sprite
-     */
     static async create(level, props, Class = Sprite) {
         return Billboard.create(level, props, Class);
     }
@@ -71744,9 +71738,6 @@ Sprite.GRAVITY = 0.005;
 Sprite.JUMP_SPEED = 0.075;
 
 class Player extends Sprite {
-    /**
-     * create player
-     */
     static async create(level, props = { texture: 'player.webp' }, Class = Player) {
         return Sprite.create(level, props, Class);
     }
@@ -71795,9 +71786,6 @@ class NPC extends Sprite {
         this.speed = NPC.MAX_SPEED;
         this.rotation = NPC.MAX_ROTATION;
     }
-    /**
-     * create npc
-     */
     static async create(level, props, Class = NPC) {
         return Sprite.create(level, props, Class);
     }
@@ -71860,11 +71848,8 @@ class BoxMesh extends InstancedMesh {
 }
 
 class Level extends BaseLevel {
-    /**
-     * create level
-     */
-    static async create(canvas, { sides: sidesUrl = 'sides.webp', floor: floorUrl = 'floor.webp', ocean: oceanUrl = 'ocean.webp', tree = `${Level.TREE_TEXTURE}.webp`, bush = `${Level.BUSH_TEXTURE}.webp` } = {}) {
-        const texturesToLoad = [sidesUrl, floorUrl, oceanUrl, tree, bush];
+    static async create(canvas, { sides: sidesUrl = Level.SIDES, floor: floorUrl = Level.FLOOR, ocean: oceanUrl = Level.OCEAN, tree: treeUrl = Level.TREE, bush: bushUrl = Level.BUSH } = {}) {
+        const texturesToLoad = [sidesUrl, floorUrl, oceanUrl, treeUrl, bushUrl];
         const [sides, floor, ocean] = await loadTextures(texturesToLoad);
         return new Level({
             canvas,
@@ -71901,7 +71886,7 @@ class Level extends BaseLevel {
         return mesh;
     }
     createTrees() {
-        if (Level.TREE_TEXTURE in loadedTextures) {
+        if (Level.TREE in loadedTextures) {
             const treeHeights = this.createHeights(Level.COLS, Level.ROWS, Level.TREE_FILL, Level.TREE_ITERATIONS);
             this.forEachHeight(this.heights, (col, row, height) => {
                 const allow = treeHeights[col][row];
@@ -71915,7 +71900,7 @@ class Level extends BaseLevel {
         }
     }
     createBushes() {
-        if (Level.BUSH_TEXTURE in loadedTextures) {
+        if (Level.BUSH in loadedTextures) {
             const bushesHeights = this.createHeights(Level.COLS * 2, Level.ROWS * 2, Level.BUSH_FILL, Level.BUSH_ITERATIONS);
             this.forEachHeight(bushesHeights, (col, row, allow) => {
                 const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)];
@@ -71940,8 +71925,8 @@ class Level extends BaseLevel {
         mesh.setMatrixAt(row * Level.ROWS + col, matrix);
     }
 }
-Level.TREE_TEXTURE = Tree.DEFAULT_PROPS.textureName;
-Level.BUSH_TEXTURE = Bush.DEFAULT_PROPS.textureName;
+Level.TREE = `${Tree.DEFAULT_PROPS.textureName}.webp`;
+Level.BUSH = `${Bush.DEFAULT_PROPS.textureName}.webp`;
 Level.SIDES = 'sides.webp';
 Level.FLOOR = 'floor.webp';
 Level.OCEAN = 'ocean.webp';

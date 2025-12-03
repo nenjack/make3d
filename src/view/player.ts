@@ -1,21 +1,16 @@
 import { mouse } from '../core/mouse'
 import { Level } from '../level'
-import { BillboardProps, Direction, SpriteState } from '../model'
+import {
+  BillboardProps,
+  DefaultBillboardProps,
+  Direction,
+  SpriteState
+} from '../model'
 import { state } from '../state'
 import { BillboardCreateProps } from './billboard'
 import { Sprite } from './sprite'
 
-export interface PlayerProps extends Omit<
-  BillboardProps,
-  'level' | 'textureName'
-> {
-  texture: string
-}
-
 export class Player extends Sprite {
-  /**
-   * create player
-   */
   static async create<T = Player>(
     level: Level,
     props: BillboardCreateProps = { texture: 'player.webp' },
@@ -25,7 +20,7 @@ export class Player extends Sprite {
   }
 
   static readonly DIRECTIONS: Direction[] = ['left', 'right', 'down', 'up']
-  static readonly DEFAULT_PROPS = {
+  static readonly DEFAULT_PROPS: DefaultBillboardProps = {
     textureName: 'player',
     scale: 1.25,
     totalFrames: 3,

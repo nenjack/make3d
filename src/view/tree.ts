@@ -1,8 +1,9 @@
 import { Level } from '../level'
+import { DefaultBillboardProps } from '../model'
 import { Billboard } from './billboard'
 
 export class Tree extends Billboard {
-  static readonly DEFAULT_PROPS = {
+  static readonly DEFAULT_PROPS: DefaultBillboardProps = {
     textureName: 'tree',
     scale: 1.5
   }

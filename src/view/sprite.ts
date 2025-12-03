@@ -7,9 +7,6 @@ import { normalizeAngle } from '../utils/view-utils'
 import { Billboard, BillboardCreateProps } from './billboard'
 
 export class Sprite extends Billboard {
-  /**
-   * create sprite
-   */
   static async create<T = Sprite>(
     level: Level,
     props: BillboardCreateProps,

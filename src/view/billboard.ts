@@ -26,9 +26,6 @@ export interface BillboardCreateProps extends Omit<
 }
 
 export class Billboard {
-  /**
-   * create billboard
-   */
   static async create<T = Billboard>(
     level: Level,
     { texture, ...props }: BillboardCreateProps,

@@ -4,9 +4,6 @@ import { BillboardCreateProps } from './billboard'
 import { Sprite } from './sprite'
 
 export class NPC extends Sprite {
-  /**
-   * create npc
-   */
   static async create<T = NPC>(
     level: Level,
     props: BillboardCreateProps,

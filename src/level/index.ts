@@ -20,20 +20,17 @@ export interface LevelProps<T = Texture> extends LevelCreateProps<T> {
 }
 
 export class Level extends BaseLevel {
-  /**
-   * create level
-   */
   static async create(
     canvas?: HTMLCanvasElement,
     {
-      sides: sidesUrl = 'sides.webp',
-      floor: floorUrl = 'floor.webp',
-      ocean: oceanUrl = 'ocean.webp',
-      tree = `${Level.TREE_TEXTURE}.webp`,
-      bush = `${Level.BUSH_TEXTURE}.webp`
+      sides: sidesUrl = Level.SIDES,
+      floor: floorUrl = Level.FLOOR,
+      ocean: oceanUrl = Level.OCEAN,
+      tree: treeUrl = Level.TREE,
+      bush: bushUrl = Level.BUSH
     }: LevelCreateProps<string> = {}
   ): Promise<Level> {
-    const texturesToLoad = [sidesUrl, floorUrl, oceanUrl, tree, bush]
+    const texturesToLoad = [sidesUrl, floorUrl, oceanUrl, treeUrl, bushUrl]
     const [sides, floor, ocean] = await loadTextures(texturesToLoad)
     return new Level({
       canvas,
@@ -49,12 +46,12 @@ export class Level extends BaseLevel {
     })
   }
 
-  static TREE_TEXTURE = Tree.DEFAULT_PROPS.textureName
-  static BUSH_TEXTURE = Bush.DEFAULT_PROPS.textureName
+  protected static TREE = `${Tree.DEFAULT_PROPS.textureName}.webp`
+  protected static BUSH = `${Bush.DEFAULT_PROPS.textureName}.webp`
+  protected static SIDES = 'sides.webp'
+  protected static FLOOR = 'floor.webp'
+  protected static OCEAN = 'ocean.webp'
 
-  protected static readonly SIDES = 'sides.webp'
-  protected static readonly FLOOR = 'floor.webp'
-  protected static readonly OCEAN = 'ocean.webp'
   protected static readonly TREE_FILL = 0.5
   protected static readonly TREE_CHANCE = 0.25
   protected static readonly TREE_HEIGHT_START = 2
@@ -96,7 +93,7 @@ export class Level extends BaseLevel {
   }
 
   protected createTrees() {
-    if (Level.TREE_TEXTURE in loadedTextures) {
+    if (Level.TREE in loadedTextures) {
       const treeHeights = this.createHeights(
         Level.COLS,
         Level.ROWS,
@@ -118,7 +115,7 @@ export class Level extends BaseLevel {
   }
 
   protected createBushes() {
-    if (Level.BUSH_TEXTURE in loadedTextures) {
+    if (Level.BUSH in loadedTextures) {
       const bushesHeights = this.createHeights(
         Level.COLS * 2,
         Level.ROWS * 2,

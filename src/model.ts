@@ -40,6 +40,8 @@ export interface BillboardProps {
   scaleY?: number
 }
 
+export type DefaultBillboardProps = Omit<BillboardProps, 'level'>
+
 export interface BaseBody {
   x: number
   y: number
