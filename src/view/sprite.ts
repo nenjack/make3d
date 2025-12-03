@@ -1,8 +1,10 @@
+import { AbstractBody } from '../body/abstract-body'
 import { DynamicBody } from '../body/dynamic-body'
 import { Mouse } from '../core/mouse'
 import { Level } from '../level'
 import { BillboardProps, SpriteState } from '../model'
 import { physics } from '../state'
+import { DeviceDetector } from '../utils/detect-mobile'
 import { normalizeAngle } from '../utils/view-utils'
 import { Billboard, BillboardCreateProps } from './billboard'
 
@@ -15,8 +17,8 @@ export class Sprite extends Billboard {
     return Billboard.create<T>(level, props, Class)
   }
 
+  static readonly ROTATE_SPEED = DeviceDetector.HIGH_END ? 3 : 1.5
   static readonly MOVE_SPEED = 0.05
-  static readonly ROTATE_SPEED = 3
   static readonly JUMP_SPEED = 0.075
   static readonly GRAVITY = 0.005
   static readonly CLICK_PREVENT = 600
@@ -97,9 +99,11 @@ export class Sprite extends Billboard {
     let timeLeft = deltaTime * 60
     while (timeLeft > 0) {
       const timeScale = Math.min(1, timeLeft)
+
       this.body.move(moveSpeed * timeScale)
       this.body.separate(timeScale, this.onCollide.bind(this))
       this.updateZ(timeScale)
+
       timeLeft -= timeScale
     }
   }
@@ -111,21 +115,23 @@ export class Sprite extends Billboard {
   }
 
   protected updateZ(timeScale: number) {
-    const floorZ = this.getFloorZ()
-    const isOnGround = this.z === floorZ || this.velocity === 0
+    const floorZ = AbstractBody.getFloor(this.body) / 2
+    const isOnGround = this.body.z === floorZ || this.velocity === 0
     const isJumping = isOnGround && this.state.keys.space
 
     if (isJumping) this.velocity = Sprite.JUMP_SPEED
 
-    if (isJumping || this.z > floorZ) {
-      this.z += this.velocity * timeScale
+    if (isJumping || this.body.z > floorZ) {
+      this.body.z += this.velocity * timeScale
       this.velocity -= timeScale * Sprite.GRAVITY
     }
 
-    if (this.z < floorZ) {
-      this.z = floorZ
+    if (this.body.z < floorZ) {
+      this.body.z = floorZ
       this.velocity = 0
     }
+
+    this.body.group = AbstractBody.getGroup(this.body)
   }
 
   protected updateAngle(deltaTime: number) {
@@ -171,8 +177,8 @@ export class Sprite extends Billboard {
     }
   }
 
-  protected createBody(x: number, y: number) {
-    const body = new DynamicBody(x, y)
+  protected createBody(x: number, y: number, level: Level) {
+    const body = new DynamicBody(x, y, level)
     physics.insert(body)
     return body
   }

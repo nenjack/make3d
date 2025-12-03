@@ -6,17 +6,17 @@ import {
   Vector3
 } from 'three'
 import { StaticBody } from '../body/static-body'
+import { Camera } from '../core/camera'
 import { type Level } from '../level'
 import { BaseLevel } from '../level/base-level'
 import { BaseBody, BillboardProps, Direction, DirectionsToRows } from '../model'
-import { directions, floors, state } from '../state'
+import { directions, state } from '../state'
 import {
   createMaterial,
   getTextureName,
   loadTextures,
   normalizeAngle
 } from '../utils/view-utils'
-import { Camera } from '../core/camera'
 
 export interface BillboardCreateProps extends Omit<
   BillboardProps,
@@ -57,17 +57,6 @@ export class Billboard {
   protected scaleY: number
   protected level?: Level
 
-  get z() {
-    return this._z
-  }
-
-  set z(z: number) {
-    this._z = z
-    this.updateGroup()
-  }
-
-  protected _z = 0
-
   constructor({
     level,
     x,
@@ -102,8 +91,11 @@ export class Billboard {
 
   update(_ms: number): void {
     this.direction = this.getDirection()
-
-    this.mesh.position.set(this.body.x, this.z + this.centerOffset, this.body.y)
+    this.mesh.position.set(
+      this.body.x,
+      this.body.z + this.centerOffset,
+      this.body.y
+    )
 
     const playerPos = state.player?.mesh.position
 
@@ -157,8 +149,8 @@ export class Billboard {
     }
   }
 
-  protected createBody(x: number, y: number) {
-    return new StaticBody(x, y)
+  protected createBody(x: number, y: number, level: Level) {
+    return new StaticBody(x, y, level)
   }
 
   protected spawn(
@@ -166,15 +158,8 @@ export class Billboard {
     x = (Math.random() - 0.5) * (BaseLevel.COLS * 0.5),
     y = (Math.random() - 0.5) * (BaseLevel.ROWS * 0.5)
   ) {
-    this.level = level
-    this.body = this.createBody(x, y)
-    this.z = this.getFloorZ()
-    this.mesh.position.set(x, this.z, y)
-  }
-
-  protected updateGroup() {
-    this.body.group =
-      floors[Math.round((this.z - Billboard.compensateGroupZ) * 2)]
+    this.body = this.createBody(x, y, level)
+    this.mesh.position.set(x, this.body.z, y)
   }
 
   protected updateTexture() {
@@ -210,9 +195,5 @@ export class Billboard {
       this.totalFrames * this.invCols -
       ((this.directionsToRows[direction] ?? this.directionsToRows.default) || 0)
     )
-  }
-
-  protected getFloorZ({ x, y } = this.body) {
-    return this.level ? this.level.getFloor(x, y) / 2 : 0
   }
 }

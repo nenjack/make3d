@@ -69650,7 +69650,11 @@ DeviceDetector.LOW_END = DeviceDetector.IS_MOBILE || DeviceDetector.IS_TV || 'lo
 DeviceDetector.HIGH_END = !DeviceDetector.LOW_END;
 
 const minLevelHeight = DeviceDetector.HIGH_END ? 2 : 1;
-const maxLevelHeight = 'height' in queryParams ? Number(queryParams.height) : 6;
+const maxLevelHeight = 'height' in queryParams
+    ? Number(queryParams.height)
+    : DeviceDetector.HIGH_END
+        ? 8
+        : 6;
 const waterZ = 0.5;
 const keys = {};
 const loadedTextures = {};
@@ -70422,6 +70426,20 @@ function requireDist () {
 
 var distExports = requireDist();
 
+class AbstractBody {
+    static getGroup({ z = 0 }) {
+        return floors[Math.round((z - AbstractBody.Z_OFFSET) * 2)];
+    }
+    static getFloor(body, x = body.x, y = body.y) {
+        return body.userData.level.getFloor(x, y);
+    }
+    static onSetPosition(body) {
+        body.z = Math.max(body.z, AbstractBody.getFloor(body) / 2);
+        body.group = AbstractBody.getGroup(body);
+    }
+}
+AbstractBody.Z_OFFSET = 0.2;
+
 const MIN_HEIGHT = maxLevelHeight / 2;
 class Camera extends PerspectiveCamera {
     static getFar() {
@@ -70446,14 +70464,8 @@ class Camera extends PerspectiveCamera {
         this.updateLookAt();
         this.lookAt(Camera.cameraLookAt);
     }
-    setLevel(level) {
-        this.getFloor = (x, y) => level.getFloor(x, y);
-    }
     setTarget(target) {
         this.target = target;
-    }
-    getFloor(_x, _y) {
-        return 0;
     }
     getPositionBehind({ x = 0, y = 0, angle = 0 } = {}) {
         const adjustedAngle = Math_Half_PI - angle;
@@ -70465,14 +70477,15 @@ class Camera extends PerspectiveCamera {
     }
     updateLookAt() {
         if (this.target) {
-            Camera.cameraLookAt.set(this.target.body.x, this.target.z + Camera.HEIGHT, this.target.body.y);
+            Camera.cameraLookAt.set(this.target.body.x, this.target.body.z + Camera.HEIGHT, this.target.body.y);
         }
     }
     updateGoal() {
         if (this.target) {
             const [x, y] = this.getPositionBehind(this.target.body);
-            const from = this.getFloor(x, y) / 2;
-            Camera.cameraGoal.set(x, Math.max(from, this.target.z) + Camera.HEIGHT, y);
+            const from = AbstractBody.getFloor(this.target.body, x, y) / 2;
+            const z = Math.max(from, this.target.body.z) + Camera.HEIGHT;
+            Camera.cameraGoal.set(x, z, y);
         }
     }
     lerpToGoal(ms) {
@@ -71420,7 +71433,6 @@ class Renderer extends WebGLRenderer {
         });
     }
     setLevel(level) {
-        this.camera.setLevel(level);
         this.scene.add(level.mesh);
     }
     onCreate() {
@@ -71466,14 +71478,16 @@ class Renderer extends WebGLRenderer {
 Renderer.backgroundColor = 0x44ccf0;
 
 class StaticBody {
-    constructor(x, y) {
-        this.group = floors[0];
+    constructor(x, y, level) {
         this.angle = 0;
+        this.userData = { level };
         this.setPosition(x, y);
     }
     setPosition(x, y) {
         this.x = x;
         this.y = y;
+        AbstractBody.onSetPosition(this);
+        return this;
     }
 }
 
@@ -71483,17 +71497,9 @@ class Billboard {
         const textureName = getTextureName(texture);
         return new Class({ level, textureName, ...props });
     }
-    get z() {
-        return this._z;
-    }
-    set z(z) {
-        this._z = z;
-        this.updateGroup();
-    }
     constructor({ level, x, y, scaleX, scaleY, cols = 1, rows = 1, totalFrames = 1, scale = 1, frameDuration = 120, textureName, ...props }) {
         this.frame = 0;
         this.direction = 'up';
-        this._z = 0;
         this.cols = cols;
         this.rows = rows;
         this.invCols = 1 / this.cols;
@@ -71511,7 +71517,7 @@ class Billboard {
     }
     update(_ms) {
         this.direction = this.getDirection();
-        this.mesh.position.set(this.body.x, this.z + this.centerOffset, this.body.y);
+        this.mesh.position.set(this.body.x, this.body.z + this.centerOffset, this.body.y);
         const playerPos = state.player?.mesh.position;
         if (!playerPos) {
             return;
@@ -71553,18 +71559,12 @@ class Billboard {
             return new Object3D();
         }
     }
-    createBody(x, y) {
-        return new StaticBody(x, y);
+    createBody(x, y, level) {
+        return new StaticBody(x, y, level);
     }
     spawn(level, x = (Math.random() - 0.5) * (BaseLevel.COLS * 0.5), y = (Math.random() - 0.5) * (BaseLevel.ROWS * 0.5)) {
-        this.level = level;
-        this.body = this.createBody(x, y);
-        this.z = this.getFloorZ();
-        this.mesh.position.set(x, this.z, y);
-    }
-    updateGroup() {
-        this.body.group =
-            floors[Math.round((this.z - Billboard.compensateGroupZ) * 2)];
+        this.body = this.createBody(x, y, level);
+        this.mesh.position.set(x, this.body.z, y);
     }
     updateTexture() {
         if (this.mesh instanceof Mesh) {
@@ -71593,9 +71593,6 @@ class Billboard {
             this.totalFrames * this.invCols -
             ((this.directionsToRows[direction] ?? this.directionsToRows.default) || 0));
     }
-    getFloorZ({ x, y } = this.body) {
-        return this.level ? this.level.getFloor(x, y) / 2 : 0;
-    }
 }
 Billboard.compensateGroupZ = 0.2;
 Billboard.tempVector = new Vector3();
@@ -71611,9 +71608,15 @@ Bush.DEFAULT_PROPS = {
 };
 
 class DynamicBody extends Circle {
-    constructor(x, y, radius = DynamicBody.RADIUS, padding = DynamicBody.PADDING) {
-        super({ x, y }, radius, { group: floors[0], padding });
+    constructor(x, y, level, radius = DynamicBody.RADIUS, padding = DynamicBody.PADDING) {
+        super({ x, y }, radius, { group: floors[0], padding, userData: { level } });
+        this.z = 0;
         this.angle = Math.random() * Math_Double_PI;
+    }
+    setPosition(x, y, updateNow) {
+        super.setPosition(x, y, updateNow);
+        AbstractBody.onSetPosition(this);
+        return this;
     }
     separate(timeScale = 1, onCollide) {
         const separationDynamic = timeScale * DynamicBody.SEPARATION_DYNAMIC;
@@ -71628,7 +71631,9 @@ class DynamicBody extends Circle {
                 this.setPosition(this.x - dx, this.y - dy);
                 b.setPosition(b.x + dx * 2, b.y + dy * 2);
             }
-            onCollide?.();
+            if (b.isStatic && AbstractBody.getFloor(this, b.x, b.y) / 2 - this.z <= 0.5) {
+                onCollide?.();
+            }
         });
     }
 }
@@ -71709,19 +71714,20 @@ class Sprite extends Billboard {
         }
     }
     updateZ(timeScale) {
-        const floorZ = this.getFloorZ();
-        const isOnGround = this.z === floorZ || this.velocity === 0;
+        const floorZ = AbstractBody.getFloor(this.body) / 2;
+        const isOnGround = this.body.z === floorZ || this.velocity === 0;
         const isJumping = isOnGround && this.state.keys.space;
         if (isJumping)
             this.velocity = Sprite.JUMP_SPEED;
-        if (isJumping || this.z > floorZ) {
-            this.z += this.velocity * timeScale;
+        if (isJumping || this.body.z > floorZ) {
+            this.body.z += this.velocity * timeScale;
             this.velocity -= timeScale * Sprite.GRAVITY;
         }
-        if (this.z < floorZ) {
-            this.z = floorZ;
+        if (this.body.z < floorZ) {
+            this.body.z = floorZ;
             this.velocity = 0;
         }
+        this.body.group = AbstractBody.getGroup(this.body);
     }
     updateAngle(deltaTime) {
         const scaleX = this.state.keys.left || this.state.keys.right
@@ -71756,8 +71762,8 @@ class Sprite extends Billboard {
             this.mesh.scale.set(newScaleX, 1, 1);
         }
     }
-    createBody(x, y) {
-        const body = new DynamicBody(x, y);
+    createBody(x, y, level) {
+        const body = new DynamicBody(x, y, level);
         physics.insert(body);
         return body;
     }
@@ -71766,8 +71772,8 @@ class Sprite extends Billboard {
         this.body.separate();
     }
 }
+Sprite.ROTATE_SPEED = DeviceDetector.HIGH_END ? 3 : 1.5;
 Sprite.MOVE_SPEED = 0.05;
-Sprite.ROTATE_SPEED = 3;
 Sprite.JUMP_SPEED = 0.075;
 Sprite.GRAVITY = 0.005;
 Sprite.CLICK_PREVENT = 600;
@@ -71983,5 +71989,5 @@ Level.BUSH_CHANCE = 0.6;
 Level.BUSH_HEIGHT_START = 1;
 Level.BUSH_ITERATIONS = 1;
 
-export { BaseLevel, Billboard, BoxMesh, Bush, Camera, DeviceDetector, DynamicBody, Events, Level, Loader, Math_Double_PI, Math_Half_PI, Mouse, NPC, Ocean, Player, Renderer, Skybox, Sprite, StaticBody, Tree, alphaMaterialProps, createMaterial, defaultNPCsCount, directions, distanceSq, floors, getMatrix, getQueryParams, getTextureName, keys, loadTextures, loadedTextures, loader, mapCubeTextures, materialProps, maxLevelHeight, minLevelHeight, mouse, normalize, normalizeAngle, physics, pixelate, queryParams, randomOf, setKey, state, waterZ };
+export { AbstractBody, BaseLevel, Billboard, BoxMesh, Bush, Camera, DeviceDetector, DynamicBody, Events, Level, Loader, Math_Double_PI, Math_Half_PI, Mouse, NPC, Ocean, Player, Renderer, Skybox, Sprite, StaticBody, Tree, alphaMaterialProps, createMaterial, defaultNPCsCount, directions, distanceSq, floors, getMatrix, getQueryParams, getTextureName, keys, loadTextures, loadedTextures, loader, mapCubeTextures, materialProps, maxLevelHeight, minLevelHeight, mouse, normalize, normalizeAngle, physics, pixelate, queryParams, randomOf, setKey, state, waterZ };
 //# sourceMappingURL=index.js.map

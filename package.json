@@ -1,7 +1,7 @@
 {
   "name": "make3d",
   "description": "Game FrameWork for JavaScript 3D WebGL Games",
-  "version": "1.19.0",
+  "version": "1.20.0",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "module": "./esm/index.js",
@@ -43,7 +43,7 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "check2d": "^9.35.0",
+    "check2d": "^9.35.2",
     "pixi-stats": "^5.0.3",
     "rot-js": "^2.2.1",
     "sat": "^0.9.0",

@@ -89,11 +89,17 @@
           </ul>
           <h1>Class DynamicBody</h1>
         </div>
-        <section class="tsd-panel tsd-hierarchy" data-refl="1516">
+        <section class="tsd-panel tsd-hierarchy" data-refl="1459">
           <h4>Hierarchy</h4>
           <ul class="tsd-hierarchy">
             <li class="tsd-hierarchy-item">
-              <span class="tsd-signature-type">Circle</span>
+              <span class="tsd-signature-type">Circle</span
+              ><span class="tsd-signature-symbol">&lt;</span
+              ><a
+                href="../interfaces/BodyUserData.html"
+                class="tsd-signature-type tsd-kind-interface"
+                >BodyUserData</a
+              ><span class="tsd-signature-symbol">&gt;</span>
               <ul class="tsd-hierarchy">
                 <li class="tsd-hierarchy-item">
                   <span class="tsd-hierarchy-target">DynamicBody</span>
@@ -119,8 +125,8 @@
             <li>
               Defined in
               <a
-                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L5"
-                >src/body/dynamic-body.ts:5</a
+                href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L7"
+                >src/body/dynamic-body.ts:7</a
               >
             </li>
           </ul>
@@ -387,16 +393,23 @@
                         <use href="../assets/icons.svg#icon-1024"></use></svg
                       ><span>unscaled<wbr />Radius</span></a
                     >
-                    <a
-                      href="#userdata"
-                      class="tsd-index-link tsd-is-inherited tsd-is-external"
+                    <a href="#userdata" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
                         aria-label="Property"
                       >
                         <use href="../assets/icons.svg#icon-1024"></use></svg
-                      ><span>user<wbr />Data?</span></a
+                      ><span>user<wbr />Data</span></a
+                    >
+                    <a href="#z" class="tsd-index-link"
+                      ><svg
+                        class="tsd-kind-icon"
+                        viewBox="0 0 24 24"
+                        aria-label="Property"
+                      >
+                        <use href="../assets/icons.svg#icon-1024"></use></svg
+                      ><span>z</span></a
                     >
                     <a href="#padding-1" class="tsd-index-link tsd-is-protected"
                       ><svg
@@ -611,9 +624,7 @@
                         <use href="../assets/icons.svg#icon-2048"></use></svg
                       ><span>set<wbr />Offset</span></a
                     >
-                    <a
-                      href="#setposition"
-                      class="tsd-index-link tsd-is-inherited tsd-is-external"
+                    <a href="#setposition" class="tsd-index-link"
                       ><svg
                         class="tsd-kind-icon"
                         viewBox="0 0 24 24"
@@ -699,6 +710,14 @@
                     <span class="tsd-signature-type">number</span
                     ><span class="tsd-signature-symbol">,</span><br />    <span
                       class="tsd-kind-parameter"
+                      >level</span
+                    ><span class="tsd-signature-symbol">:</span>
+                    <a
+                      href="Level.html"
+                      class="tsd-signature-type tsd-kind-class"
+                      >Level</a
+                    ><span class="tsd-signature-symbol">,</span><br />    <span
+                      class="tsd-kind-parameter"
                       >radius</span
                     ><span class="tsd-signature-symbol">?:</span>
                     <span class="tsd-signature-type">number</span
@@ -739,6 +758,16 @@
                         </li>
                         <li>
                           <span
+                            ><span class="tsd-kind-parameter">level</span>:
+                            <a
+                              href="Level.html"
+                              class="tsd-signature-type tsd-kind-class"
+                              >Level</a
+                            ></span
+                          >
+                        </li>
+                        <li>
+                          <span
                             ><span class="tsd-kind-parameter">radius</span>:
                             <span class="tsd-signature-type">number</span
                             ><span class="tsd-signature-symbol">
@@ -764,13 +793,13 @@
                       >
                     </h4>
                     <aside class="tsd-sources">
-                      <p>Overrides Circle.constructor</p>
+                      <p>Overrides Circle&lt;BodyUserData&gt;.constructor</p>
                       <ul>
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L13"
-                            >src/body/dynamic-body.ts:13</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L17"
+                            >src/body/dynamic-body.ts:17</a
                           >
                         </li>
                       </ul>
@@ -855,8 +884,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L11"
-                      >src/body/dynamic-body.ts:11</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L14"
+                      >src/body/dynamic-body.ts:14</a
                     >
                   </li>
                 </ul>
@@ -1404,11 +1433,9 @@
                 </ul>
               </aside>
             </section>
-            <section
-              class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"
-            >
+            <section class="tsd-panel tsd-member">
               <h3 class="tsd-anchor-link" id="userdata">
-                <code class="tsd-tag">Optional</code><span>user<wbr />Data</span
+                <span>user<wbr />Data</span
                 ><a
                   href="#userdata"
                   aria-label="Permalink"
@@ -1419,17 +1446,65 @@
               </h3>
               <div class="tsd-signature">
                 <span class="tsd-kind-property">userData</span
-                ><span class="tsd-signature-symbol">?:</span>
-                <span class="tsd-signature-type">any</span>
+                ><span class="tsd-signature-symbol">:</span>
+                <a
+                  href="../interfaces/BodyUserData.html"
+                  class="tsd-signature-type tsd-kind-interface"
+                  >BodyUserData</a
+                >
               </div>
               <div class="tsd-comment tsd-typography">
                 <p>allows the user to set any misc data for client use</p>
               </div>
               <aside class="tsd-sources">
-                <p>Inherited from Circle.userData</p>
+                <p>
+                  Implementation of
+                  <a href="../interfaces/BaseBody.html">BaseBody</a>.<a
+                    href="../interfaces/BaseBody.html#userdata"
+                    >userData</a
+                  >
+                </p>
+                <p>Overrides Circle.userData</p>
                 <ul>
                   <li>
-                    Defined in node_modules/check2d/dist/bodies/circle.d.ts:82
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L15"
+                      >src/body/dynamic-body.ts:15</a
+                    >
+                  </li>
+                </ul>
+              </aside>
+            </section>
+            <section class="tsd-panel tsd-member">
+              <h3 class="tsd-anchor-link" id="z">
+                <span>z</span
+                ><a href="#z" aria-label="Permalink" class="tsd-anchor-icon"
+                  ><svg viewBox="0 0 24 24" aria-hidden="true">
+                    <use href="../assets/icons.svg#icon-anchor"></use></svg
+                ></a>
+              </h3>
+              <div class="tsd-signature">
+                <span class="tsd-kind-property">z</span
+                ><span class="tsd-signature-symbol">:</span>
+                <span class="tsd-signature-type">number</span
+                ><span class="tsd-signature-symbol"> = 0</span>
+              </div>
+              <aside class="tsd-sources">
+                <p>
+                  Implementation of
+                  <a href="../interfaces/BaseBody.html">BaseBody</a>.<a
+                    href="../interfaces/BaseBody.html#z"
+                    >z</a
+                  >
+                </p>
+                <ul>
+                  <li>
+                    Defined in
+                    <a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L13"
+                      >src/body/dynamic-body.ts:13</a
+                    >
                   </li>
                 </ul>
               </aside>
@@ -1457,8 +1532,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L7"
-                      >src/body/dynamic-body.ts:7</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L9"
+                      >src/body/dynamic-body.ts:9</a
                     >
                   </li>
                 </ul>
@@ -1487,8 +1562,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L6"
-                      >src/body/dynamic-body.ts:6</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L8"
+                      >src/body/dynamic-body.ts:8</a
                     >
                   </li>
                 </ul>
@@ -1518,8 +1593,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L8"
-                      >src/body/dynamic-body.ts:8</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L10"
+                      >src/body/dynamic-body.ts:10</a
                     >
                   </li>
                 </ul>
@@ -1549,8 +1624,8 @@
                   <li>
                     Defined in
                     <a
-                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L9"
-                      >src/body/dynamic-body.ts:9</a
+                      href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L11"
+                      >src/body/dynamic-body.ts:11</a
                     >
                   </li>
                 </ul>
@@ -2587,8 +2662,8 @@
                         <li>
                           Defined in
                           <a
-                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L22"
-                            >src/body/dynamic-body.ts:22</a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L34"
+                            >src/body/dynamic-body.ts:34</a
                           >
                         </li>
                       </ul>
@@ -2749,9 +2824,7 @@
                 </li>
               </ul>
             </section>
-            <section
-              class="tsd-panel tsd-member tsd-is-inherited tsd-is-external"
-            >
+            <section class="tsd-panel tsd-member">
               <h3 class="tsd-anchor-link" id="setposition">
                 <span>set<wbr />Position</span
                 ><a
@@ -2762,8 +2835,8 @@
                     <use href="../assets/icons.svg#icon-anchor"></use></svg
                 ></a>
               </h3>
-              <ul class="tsd-signatures tsd-is-inherited tsd-is-external">
-                <li class="tsd-is-inherited tsd-is-external">
+              <ul class="tsd-signatures">
+                <li class="">
                   <div class="tsd-signature tsd-anchor-link" id="setposition-1">
                     <span class="tsd-kind-call-signature">setPosition</span
                     ><span class="tsd-signature-symbol">(</span
@@ -2780,7 +2853,8 @@
                     <span class="tsd-signature-type">boolean</span
                     ><span class="tsd-signature-symbol">)</span
                     ><span class="tsd-signature-symbol">:</span>
-                    <span class="tsd-signature-type">Circle</span
+                    <a href="" class="tsd-signature-type tsd-kind-class"
+                      >DynamicBody</a
                     ><a
                       href="#setposition-1"
                       aria-label="Permalink"
@@ -2820,7 +2894,10 @@
                       </ul>
                     </div>
                     <h4 class="tsd-returns-title">
-                      Returns <span class="tsd-signature-type">Circle</span>
+                      Returns
+                      <a href="" class="tsd-signature-type tsd-kind-class"
+                        >DynamicBody</a
+                      >
                     </h4>
                     <aside class="tsd-sources">
                       <p>
@@ -2830,11 +2907,14 @@
                           >setPosition</a
                         >
                       </p>
-                      <p>Inherited from Circle.setPosition</p>
+                      <p>Overrides Circle.setPosition</p>
                       <ul>
                         <li>
                           Defined in
-                          node_modules/check2d/dist/bodies/circle.d.ts:153
+                          <a
+                            href="https://github.com/Jackie-Aniki/make3d/blob/main/src/body/dynamic-body.ts#L27"
+                            >src/body/dynamic-body.ts:27</a
+                          >
                         </li>
                       </ul>
                     </aside>
@@ -3364,7 +3444,7 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>unscaled<wbr />Radius</span></a
-                  ><a href="#userdata" class="tsd-is-inherited tsd-is-external"
+                  ><a href="#userdata"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"
@@ -3372,6 +3452,14 @@
                     >
                       <use href="../assets/icons.svg#icon-1024"></use></svg
                     ><span>user<wbr />Data</span></a
+                  ><a href="#z"
+                    ><svg
+                      class="tsd-kind-icon"
+                      viewBox="0 0 24 24"
+                      aria-label="Property"
+                    >
+                      <use href="../assets/icons.svg#icon-1024"></use></svg
+                    ><span>z</span></a
                   ><a href="#padding-1" class="tsd-is-protected"
                     ><svg
                       class="tsd-kind-icon"
@@ -3568,9 +3656,7 @@
                     >
                       <use href="../assets/icons.svg#icon-2048"></use></svg
                     ><span>set<wbr />Offset</span></a
-                  ><a
-                    href="#setposition"
-                    class="tsd-is-inherited tsd-is-external"
+                  ><a href="#setposition"
                     ><svg
                       class="tsd-kind-icon"
                       viewBox="0 0 24 24"

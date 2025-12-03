@@ -945,10 +945,10 @@ chalk@^4.0.0:
     ansi-styles "^4.1.0"
     supports-color "^7.1.0"
 
-check2d@^9.35.0:
-  version "9.35.0"
-  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.35.0.tgz#1af340019e40530b7429a104a8f1171c05e1e24f"
-  integrity sha512-dQ2ZcItMRXUwVSJ8Uy/Sdh1atYouu21+fCQ1E4r+Z3M7fQI0jDO40JBYdeRiKg07SeUiyEjHfJQQ9VQrlR7vNw==
+check2d@^9.35.2:
+  version "9.35.2"
+  resolved "https://registry.yarnpkg.com/check2d/-/check2d-9.35.2.tgz#3fb63622fefbdd7acf2e45ff74c0d028d01300aa"
+  integrity sha512-oWqnemap4ZS6SjB64yutrYhuK0TVh/7d+MvUa3ugQ5CdGZcxJqsR3Lb94nS3yVAH79FcmbnUy9Ddw9gCVM3ikQ==
   dependencies:
     "@types/sat" "^0.0.35"
     poly-decomp-es "^0.4.2"

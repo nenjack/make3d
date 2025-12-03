@@ -1,8 +1,8 @@
 import { PerspectiveCamera, Vector3 } from 'three'
-import { Level } from '../level'
 import { Math_Half_PI, maxLevelHeight, state } from '../state'
 import { DeviceDetector } from '../utils/detect-mobile'
-import { Billboard } from '../view/billboard'
+import { Sprite } from '../view/sprite'
+import { AbstractBody } from '../body/abstract-body'
 
 const MIN_HEIGHT = maxLevelHeight / 2
 
@@ -21,7 +21,7 @@ export class Camera extends PerspectiveCamera {
   static readonly cameraLookAt = new Vector3(0, MIN_HEIGHT, 0)
   static readonly projection = new Vector3()
 
-  target?: Billboard
+  target?: Sprite
 
   protected distance = Camera.DISTANCE
 
@@ -47,16 +47,8 @@ export class Camera extends PerspectiveCamera {
     this.lookAt(Camera.cameraLookAt)
   }
 
-  setLevel(level: Level) {
-    this.getFloor = (x, y) => level.getFloor(x, y)
-  }
-
-  setTarget(target: Billboard) {
+  setTarget(target: Sprite) {
     this.target = target
-  }
-
-  protected getFloor(_x: number, _y: number) {
-    return 0
   }
 
   protected getPositionBehind({ x = 0, y = 0, angle = 0 } = {}) {
@@ -73,7 +65,7 @@ export class Camera extends PerspectiveCamera {
     if (this.target) {
       Camera.cameraLookAt.set(
         this.target.body.x,
-        this.target.z + Camera.HEIGHT,
+        this.target.body.z + Camera.HEIGHT,
         this.target.body.y
       )
     }
@@ -82,9 +74,10 @@ export class Camera extends PerspectiveCamera {
   protected updateGoal() {
     if (this.target) {
       const [x, y] = this.getPositionBehind(this.target.body)
-      const from = this.getFloor(x, y) / 2
+      const from = AbstractBody.getFloor(this.target.body, x, y) / 2
+      const z = Math.max(from, this.target.body.z) + Camera.HEIGHT
 
-      Camera.cameraGoal.set(x, Math.max(from, this.target.z) + Camera.HEIGHT, y)
+      Camera.cameraGoal.set(x, z, y)
     }
   }
 

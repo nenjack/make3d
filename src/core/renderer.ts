@@ -76,7 +76,6 @@ export class Renderer extends WebGLRenderer {
   }
 
   setLevel(level: SetProps['level']) {
-    this.camera.setLevel(level)
     this.scene.add(level.mesh)
   }
 
