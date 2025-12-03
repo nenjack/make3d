@@ -6,12 +6,34 @@ export abstract class BaseLevel {
   static readonly COLS = DeviceDetector.HIGH_END ? 48 : 24
   static readonly ROWS = DeviceDetector.HIGH_END ? 48 : 24
 
-  static heightReducer(input: number[][], heights: number[][]) {
+  static reducer(input: number[][], heights: number[][]) {
     return heights.map(
       (column: number[], x: number) =>
-        column.map((value, y) => (input[x]?.[y] ?? -minLevelHeight) + value),
+        column.map((value, y) => (input[x]?.[y] || 0) + value),
       []
     )
+  }
+
+  static createMatrix({
+    min = 0,
+    max = 1,
+    iterations = BaseLevel.ITERATIONS,
+    fill = BaseLevel.FILL,
+    cols = BaseLevel.COLS,
+    rows = BaseLevel.ROWS
+  }) {
+    return Array.from({ length: max }, () => {
+      const map = new Map.Cellular(cols, rows)
+
+      map.randomize(fill)
+      for (let i = 0; i < iterations; i++) {
+        map.create()
+      }
+
+      return map._map
+    })
+      .reduce(BaseLevel.reducer, [])
+      .map((arrays) => arrays.map((value) => Math.max(0, value - min)))
   }
 
   protected static readonly FILL = 0.5
@@ -20,10 +42,10 @@ export abstract class BaseLevel {
   protected readonly heights: number[][] = []
 
   constructor() {
-    const length = maxLevelHeight + minLevelHeight
-    this.heights = Array.from({ length }, () => this.createHeights())
-      .reduce(BaseLevel.heightReducer, [])
-      .map((arrays) => arrays.map((value) => Math.max(0, value)))
+    this.heights = BaseLevel.createMatrix({
+      min: minLevelHeight,
+      max: maxLevelHeight
+    })
   }
 
   getFloor(x: number, y: number) {
@@ -44,24 +66,6 @@ export abstract class BaseLevel {
         }
       })
     })
-  }
-
-  protected createHeights(
-    cols = BaseLevel.COLS,
-    rows = BaseLevel.ROWS,
-    fill = BaseLevel.FILL,
-    iterations = BaseLevel.ITERATIONS
-  ) {
-    const map = new Map.Cellular(cols, rows)
-
-    map.randomize(fill)
-    for (let i = 0; i < iterations; i++) {
-      map.create()
-    }
-
-    const { _map: heights } = map
-
-    return heights
   }
 
   protected getXY(col: number, row: number) {

@@ -71119,15 +71119,27 @@ class Cellular extends Map$2 {
 var Map$1 = { Cellular};
 
 class BaseLevel {
-    static heightReducer(input, heights) {
-        return heights.map((column, x) => column.map((value, y) => (input[x]?.[y] ?? -minLevelHeight) + value), []);
+    static reducer(input, heights) {
+        return heights.map((column, x) => column.map((value, y) => (input[x]?.[y] || 0) + value), []);
+    }
+    static createMatrix({ min = 0, max = 1, iterations = BaseLevel.ITERATIONS, fill = BaseLevel.FILL, cols = BaseLevel.COLS, rows = BaseLevel.ROWS }) {
+        return Array.from({ length: max }, () => {
+            const map = new Map$1.Cellular(cols, rows);
+            map.randomize(fill);
+            for (let i = 0; i < iterations; i++) {
+                map.create();
+            }
+            return map._map;
+        })
+            .reduce(BaseLevel.reducer, [])
+            .map((arrays) => arrays.map((value) => Math.max(0, value - min)));
     }
     constructor() {
         this.heights = [];
-        const length = maxLevelHeight + minLevelHeight;
-        this.heights = Array.from({ length }, () => this.createHeights())
-            .reduce(BaseLevel.heightReducer, [])
-            .map((arrays) => arrays.map((value) => Math.max(0, value)));
+        this.heights = BaseLevel.createMatrix({
+            min: minLevelHeight,
+            max: maxLevelHeight
+        });
     }
     getFloor(x, y) {
         const posX = Math.floor(x + BaseLevel.COLS / 2);
@@ -71142,15 +71154,6 @@ class BaseLevel {
                 }
             });
         });
-    }
-    createHeights(cols = BaseLevel.COLS, rows = BaseLevel.ROWS, fill = BaseLevel.FILL, iterations = BaseLevel.ITERATIONS) {
-        const map = new Map$1.Cellular(cols, rows);
-        map.randomize(fill);
-        for (let i = 0; i < iterations; i++) {
-            map.create();
-        }
-        const { _map: heights } = map;
-        return heights;
     }
     getXY(col, row) {
         return {
@@ -71887,7 +71890,10 @@ class Level extends BaseLevel {
     }
     createTrees() {
         if (Level.TREE in loadedTextures) {
-            const treeHeights = this.createHeights(Level.COLS, Level.ROWS, Level.TREE_FILL, Level.TREE_ITERATIONS);
+            const treeHeights = Level.createMatrix({
+                fill: Level.TREE_FILL,
+                iterations: Level.TREE_ITERATIONS,
+            });
             this.forEachHeight(this.heights, (col, row, height) => {
                 const allow = treeHeights[col][row];
                 if (allow &&
@@ -71901,7 +71907,12 @@ class Level extends BaseLevel {
     }
     createBushes() {
         if (Level.BUSH in loadedTextures) {
-            const bushesHeights = this.createHeights(Level.COLS * 2, Level.ROWS * 2, Level.BUSH_FILL, Level.BUSH_ITERATIONS);
+            const bushesHeights = Level.createMatrix({
+                cols: Level.COLS * 2,
+                rows: Level.ROWS * 2,
+                fill: Level.BUSH_FILL,
+                iterations: Level.BUSH_ITERATIONS
+            });
             this.forEachHeight(bushesHeights, (col, row, allow) => {
                 const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)];
                 if (allow &&

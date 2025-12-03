@@ -94,12 +94,11 @@ export class Level extends BaseLevel {
 
   protected createTrees() {
     if (Level.TREE in loadedTextures) {
-      const treeHeights = this.createHeights(
-        Level.COLS,
-        Level.ROWS,
-        Level.TREE_FILL,
-        Level.TREE_ITERATIONS
-      )
+      const treeHeights = Level.createMatrix({
+        fill: Level.TREE_FILL,
+        iterations: Level.TREE_ITERATIONS
+      })
+
       this.forEachHeight(this.heights, (col, row, height) => {
         const allow = treeHeights[col][row]
         if (
@@ -116,12 +115,12 @@ export class Level extends BaseLevel {
 
   protected createBushes() {
     if (Level.BUSH in loadedTextures) {
-      const bushesHeights = this.createHeights(
-        Level.COLS * 2,
-        Level.ROWS * 2,
-        Level.BUSH_FILL,
-        Level.BUSH_ITERATIONS
-      )
+      const bushesHeights = Level.createMatrix({
+        cols: Level.COLS * 2,
+        rows: Level.ROWS * 2,
+        fill: Level.BUSH_FILL,
+        iterations: Level.BUSH_ITERATIONS
+      })
 
       this.forEachHeight(bushesHeights, (col, row, allow) => {
         const height = this.heights[Math.floor(col / 2)][Math.floor(row / 2)]
