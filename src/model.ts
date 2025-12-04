@@ -50,10 +50,8 @@ export interface BaseBody {
   x: number
   y: number
   z: number
-  group: number
   angle: number
   userData: BodyUserData
-  setPosition: (x: number, y: number) => void
 }
 
 export interface SetProps {

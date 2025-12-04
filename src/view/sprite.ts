@@ -17,11 +17,11 @@ export class Sprite extends Billboard {
     return Billboard.create<T>(level, props, Class)
   }
 
+  static readonly JUMP_SPEED = 3 * AbstractLevel.STEP
   static readonly ANIM_SPEED = 0.002
   static readonly SPIN_SPEED = 0.06
   static readonly MOVE_SPEED = 0.1
-  static readonly JUMP_SPEED = 1
-  static readonly FALL_SPEED = 0.125
+  static readonly FALL_SPEED = 0.13
 
   static readonly CLICK_DURATION = 100
   static readonly CLICK_PREVENT = 500
@@ -115,7 +115,6 @@ export class Sprite extends Billboard {
   }
 
   protected updateFall(scale: number) {
-    const speed = Sprite.FALL_SPEED * scale
     const floor = AbstractBody.getZ(this.body)
     const isOnGround = this.body.z === floor || this.velocity === 0
     const isJumping = isOnGround && this.state.keys.space
@@ -123,6 +122,7 @@ export class Sprite extends Billboard {
     if (isJumping) this.velocity = Sprite.JUMP_SPEED
 
     if (isJumping || floor < this.body.z) {
+      const speed = Sprite.FALL_SPEED * scale
       this.velocity -= speed
       this.body.z += this.velocity * speed
     }

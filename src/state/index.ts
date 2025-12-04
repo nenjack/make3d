@@ -1,4 +1,4 @@
-import { groupBits, System } from 'check2d'
+import { System } from 'check2d'
 import { FrontSide, Texture } from 'three'
 import { Loader } from '../loader'
 import { AppState, Direction, Key } from '../model'
@@ -23,11 +23,6 @@ export const loadedTextures: Record<string, Texture> = {}
 export const physics = new System()
 
 export const loader = new Loader()
-
-export const groups = Array.from(
-  { length: maxLevelHeight },
-  (_: unknown, power) => groupBits(128 * Math.pow(2, power))
-)
 
 export const state: AppState = {
   keys,

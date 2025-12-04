@@ -56972,29 +56972,6 @@ function returnTrue() {
 function getGroup(group) {
   return Math.max(0, Math.min(group, 0x7fffffff))
 }
-/**
- * binary string to decimal number
- */
-function bin2dec(binary) {
-  return Number(`0b${binary}`.replace(/\s/g, ''))
-}
-/**
- * helper for groupBits()
- *
- * @param input - number or binary string
- */
-function ensureNumber(input) {
-  return typeof input === 'number' ? input : bin2dec(input)
-}
-/**
- * create group bits from category and mask
- *
- * @param category - category bits
- * @param mask - mask bits (default: category)
- */
-function groupBits(category, mask = category) {
-  return (ensureNumber(category) << 16) | ensureNumber(mask)
-}
 function move(body, speed = 1, updateNow = true) {
   if (!speed) {
     return
@@ -69660,7 +69637,6 @@ const keys = {};
 const loadedTextures = {};
 const physics = new System();
 const loader = new Loader();
-const groups = Array.from({ length: maxLevelHeight }, (_, power) => groupBits(128 * Math.pow(2, power)));
 const state = {
     keys,
     mouse: null,
@@ -71069,6 +71045,9 @@ class Cellular extends Map$2 {
 var Map$1 = { Cellular};
 
 class AbstractLevel {
+    static zToStep(z = 0) {
+        return Math.round(z / AbstractLevel.STEP);
+    }
     static reducer(input, heights) {
         return heights.map((column, x) => column.map((value, y) => (input[x]?.[y] || 0) + value), []);
     }
@@ -71115,11 +71094,11 @@ class AbstractLevel {
         const { x, y } = this.getXY(col, row);
         return physics.createBox({ x, y }, 1, 1, {
             isStatic: true,
-            userData: { step: AbstractBody.zToStep(z) }
+            userData: { step: AbstractLevel.zToStep(z) }
         });
     }
 }
-AbstractLevel.STEP = 0.4;
+AbstractLevel.STEP = 0.33;
 AbstractLevel.COLS = DeviceDetector.HIGH_END ? 48 : 24;
 AbstractLevel.ROWS = DeviceDetector.HIGH_END ? 48 : 24;
 AbstractLevel.FILL = 0.5;
@@ -71129,18 +71108,8 @@ class AbstractBody {
     static getZ(body, x = body.x, y = body.y) {
         return body.userData.level.getZ(x, y);
     }
-    static zToGroup(z = 0) {
-        const step = AbstractBody.zToStep(z);
-        return AbstractBody.stepToGroup(step);
-    }
-    static zToStep(z = 0) {
-        return Math.round(z / AbstractLevel.STEP);
-    }
     static stepToZ(step = 0) {
         return step * AbstractLevel.STEP;
-    }
-    static stepToGroup(step = 0) {
-        return groups[Math.max(0, step)];
     }
 }
 
@@ -71720,13 +71689,13 @@ class Sprite extends Billboard {
         }
     }
     updateFall(scale) {
-        const speed = Sprite.FALL_SPEED * scale;
         const floor = AbstractBody.getZ(this.body);
         const isOnGround = this.body.z === floor || this.velocity === 0;
         const isJumping = isOnGround && this.state.keys.space;
         if (isJumping)
             this.velocity = Sprite.JUMP_SPEED;
         if (isJumping || floor < this.body.z) {
+            const speed = Sprite.FALL_SPEED * scale;
             this.velocity -= speed;
             this.body.z += this.velocity * speed;
         }
@@ -71771,11 +71740,11 @@ class Sprite extends Billboard {
         return body;
     }
 }
+Sprite.JUMP_SPEED = 3 * AbstractLevel.STEP;
 Sprite.ANIM_SPEED = 0.002;
 Sprite.SPIN_SPEED = 0.06;
 Sprite.MOVE_SPEED = 0.1;
-Sprite.JUMP_SPEED = 1;
-Sprite.FALL_SPEED = 0.125;
+Sprite.FALL_SPEED = 0.13;
 Sprite.CLICK_DURATION = 100;
 Sprite.CLICK_PREVENT = 500;
 
@@ -71828,9 +71797,9 @@ class NPC extends Sprite {
         this.speed = NPC.MAX_SPEED;
         this.rotation = NPC.MAX_ROTATION;
         this.props = {
-            SLOW_SPEED: Math.random() * 0.5,
-            SPIN_CHANCE: Math.random() * 0.2,
-            JUMP_CHANCE: Math.random() * 0.02
+            SLOW_SPEED: 0.1,
+            SPIN_CHANCE: (0.5 + Math.random()) * 0.5,
+            JUMP_CHANCE: (0.5 + Math.random()) * 0.5
         };
     }
     static async create(level, props, Class = NPC) {
@@ -72206,5 +72175,5 @@ __decorate([
     distExports.Inject(System)
 ], Level.prototype, "system", void 0);
 
-export { AbstractBody, AbstractLevel, Billboard, BoxMesh, Camera, Debug, DeviceDetector, DynamicBody, Events, Level, Loader, Math_Double_PI, Math_Half_PI, Mouse, NPC, Ocean, Player, Renderer, Skybox, Sprite, StaticBody, alphaMaterialProps, createMaterial, defaultNPCsCount, directions, distanceSq, getMatrix, getQueryParams, getTextureName, groups, keys, loadTextures, loadedTextures, loader, mapCubeTextures, materialProps, maxLevelHeight, minLevelHeight, mouse, normalize, normalizeAngle, physics, pixelate, queryParams, randomOf, setKey, state, waterZ };
+export { AbstractBody, AbstractLevel, Billboard, BoxMesh, Camera, Debug, DeviceDetector, DynamicBody, Events, Level, Loader, Math_Double_PI, Math_Half_PI, Mouse, NPC, Ocean, Player, Renderer, Skybox, Sprite, StaticBody, alphaMaterialProps, createMaterial, defaultNPCsCount, directions, distanceSq, getMatrix, getQueryParams, getTextureName, keys, loadTextures, loadedTextures, loader, mapCubeTextures, materialProps, maxLevelHeight, minLevelHeight, mouse, normalize, normalizeAngle, physics, pixelate, queryParams, randomOf, setKey, state, waterZ };
 //# sourceMappingURL=index.js.map

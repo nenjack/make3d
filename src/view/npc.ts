@@ -18,9 +18,9 @@ export class NPC extends Sprite {
   protected speed = NPC.MAX_SPEED
   protected rotation = NPC.MAX_ROTATION
   protected props = {
-    SLOW_SPEED: Math.random() * 0.5,
-    SPIN_CHANCE: Math.random() * 0.2,
-    JUMP_CHANCE: Math.random() * 0.02
+    SLOW_SPEED: 0.1,
+    SPIN_CHANCE: (0.5 + Math.random()) * 0.5,
+    JUMP_CHANCE: (0.5 + Math.random()) * 0.5
   }
 
   update(scale: number) {

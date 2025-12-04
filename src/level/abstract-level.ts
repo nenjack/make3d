@@ -1,12 +1,15 @@
 import { Map } from 'rot-js'
 import { maxLevelHeight, minLevelHeight, physics } from '../state'
 import { DeviceDetector } from '../utils/detect-mobile'
-import { AbstractBody } from '../body/abstract-body'
 
 export abstract class AbstractLevel {
-  static readonly STEP = 0.4
+  static readonly STEP = 0.33
   static readonly COLS = DeviceDetector.HIGH_END ? 48 : 24
   static readonly ROWS = DeviceDetector.HIGH_END ? 48 : 24
+
+  static zToStep(z = 0) {
+    return Math.round(z / AbstractLevel.STEP)
+  }
 
   static reducer(input: number[][], heights: number[][]) {
     return heights.map(
@@ -83,7 +86,7 @@ export abstract class AbstractLevel {
     const { x, y } = this.getXY(col, row)
     return physics.createBox({ x, y }, 1, 1, {
       isStatic: true,
-      userData: { step: AbstractBody.zToStep(z) }
+      userData: { step: AbstractLevel.zToStep(z) }
     })
   }
 }
