@@ -43,19 +43,29 @@ export class TextureUtils {
     return resolved
   }
 
+  static createMaterial(map: Texture, props = TextureUtils.ALPHA_PROPS) {
+    return new MeshBasicMaterial({
+      ...props,
+      map
+    })
+  }
+
   static getMaterial(textureName: string, cols = 1, rows = 1) {
-    if (!TextureUtils.materials[textureName]) {
-      if (cols > 1 || rows > 1) {
-        TextureUtils.textures[textureName].repeat.set(1 / cols, 1 / rows)
+    const texture = TextureUtils.textures[textureName]
+
+    if (cols === 1 && rows === 1) {
+      if (!TextureUtils.materials[textureName]) {
+        TextureUtils.materials[textureName] =
+          TextureUtils.createMaterial(texture)
       }
 
-      TextureUtils.materials[textureName] = new MeshBasicMaterial({
-        ...TextureUtils.ALPHA_PROPS,
-        map: TextureUtils.textures[textureName]
-      })
-    }
+      return TextureUtils.materials[textureName]
+    } else {
+      const map = texture.clone()
+      map.repeat.set(1 / cols, 1 / rows)
 
-    return TextureUtils.materials[textureName]
+      return TextureUtils.createMaterial(map)
+    }
   }
 
   static getName(texturePath: string) {

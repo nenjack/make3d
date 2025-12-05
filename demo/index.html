@@ -25,8 +25,14 @@
   </head>
   <body>
     <script type="module">
-      import { Level, Player } from './make3d.js'
-      Level.create().then(Player.create)
+      import { Level, NPC, Player } from './make3d.js'
+
+      Level.create().then(async (level) => {
+        await Player.create(level)
+        Array.from({ length: 50 }, () =>
+          new NPC({ level, ...Player.DEFAULT_PROPS })
+        )
+      })
     </script>
   </body>
 </html>

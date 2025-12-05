@@ -32,12 +32,10 @@ export class NPC extends Sprite {
   protected props = {
     SLOW_SPEED: NPC.randomProp(),
     SPIN_CHANCE: NPC.randomProp(),
-    JUMP_CHANCE: NPC.randomProp() * 0.25
+    JUMP_CHANCE: NPC.randomProp() * 0.2
   }
 
   update(scale: number) {
-    super.update(scale)
-
     const dx = this.mesh.position.x
     const dy = this.mesh.position.z
     const radius = (AbstractLevel.COLS + AbstractLevel.ROWS) / 2
@@ -52,12 +50,9 @@ export class NPC extends Sprite {
 
     if (this.rotation < 0) {
       this.rotation = NPC.MAX_ROTATION
-
-      // Reset kierunków bocznych (bez tworzenia tablicy)
       this.state.keys.left = false
       this.state.keys.right = false
 
-      // Losowa zmiana kierunku
       if (Math.random() < scale * this.props.SPIN_CHANCE) {
         this.state.keys[Math.random() < 0.5 ? 'left' : 'right'] = true
       }
@@ -65,13 +60,12 @@ export class NPC extends Sprite {
 
     if (this.speed < 0) {
       this.speed = NPC.MAX_SPEED
-
-      // 90% szansy na ruch w górę
       this.state.keys.up = Math.random() < 0.9
     }
 
-    // Skok (uniknięcie podwójnego `Math.random`)
-    const jumpChance = scale * this.props.JUMP_CHANCE
-    this.state.keys.space = Math.random() < jumpChance
+    this.state.keys.space = Math.random() < scale * this.props.JUMP_CHANCE
+
+    // last
+    super.update(scale)
   }
 }

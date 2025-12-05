@@ -71101,17 +71101,26 @@ class TextureUtils {
         });
         return resolved;
     }
+    static createMaterial(map, props = TextureUtils.ALPHA_PROPS) {
+        return new MeshBasicMaterial({
+            ...props,
+            map
+        });
+    }
     static getMaterial(textureName, cols = 1, rows = 1) {
-        if (!TextureUtils.materials[textureName]) {
-            if (cols > 1 || rows > 1) {
-                TextureUtils.textures[textureName].repeat.set(1 / cols, 1 / rows);
+        const texture = TextureUtils.textures[textureName];
+        if (cols === 1 && rows === 1) {
+            if (!TextureUtils.materials[textureName]) {
+                TextureUtils.materials[textureName] =
+                    TextureUtils.createMaterial(texture);
             }
-            TextureUtils.materials[textureName] = new MeshBasicMaterial({
-                ...TextureUtils.ALPHA_PROPS,
-                map: TextureUtils.textures[textureName]
-            });
+            return TextureUtils.materials[textureName];
         }
-        return TextureUtils.materials[textureName];
+        else {
+            const map = texture.clone();
+            map.repeat.set(1 / cols, 1 / rows);
+            return TextureUtils.createMaterial(map);
+        }
     }
     static getName(texturePath) {
         const fileName = texturePath.split('/').pop()?.split('.')[0];
@@ -71326,18 +71335,22 @@ class Renderer extends WebGLRenderer {
         this.onCreate();
     }
     add(child) {
-        this.children.push(child);
+        if (!this.children.includes(child)) {
+            this.children.push(child);
+            this.scene.add(child.mesh);
+        }
     }
-    setTarget(target) {
-        this.camera.setTarget(target);
+    setLevel(level) {
+        this.level = level;
+        this.scene.clear();
+        this.scene.add(this.level.mesh);
         this.children.forEach((child) => {
             this.scene.add(child.mesh);
         });
     }
-    setLevel(level) {
-        this.scene.clear();
-        this.scene.add(level.mesh);
-        this.level = level;
+    setTarget(target) {
+        this.camera.setTarget(target);
+        this.add(target);
     }
     onCreate() {
         this.outputColorSpace = LinearSRGBColorSpace;
@@ -71490,14 +71503,14 @@ class Billboard {
     }
     createMesh(textureName) {
         try {
-            const material = TextureUtils.getMaterial(textureName, this.cols, this.rows);
-            const image = material.map.image;
+            const mat = TextureUtils.getMaterial(textureName, this.cols, this.rows);
+            const image = mat.map.image;
             const w = image.width / this.cols;
             const h = image.height / this.rows;
             const max = Math.max(w, h);
             const width = (this.scaleX * w) / max;
             const height = (this.scaleY * h) / max;
-            return new Mesh(new PlaneGeometry(width, height), material);
+            return new Mesh(new PlaneGeometry(width, height), mat);
         }
         catch (materialError) {
             console.error({ textureName, materialError });
@@ -71529,8 +71542,9 @@ class Billboard {
         }
     }
     getDirection() {
-        const cameraAngle = state.player?.body.angle || state.renderer.camera.rotation.y;
-        const angle = normalizeAngle(this.body.angle - cameraAngle);
+        const bodyAngle = normalizeAngle(this.body.angle);
+        const camAngle = normalizeAngle(state.player?.body.angle || state.renderer.camera.rotation.y);
+        const angle = normalizeAngle(bodyAngle - camAngle);
         const directionIndex = Math.floor((2 * angle) / Math.PI);
         return Billboard.DIRECTIONS[directionIndex];
     }
@@ -71556,7 +71570,6 @@ class Sprite extends Billboard {
         this.state = state || { keys: {}, mouse: new Mouse() };
     }
     update(scale) {
-        super.update(scale);
         this.updateFall(scale);
         const gear = this.getGear();
         const { left, right } = this.state.keys;
@@ -71565,6 +71578,8 @@ class Sprite extends Billboard {
             this.updateMove(scale * gear);
             this.updateAnimation(scale);
         }
+        // last
+        super.update(scale);
     }
     jump() {
         if (Date.now() - this.clickTime > Sprite.CLICK_PREVENT) {
@@ -71664,6 +71679,7 @@ class Sprite extends Billboard {
     }
     spawn(level, x, y) {
         super.spawn(level, x, y);
+        this.body.z = AbstractBody.getZ(this.body);
         this.body.separate(1);
     }
     createBody(x, y, level) {
@@ -71731,7 +71747,7 @@ class NPC extends Sprite {
         this.props = {
             SLOW_SPEED: NPC.randomProp(),
             SPIN_CHANCE: NPC.randomProp(),
-            JUMP_CHANCE: NPC.randomProp() * 0.25
+            JUMP_CHANCE: NPC.randomProp() * 0.2
         };
     }
     static async create(level, props, Class = NPC) {
@@ -71741,7 +71757,6 @@ class NPC extends Sprite {
         return (1 + Math.random()) * 0.1;
     }
     update(scale) {
-        super.update(scale);
         const dx = this.mesh.position.x;
         const dy = this.mesh.position.z;
         const radius = (AbstractLevel.COLS + AbstractLevel.ROWS) / 2;
@@ -71753,22 +71768,19 @@ class NPC extends Sprite {
         this.rotation -= scale * this.props.SLOW_SPEED;
         if (this.rotation < 0) {
             this.rotation = NPC.MAX_ROTATION;
-            // Reset kierunków bocznych (bez tworzenia tablicy)
             this.state.keys.left = false;
             this.state.keys.right = false;
-            // Losowa zmiana kierunku
             if (Math.random() < scale * this.props.SPIN_CHANCE) {
                 this.state.keys[Math.random() < 0.5 ? 'left' : 'right'] = true;
             }
         }
         if (this.speed < 0) {
             this.speed = NPC.MAX_SPEED;
-            // 90% szansy na ruch w górę
             this.state.keys.up = Math.random() < 0.9;
         }
-        // Skok (uniknięcie podwójnego `Math.random`)
-        const jumpChance = scale * this.props.JUMP_CHANCE;
-        this.state.keys.space = Math.random() < jumpChance;
+        this.state.keys.space = Math.random() < scale * this.props.JUMP_CHANCE;
+        // last
+        super.update(scale);
     }
 }
 NPC.MAX_SPEED = 0;

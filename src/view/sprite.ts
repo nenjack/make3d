@@ -38,7 +38,6 @@ export class Sprite extends Billboard {
   }
 
   update(scale: number) {
-    super.update(scale)
     this.updateFall(scale)
 
     const gear = this.getGear()
@@ -48,6 +47,9 @@ export class Sprite extends Billboard {
       this.updateMove(scale * gear)
       this.updateAnimation(scale)
     }
+
+    // last
+    super.update(scale)
   }
 
   jump() {
@@ -165,6 +167,7 @@ export class Sprite extends Billboard {
 
   protected spawn(level: Level, x?: number, y?: number) {
     super.spawn(level, x, y)
+    this.body.z = AbstractBody.getZ(this.body)
     this.body.separate(1)
   }
 

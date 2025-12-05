@@ -123,19 +123,15 @@ export class Billboard {
 
   protected createMesh(textureName: string) {
     try {
-      const material = TextureUtils.getMaterial(
-        textureName,
-        this.cols,
-        this.rows
-      )
-      const image = material.map!.image as { width: number; height: number }
+      const mat = TextureUtils.getMaterial(textureName, this.cols, this.rows)
+      const image = mat.map!.image as { width: number; height: number }
       const w = image.width / this.cols
       const h = image.height / this.rows
       const max = Math.max(w, h)
       const width = (this.scaleX * w) / max
       const height = (this.scaleY * h) / max
 
-      return new Mesh(new PlaneGeometry(width, height), material)
+      return new Mesh(new PlaneGeometry(width, height), mat)
     } catch (materialError) {
       console.error({ textureName, materialError })
 
@@ -176,9 +172,12 @@ export class Billboard {
   }
 
   protected getDirection() {
-    const cameraAngle =
+    const bodyAngle = normalizeAngle(this.body.angle)
+    const camAngle = normalizeAngle(
       state.player?.body.angle || state.renderer.camera.rotation.y
-    const angle = normalizeAngle(this.body.angle - cameraAngle)
+    )
+
+    const angle = normalizeAngle(bodyAngle - camAngle)
     const directionIndex = Math.floor((2 * angle) / Math.PI)
 
     return Billboard.DIRECTIONS[directionIndex]
