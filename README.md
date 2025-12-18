@@ -9,7 +9,7 @@ Game FrameWork for JavaScript 3D WebGL Games.
 
 ## demo
 
-https://jackie-aniki.github.io/make3d/demo/
+https://nenjack.github.io/make3d/demo/
 
 ## demo code
 
@@ -24,7 +24,7 @@ Level.create().then(async (level) => {
 
 ## docs
 
-https://jackie-aniki.github.io/make3d/hierarchy.html
+https://nenjack.github.io/make3d/hierarchy.html
 
 ## license
 
