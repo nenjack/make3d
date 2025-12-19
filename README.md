@@ -59,14 +59,14 @@ make3d exposes a focused set of modules, grouped by responsibility:
 
 - **Renderer** – Three.js renderer wrapper
 - **Camera** – camera helper
-- **BoxMesh** – basic mesh helper
+- **BoxMesh** – basic 2.5D mesh
 - **Sprite** – sprite helper
-- **Skybox** – skybox utility
+- **Skybox** – skybox
 - **Ocean** – ocean / water surface
-- **Billboard** – camera-facing objects
 
 ### entities
 
+- **Billboard** – camera-facing objects
 - **Player** – player entity
 - **NPC** – non-player character
 
